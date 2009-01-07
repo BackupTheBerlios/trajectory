@@ -1,0 +1,53 @@
+//****************************************************************************
+// Use:     This  is  a template for a well-formatted preset-file allowing the
+//          user to write/load presets.
+// Date:    2009-01-03
+// Author:  BE
+// Rem:     Empty lines and lines starting with '/' are ignored.
+//          Every word of the 14 leading each uncommented line is  a  KEYWORD.
+//          Unless   you   modify   the  source   code   DON´T  change  these. 
+//          Every   deviation   from the given KEYWORDS leads to ignoring the
+//          values.
+//          If you write your own preset files, 0.0 is set for  every  omitted
+//          keyword (in the resulting `setting' object.
+//
+// KEYS:
+//    height    -     the height of the object directly above the ground at
+//                    the starting time t0.
+//    rho       -     ...
+//
+// TODO:    B A name property in class `Setting' would be fine.
+// TODO:    B complete the list above.
+//****************************************************************************
+// 
+// P L A N E T     E A R T H, 
+// 
+//
+// height
+height  100
+// rho, density
+rho     0.0
+// eta
+eta     0.0
+// radius planet
+radiusPlanet   6378100
+// mass planet
+massPlanet  5.974e24
+// integration interval dt
+dt   0.001
+// initial speed
+v     7900
+// initial angle to x-axis (radians)
+beta   0.0
+// moving body´s mass in kg
+massBody    10
+// moving body´s volume TODO: BE: dimension?
+volumeBody  1
+// moving body´s cw
+cwBody 0.22
+// moving body´s friction-effective area
+areaOfBody 0.3
+// body´s radius (if sphere), otherwise set it to 0.
+radiusOfBody 0.015
+// upper bound computing time in secs
+upperBoundComputingTime 30
