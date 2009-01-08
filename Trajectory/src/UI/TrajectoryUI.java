@@ -20,10 +20,11 @@
  *              indicator...
  * TODO:    BE: C Communicate the jPnlDrawingPlane issue with the developers of
  *          netbeans IDE.
- * TODO:    BE: Write a method that dumps all data into one "dump"-object for
+ * TODO:    BE: C Write a method that dumps all data into one "dump"-object for
  *          later sending bug reports automatically.
  * TODO:    BE: A KILLERBUG: paint() redraw nastily interwoven with paint()
  *          animation! animation starts by moving the screen ;-( subtle.
+ *          DONE BE.
  * TODO:    BE: B Rethink: Trade-off: Code-reuse against speed and memory.
  *          Drawing via `xs' `ys' after reading them from the vector of moving
  *          bodies.
@@ -32,18 +33,16 @@ package UI;
 
 import java.io.*;
 import javax.swing.*;
-
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.util.Vector;
 import java.lang.Thread;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
+import java.awt.Color;
 
 import UI.UserInputNewParameters;
-import java.awt.Color;
 import utilities.*;
-import UI.Analysis;
 import static utilities.EulerIntegration.*;
 import physics.MovingBody;
 
@@ -82,11 +81,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
     try { // catching a NullPointerException in this try-block
 
-      // DRAW COORDINATE SYSTEM
-      // x-axis    
-      if (i >= xs.size()) {
-        try {
-          Thread.sleep(3000);
+      if (i >= xs.size()) {     // TODO: on debugging animation runs again
+        try {                   //       after a pause of 3 seconds
+          Thread.sleep(3000);   //
         } catch (InterruptedException ex) {
           System.out.println("caught: " + ex);
           th.interrupt();
@@ -95,24 +92,14 @@ public class TrajectoryUI extends javax.swing.JFrame {
         i = 0;
       }
 
-      // y-axis
-      g.drawLine(
-              0,
-              (int) (ScreenUtilities.SCREEN_HEIGHT - (guitest.Main.yMin + ys.get(0)) * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET),
-              jPnlDrawingPlane.getWidth(),
-              (int) (ScreenUtilities.SCREEN_HEIGHT - (guitest.Main.yMin + ys.get(0)) * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET));
-
-
-      // y-axis
-      g.drawLine(
-              (int) (-guitest.Main.xMin * ScreenUtilities.scalingFactor), 0,
-              (int) (-guitest.Main.xMin * ScreenUtilities.scalingFactor),
-              jPnlDrawingPlane.getHeight());
-
-      // Rem: it is absolutely necessary to do floating point arithmetic
-      // here in order to antialize the trajectory.
-
       // TODO: BE: A  draw a nice coordinate system.
+      ScreenUtilities.drawCoordinateSystem(
+              g, xs, ys, 
+              guitest.Main.xMin,
+              guitest.Main.yMin,
+              jPnlDrawingPlane.getWidth(),
+              jPnlDrawingPlane.getHeight());
+      
       // TODO: BE: A  improve transformation.
       g.drawOval((int) (xs.get(i).floatValue() * ScreenUtilities.scalingFactor - guitest.Main.xMin * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET),
               (int) (ScreenUtilities.SCREEN_HEIGHT -
@@ -126,8 +113,6 @@ public class TrajectoryUI extends javax.swing.JFrame {
       Graphics2D tmpG2d = (Graphics2D) jPnlDrawingPlane.getGraphics();
       tmpG2d.drawImage(bi, 0, 0, this);
 
-//      System.out.println("ANGLE: " +
-//              EulerIntegration.positions.get(i).getAngleVvectorToRvector());
       if(positions.size()!=0){
       MovingBody tmp = positions.get(i);
       guitest.Main.analysisUI.displayValues(
@@ -142,9 +127,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
                 tmp.getVy()
                 );
       }
-      i += ScreenUtilities.increment; // reduction of pts to draw
+      i += ScreenUtilities.increment; // reduction of pts to draw happens here
 
-    //////   } // end synchronized block
     } catch (NullPointerException ex) {
       // TODO: BE: C encapsulate a ~th.myStop() method...
       ex.getCause().printStackTrace(System.out);
@@ -188,21 +172,11 @@ public class TrajectoryUI extends javax.swing.JFrame {
     public DrawingPanel() {
       super(true); // double-buffered enabled JPanel
     }
-
+    
     @Override
     public void paint(Graphics g) {
-      //if (big==null) big = bi.createGraphics();
       Graphics2D g2d = (Graphics2D) g;
       g2d.drawImage(bi, null, 0, 0);
-      
-//      "WORKING" PAINT CODE: this code snippet animates before the start of 
-//      the animation!!!
-//
-//      if (!(ScreenUtilities.xs.size() == 0)) //myPaint((Graphics2D)g, ScreenUtilities.xs, ScreenUtilities.ys);
-//      {
-//        myPaint(big, ScreenUtilities.xs, ScreenUtilities.ys);
-//      }
-//      System.out.println("Paint");
     }
     
   } // end `DrawingPanel'
@@ -239,6 +213,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
     jMenuAnimation = new javax.swing.JMenu();
     jMenuItemStartAnimation = new javax.swing.JMenuItem();
     jMenuEdit = new javax.swing.JMenu();
+    jMenuItem3 = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -282,7 +257,15 @@ public class TrajectoryUI extends javax.swing.JFrame {
     jMenu6.setText("Edit");
     jMenuBar2.add(jMenu6);
 
+    jMenuBar.addComponentListener(new java.awt.event.ComponentAdapter() {
+      public void componentHidden(java.awt.event.ComponentEvent evt) {
+        jMenuBarComponentHidden(evt);
+      }
+    });
+
+    jMenuFile.getPopupMenu().setLightWeightPopupEnabled(false);
     jMenuFile.setText("File");
+    jMenuFile.setDelay(100);
 
     jMenuItemOpenFile.setToolTipText("Open a file to read data.");
     jMenuItemOpenFile.setActionCommand("OpenFile");
@@ -299,6 +282,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
     jMenuBar.add(jMenuFile);
 
+    jMenuSet.getPopupMenu().setLightWeightPopupEnabled(false);
     jMenuSet.setText("Set");
 
     jMenuItemSetNewParameters.setText("New Parameters...");
@@ -310,6 +294,11 @@ public class TrajectoryUI extends javax.swing.JFrame {
     jMenuSet.add(jMenuItemSetNewParameters);
 
     jMenuItemLoadPresetFile.setText("Load Preset File...");
+    jMenuItemLoadPresetFile.addComponentListener(new java.awt.event.ComponentAdapter() {
+      public void componentHidden(java.awt.event.ComponentEvent evt) {
+        jMenuItemLoadPresetFileComponentHidden(evt);
+      }
+    });
     jMenuItemLoadPresetFile.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jMenuItemLoadPresetFileActionPerformed(evt);
@@ -319,6 +308,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
     jMenuBar.add(jMenuSet);
 
+    jMenuComputation.getPopupMenu().setLightWeightPopupEnabled(false);
     jMenuComputation.setText("Computation");
 
     jMenuItemCompute.setText("compute");
@@ -331,6 +321,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
     jMenuBar.add(jMenuComputation);
 
+    jMenuAnimation.getPopupMenu().setLightWeightPopupEnabled(false);
     jMenuAnimation.setText("Animation");
 
     jMenuItemStartAnimation.setText("Start Animation(File)");
@@ -343,7 +334,12 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
     jMenuBar.add(jMenuAnimation);
 
+    jMenuEdit.getPopupMenu().setLightWeightPopupEnabled(false);
     jMenuEdit.setText("Edit");
+
+    jMenuItem3.setText("not implemented yet");
+    jMenuEdit.add(jMenuItem3);
+
     jMenuBar.add(jMenuEdit);
 
     setJMenuBar(jMenuBar);
@@ -466,6 +462,14 @@ private void jMenuItemLoadPresetFileActionPerformed(java.awt.event.ActionEvent e
   }
 
 }//GEN-LAST:event_jMenuItemLoadPresetFileActionPerformed
+
+private void jMenuBarComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jMenuBarComponentHidden
+// TODO add your handling code here:
+}//GEN-LAST:event_jMenuBarComponentHidden
+
+private void jMenuItemLoadPresetFileComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jMenuItemLoadPresetFileComponentHidden
+// TODO add your handling code here:
+}//GEN-LAST:event_jMenuItemLoadPresetFileComponentHidden
     /**
      * @param args the command line arguments
      */
@@ -493,6 +497,7 @@ private void jMenuItemLoadPresetFileActionPerformed(java.awt.event.ActionEvent e
   private javax.swing.JMenu jMenuFile;
   private javax.swing.JMenuItem jMenuItem1;
   private javax.swing.JMenuItem jMenuItem2;
+  private javax.swing.JMenuItem jMenuItem3;
   private javax.swing.JMenuItem jMenuItemClose;
   private javax.swing.JMenuItem jMenuItemCompute;
   private javax.swing.JMenuItem jMenuItemLoadPresetFile;

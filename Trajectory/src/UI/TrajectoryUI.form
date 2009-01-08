@@ -3,11 +3,18 @@
 <Form version="1.5" maxVersion="1.6" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar">
+      <Events>
+        <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="jMenuBarComponentHidden"/>
+      </Events>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenuFile">
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="delay" type="int" value="100"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuFile.getPopupMenu().setLightWeightPopupEnabled(false);"/>
+          </AuxValues>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemOpenFile">
               <Properties>
@@ -30,6 +37,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Set"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuSet.getPopupMenu().setLightWeightPopupEnabled(false);"/>
+          </AuxValues>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSetNewParameters">
               <Properties>
@@ -44,6 +54,7 @@
                 <Property name="text" type="java.lang.String" value="Load Preset File..."/>
               </Properties>
               <Events>
+                <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="jMenuItemLoadPresetFileComponentHidden"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemLoadPresetFileActionPerformed"/>
               </Events>
             </MenuItem>
@@ -53,6 +64,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Computation"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuComputation.getPopupMenu().setLightWeightPopupEnabled(false);"/>
+          </AuxValues>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCompute">
               <Properties>
@@ -68,6 +82,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Animation"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuAnimation.getPopupMenu().setLightWeightPopupEnabled(false);"/>
+          </AuxValues>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemStartAnimation">
               <Properties>
@@ -83,6 +100,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuEdit.getPopupMenu().setLightWeightPopupEnabled(false);"/>
+          </AuxValues>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="not implemented yet"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

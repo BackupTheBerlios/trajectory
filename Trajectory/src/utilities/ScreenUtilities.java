@@ -18,6 +18,7 @@ package utilities;
 import java.util.*;
 import static java.lang.Math.*;
 import java.io.*;
+import java.awt.Graphics2D;
 
 import physics.Setting;
 
@@ -254,6 +255,45 @@ public class ScreenUtilities {
         } // end if
         
     } // end `computeIncrement()'
+    
+    // use:  to draw the coordinate system
+    // pre: 
+    // post:
+    public static void drawCoordinateSystem(
+            Graphics2D g,
+            Vector<Double> xs,
+            Vector<Double>ys,
+            Double xMin,
+            Double yMin,
+            int width, int height)
+    {
+      // x-axis   // smoother is to use `g.translate()'
+      g.drawLine(
+              0,
+              (int) (ScreenUtilities.SCREEN_HEIGHT - 
+                    (yMin + ys.get(0)) *
+                     ScreenUtilities.scalingFactor 
+                     + ScreenUtilities.ORIGIN_OFFSET),
+              width,
+              (int) (ScreenUtilities.SCREEN_HEIGHT - 
+                    (yMin + ys.get(0)) * 
+                    ScreenUtilities.scalingFactor 
+                    + ScreenUtilities.ORIGIN_OFFSET));
+
+      // y-axis
+      g.drawLine(
+              (int) (-xMin * ScreenUtilities.scalingFactor) +
+                      ScreenUtilities.ORIGIN_OFFSET,
+               0,
+              (int) (-xMin * ScreenUtilities.scalingFactor) +
+                      ScreenUtilities.ORIGIN_OFFSET,
+              height);
+
+      // Rem: it is absolutely necessary to do floating point arithmetic
+      // here in order to antialize the trajectory.
+    };
+    
+    
 } // end of `ScreenUtilities'.
 
     
