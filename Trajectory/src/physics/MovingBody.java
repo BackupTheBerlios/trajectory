@@ -130,9 +130,6 @@ public class MovingBody {
     return angleVvectorToRvector;
   }
   
- 
-  
-  
   //setters
   public void setA(double a) {
     this.a = a;
@@ -194,15 +191,24 @@ public class MovingBody {
   private void setVcomponentsVBeta(double v, double beta) {
     this.vx = Math.cos(beta) * v;
     this.vy = Math.sin(beta) * v;
-    this.vvectorx = this.vx / v;
-    this.vvectory = this.vy / v;
+    if (v==0) {
+      this.vvectorx = 0;
+      this.vvectory = 0;
+    } else {
+        this.vvectorx = this.vx / v;
+        this.vvectory = this.vy / v;
+    }
   }
-
+  
   private void setVcomponentsVxVy(double vx, double vy) {
     this.v = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
-    this.beta = Math.acos(vx / v);						// acos = arccos!
-    this.vvectorx = vx / this.v;
-    this.vvectory = vy / this.v;
+    if (v != 0) {
+      this.beta = Math.acos(vx / v);
+      this.vvectorx = vx / this.v;
+      this.vvectory = vy / this.v;
+    } else {
+      System.out.println("|v|=0, division through zero caught.");
+    }
   }
 
   // use:  compute the angle enclosed by the velocity vector and the current
@@ -223,103 +229,23 @@ public class MovingBody {
                        ) * 360 ) / (Math.PI * 2);
   }
   
+  // use: print all data of an instance of `MovingBody' on console
+  public void printMovingBody() {
+    System.out.println("-----------------------------------");
+    System.out.println("vx:" + vx);
+    System.out.println("vy:" + vy);
+    System.out.println("v:" + v);
+    System.out.println("vvectorx:" + vvectorx);
+    System.out.println("vvectory:" + vvectory);
+    System.out.println("beta:" + beta);
+    System.out.println("m:" + m);
+    System.out.println("vol:" + vol);
+    System.out.println("cw:" + cw);
+    System.out.println("a (area):" + a);
+    System.out.println("r (radius):" + r);
+    System.out.println("location:" + location);
+    System.out.println("angleVvectorToRvector:" + angleVvectorToRvector); // 
+    System.out.println("-----------------------------------");
+  }
+  
 } // end `MovingBody'
-
-
-// no code beyond this point!!!
-
-// wie bei Location ist f�r die Programmstruktur (noch) kein vollst�ndiger Zugriff auf das Objekt n�tig
-
-/*// constructor: without arguments, set for earth //
-public MovingBody(){
-this.setG(DiverseConstants.EQUATORIAL_SURFACE_GRAVITY_EARTH);
-this.setLocation(new Location());
-this.setVx(0.0);
-this.setVy(0.0);
-this.setMass(10.0);
-}
-
-public MovingBody(double g, Location location, double vx, double vy, double mass,
-double volume){
-this.g = g;
-this.location = location;
-this.vx = vx;
-this.vy = vy;
-this.mass = mass;
-this.volume = volume;
-}
-
-
-// getters //
-public double getG(){
-return this.g;
-}
-
-// use:
-public Location getLocation(){
-Location tmp = new Location(this.location.getDensity(),
-this.location.getR(),
-this.location.getX(),
-this.location.getY());
-return tmp;
-}
-
-public double getVx(){
-return vx;
-}
-public double getVy(){
-return vy;
-}
-public double getMass(){
-return mass;
-}
-public double getVolume(){
-return volume;
-}
-
-// setters //
-public void setG(double g){
-this.g = g;
-}
-public void setLocation(Location aLocation){
-this.location = aLocation;
-}
-public void setVx(double vx){
-this.vx = vx;
-}
-public void setVy(double vy){
-this.vy = vy;
-}
-public void setMass(double mass){
-this.mass = mass;
-}
-public void setVolume(double volume){
-this.volume = volume;
-}
-
-// methods //
-
-// use: print all data of an instance of `MovingBody' on console
-public void printMovingBody(){
-System.out.println("-----------------------------------");
-System.out.println("g: " + this.g);
-System.out.println("location x: " + this.location.getX());
-System.out.println("location y: " + this.location.getY());
-System.out.println("vx: " + this.getVx());
-System.out.println("vx: " + this.getVy());
-System.out.println("mass: " + this.getMass());
-System.out.println("volume: " + this.volume);
-}
-
-// use: move an instance of this class by deltaX, deltaY resp.
-public void move(double deltaX, double deltaY){
-this.location.setX(this.location.getX() + deltaX);
-this.location.setY(this.location.getY() + deltaY);
-}
-
-// use: accelerate an instance of this class by deltaVx, deltaVy resp.
-public void accelerate(double deltaVx, double deltaVy){
-this.setVx(this.getVx()+ deltaVx);
-this.setVy(this.getVy()+ deltaVy);
-}*/
-	

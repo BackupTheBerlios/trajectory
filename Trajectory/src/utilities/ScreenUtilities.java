@@ -20,6 +20,8 @@ import static java.lang.Math.*;
 import java.io.*;
 import java.awt.Graphics2D;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import physics.Setting;
 
 public class ScreenUtilities {
@@ -151,6 +153,7 @@ public class ScreenUtilities {
              Double.isInfinite(widthScalingFactor))    {        
           widthScalingFactor = 0;  // TODO: watch the implications on
                                    // `TrajectoryUI.myPaint()'
+          System.out.println("INFINITY ALERT.");
           heightScalingFactor = 0;
           return 0;
         }
@@ -268,8 +271,20 @@ public class ScreenUtilities {
             int width, int height)
     {
       // x-axis   // smoother is to use `g.translate()'
-      g.drawLine(
-              0,
+// TODO: the following commented out code worked with serious errors.
+//      g.drawLine(
+//              0,
+//              (int) (ScreenUtilities.SCREEN_HEIGHT - 
+//                    (yMin + ys.get(0)) *
+//                     ScreenUtilities.scalingFactor 
+//                     + ScreenUtilities.ORIGIN_OFFSET),
+//              width,
+//              (int) (ScreenUtilities.SCREEN_HEIGHT - 
+//                    (yMin + ys.get(0)) * 
+//                    ScreenUtilities.scalingFactor 
+//                    + ScreenUtilities.ORIGIN_OFFSET));
+            g.drawLine(
+              0,//TODO: CONTINUE!!!
               (int) (ScreenUtilities.SCREEN_HEIGHT - 
                     (yMin + ys.get(0)) *
                      ScreenUtilities.scalingFactor 
@@ -280,6 +295,17 @@ public class ScreenUtilities {
                     ScreenUtilities.scalingFactor 
                     + ScreenUtilities.ORIGIN_OFFSET));
 
+//            System.out.println("### x-axis drawn ### ");
+//            System.out.println("y: " + (int) (ScreenUtilities.SCREEN_HEIGHT - 
+//                    (yMin + ys.get(0)) * 
+//                    ScreenUtilities.scalingFactor 
+//                    + ScreenUtilities.ORIGIN_OFFSET));
+//            System.out.println("");
+//    try {
+//      Thread.sleep(3000);
+//    } catch (InterruptedException ex) {
+//      Logger.getLogger(ScreenUtilities.class.getName()).log(Level.SEVERE, null, ex);
+//    }
       // y-axis
       g.drawLine(
               (int) (-xMin * ScreenUtilities.scalingFactor) +
@@ -291,7 +317,7 @@ public class ScreenUtilities {
 
       // Rem: it is absolutely necessary to do floating point arithmetic
       // here in order to antialize the trajectory.
-    };
+    }
     
     
 } // end of `ScreenUtilities'.

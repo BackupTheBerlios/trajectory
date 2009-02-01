@@ -393,28 +393,6 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
             jTfProposedComputingTime.getText()
             );
     
-    // debug:
-    // Setting setting = new Setting(1,1254,1.48,Constants.RADIUS_EARTH,Constants.Mass_Earth,0.00001,10,Math.PI/4,10,4.2e-3,0,0,0.1,0);  // benutzerdefiniertes Setting
-// Eingabe: (h, rho, eta, R, M, dt, v, beta, mass, vol, cw, a, radius, T)
-   
-   /* currentSetting = new physics.Setting(
-            1,
-            1254,
-            1.48,
-            Constants.RADIUS_EARTH,
-            Constants.Mass_Earth,
-            0.00001,
-            100,
-            Math.PI/4,
-            10,
-            4.2e-2,
-            0,
-            0,
-            0.1,
-            10
-            );
-    */
-    
     // set selected forces as acting
     Forces.setIsActingBuoyancy(jCckBxBuoyancy.isSelected());
     Forces.setIsActingFlowResistance(jCckBxFlowResistance.isSelected());

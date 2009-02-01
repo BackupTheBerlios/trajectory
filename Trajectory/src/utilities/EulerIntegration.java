@@ -50,7 +50,7 @@ public class EulerIntegration {
         
         while ( // time left AND ground not hit AND space left for results
                 (gotStillTime(tStart,allowedTime)) &&
-                (positions.get(i - 1).getLocation(setting).getH() >= 0) &&
+                (positions.get(i - 1).getLocation(setting).getH() >= 0.0) &&
                 (i < SIZE)
               ) {
  
@@ -58,7 +58,17 @@ public class EulerIntegration {
 
             // compute new x,y coordinates and speed in this loop
                 tempMovingBody = positions.get(i - 1);
-
+                
+//                System.out.println("DEBUG_ON");
+//                tempMovingBody.printMovingBody();
+//                if (positions.get(i - 1).getLocation(setting).getH() < 0.0)
+//                  System.out.println("### H<0 ###");
+//                else System.out.println(positions.get(i - 1).getLocation(setting).getH());
+//                if (i>SIZE) System.out.println("### size ###");
+//                if (!(gotStillTime(tStart,allowedTime))) System.out.println("time out");
+//                System.out.println("DEBUG_OFF");
+                
+                
                 if (i == (6000 * k + 1)) {
                     k++;
                   System.out.println(tempMovingBody.getLocation(setting).getY());
