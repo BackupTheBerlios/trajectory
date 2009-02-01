@@ -106,7 +106,7 @@ public class ScreenUtilities {
 
         // values later needed to transform the origin.
         // TODO: BE: stupid spaghetti code; clean up
-        guitest.Main.xMax = ys.get(xMaxPos);
+        guitest.Main.xMax = xs.get(xMaxPos);
         guitest.Main.yMax = ys.get(yMaxPos);
         guitest.Main.xMin = xs.get(xMinPos);
         guitest.Main.yMin = ys.get(yMinPos);
@@ -284,14 +284,14 @@ public class ScreenUtilities {
 //                    ScreenUtilities.scalingFactor 
 //                    + ScreenUtilities.ORIGIN_OFFSET));
             g.drawLine(
-              0,//TODO: CONTINUE!!!
+              0,//TODO: CONTINUE!!! , abs() finally...
               (int) (ScreenUtilities.SCREEN_HEIGHT - 
-                    (yMin + ys.get(0)) *
+                    (Math.abs(yMin) + ys.get(0)) *
                      ScreenUtilities.scalingFactor 
                      + ScreenUtilities.ORIGIN_OFFSET),
               width,
               (int) (ScreenUtilities.SCREEN_HEIGHT - 
-                    (yMin + ys.get(0)) * 
+                    (Math.abs(yMin) + ys.get(0)) * 
                     ScreenUtilities.scalingFactor 
                     + ScreenUtilities.ORIGIN_OFFSET));
 
