@@ -16,21 +16,23 @@
  * TODO:    BE: C animation speed user-adjustable, possibly during
  *              animation.
  * TODO:    BE: o is it a good idea to implement user control for `increment'?
- * TODO:    BE: A REDUCTION OF PTS to draw!!! DONE - BE Rem: use it as error
- *              indicator...
- * TODO:    BE: C Communicate the jPnlDrawingPlane issue with the developers of
+ * DONE:    BE: A REDUCTION OF PTS to draw!!! 
+ * TODO:    BE: D Communicate the jPnlDrawingPlane issue with the developers of
  *          netbeans IDE.
  * TODO:    BE: C Write a method that dumps all data into one "dump"-object for
  *          later sending bug reports automatically.
- * TODO:    BE: A KILLERBUG: paint() redraw nastily interwoven with paint()
+ * DONE:    BE: A KILLERBUG: paint() redraw nastily interwoven with paint()
  *          animation! animation starts by moving the screen ;-( subtle.
- *          DONE BE.
  * TODO:    BE: B Rethink: Trade-off: Code-reuse against speed and memory.
  *          Drawing via `xs' `ys' after reading them from the vector of moving
  *          bodies.
+ * TODO:    BE: B Increment is still double.
+ * TODO:    BE: C More efficient is to prepare the image, not to draw CS again
+ *                all the time.
  */
 package UI;
 
+import java.awt.event.MouseEvent;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.JPanel;
@@ -42,14 +44,12 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 
 import UI.UserInputNewParameters;
+import java.awt.Cursor;
 import utilities.*;
 import static utilities.EulerIntegration.*;
+import modi.*;
 import physics.MovingBody;
 
-/**
- *
- * @author  BE
- */
 public class TrajectoryUI extends javax.swing.JFrame {
 
   // member variables
@@ -72,7 +72,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
   //       filled properly. ScreenUtilities.scalingFactor is set accordingly
   // post: as long as the thread calling this method runs, the points in the
   //       above  mentioned  datastructures  are drawn to `jPnlDrawingPlane'
-  // TODO: solve: all drawn stuff vanishes when covered by another window.
+  // DONE: BE all drawn stuff vanishes when covered by another window.
   //
   public void myPaint(Graphics2D g,
           Vector<Double> xs,
@@ -92,15 +92,15 @@ public class TrajectoryUI extends javax.swing.JFrame {
         i = 0;
       }
 
-      // TODO: BE: A  draw a nice coordinate system.
+      // TODO: BE: B  draw a nice coordinate system.
       ScreenUtilities.drawCoordinateSystem(
-              g, xs, ys, 
+              g, xs, ys,
               guitest.Main.xMin,
               guitest.Main.yMin,
               jPnlDrawingPlane.getWidth(),
               jPnlDrawingPlane.getHeight());
-      
-      // TODO: BE: A  improve transformation.
+
+      // TODO: BE: C  improve transformation.
       g.drawOval((int) (xs.get(i).floatValue() * ScreenUtilities.scalingFactor - guitest.Main.xMin * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET),
               (int) (ScreenUtilities.SCREEN_HEIGHT -
               (ys.get(i).floatValue() - guitest.Main.yMin) *
@@ -113,9 +113,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
       Graphics2D tmpG2d = (Graphics2D) jPnlDrawingPlane.getGraphics();
       tmpG2d.drawImage(bi, 0, 0, this);
 
-      if(positions.size()!=0){
-      MovingBody tmp = positions.get(i);
-      guitest.Main.analysisUI.displayValues(
+      if (positions.size() != 0) {
+        MovingBody tmp = positions.get(i);
+        guitest.Main.analysisUI.displayValues(
                 tmp.getAngleVvectorToRvector(),
                 tmp.getA(),
                 tmp.getCw(),
@@ -124,9 +124,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
                 tmp.getV(),
                 tmp.getVol(),
                 tmp.getVx(),
-                tmp.getVy()
-                );
+                tmp.getVy());
       }
+      System.out.println("### inc: " + ScreenUtilities.increment);
       i += ScreenUtilities.increment; // reduction of pts to draw happens here
 
     } catch (NullPointerException ex) {
@@ -157,6 +157,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
   /** Creates new form TrajectoryUI */
   public TrajectoryUI() {
     initComponents();
+    jPnlDrawingPlane.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+    
     // double buffering items
     bi = (BufferedImage) jPnlDrawingPlane.createImage(
             1018,//jPnlDrawingPlane.getWidth(), // seems like an odd IDE-issue, that the method-call returns the initial, not the current values.
@@ -172,13 +174,12 @@ public class TrajectoryUI extends javax.swing.JFrame {
     public DrawingPanel() {
       super(true); // double-buffered enabled JPanel
     }
-    
+
     @Override
     public void paint(Graphics g) {
       Graphics2D g2d = (Graphics2D) g;
       g2d.drawImage(bi, null, 0, 0);
     }
-    
   } // end `DrawingPanel'
 
   /** This method is called from within the constructor to
@@ -213,12 +214,22 @@ public class TrajectoryUI extends javax.swing.JFrame {
     jMenuAnimation = new javax.swing.JMenu();
     jMenuItemStartAnimation = new javax.swing.JMenuItem();
     jMenuEdit = new javax.swing.JMenu();
-    jMenuItem3 = new javax.swing.JMenuItem();
+    jMenuItemMeasureMode = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jPnlDrawingPlane.setBackground(new java.awt.Color(255, 204, 0));
     jPnlDrawingPlane.setName("jPnlDrawingPlane"); // NOI18N
+    jPnlDrawingPlane.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jPnlDrawingPlaneMouseClicked(evt);
+      }
+    });
+    jPnlDrawingPlane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+      public void mouseMoved(java.awt.event.MouseEvent evt) {
+        jPnlDrawingPlaneMouseMoved(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPnlDrawingPlaneLayout = new javax.swing.GroupLayout(jPnlDrawingPlane);
     jPnlDrawingPlane.setLayout(jPnlDrawingPlaneLayout);
@@ -234,6 +245,11 @@ public class TrajectoryUI extends javax.swing.JFrame {
     jMenu1.setText("File");
 
     jMenuItem1.setText("Close");
+    jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItem1ActionPerformed(evt);
+      }
+    });
     jMenu1.add(jMenuItem1);
 
     jMenuBar1.add(jMenu1);
@@ -337,8 +353,13 @@ public class TrajectoryUI extends javax.swing.JFrame {
     jMenuEdit.getPopupMenu().setLightWeightPopupEnabled(false);
     jMenuEdit.setText("Edit");
 
-    jMenuItem3.setText("not implemented yet");
-    jMenuEdit.add(jMenuItem3);
+    jMenuItemMeasureMode.setText("Measure Mode");
+    jMenuItemMeasureMode.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemMeasureModeActionPerformed(evt);
+      }
+    });
+    jMenuEdit.add(jMenuItemMeasureMode);
 
     jMenuBar.add(jMenuEdit);
 
@@ -423,10 +444,6 @@ private void jMenuItemOpenFileActionPerformed(java.awt.event.ActionEvent evt) {/
 //       with the results of the computation.
 private void jMenuItemComputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemComputeActionPerformed
           EulerIntegration.eulerIntegrate();
-//    for (int k=0; k<ScreenUtilities.xs.size(); k++){
-//        System.out.println("from TrajectoryUI: x: " + ScreenUtilities.xs.get(k) + 
-//        "y: " + ScreenUtilities.ys.get(k));
-//    }
           System.out.println("xs-size: " + ScreenUtilities.xs.size());
           System.out.println("ys-size: " + ScreenUtilities.ys.size());
           System.out.println("positions-size: " + EulerIntegration.positions.size());
@@ -470,6 +487,45 @@ private void jMenuBarComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-F
 private void jMenuItemLoadPresetFileComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jMenuItemLoadPresetFileComponentHidden
 // TODO add your handling code here:
 }//GEN-LAST:event_jMenuItemLoadPresetFileComponentHidden
+
+private void jMenuItemMeasureModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMeasureModeActionPerformed
+  AnimationStop dialog;// = new UI.AnimationStop(this,true);
+  if ((th != null) && (th.isInterrupted()))
+    modi.MeasureMode.setIsDisplayXYcoordsEnabled(true);
+  else {
+      dialog = new UI.AnimationStop(this,true);
+      dialog.setVisible(true);
+  }
+}//GEN-LAST:event_jMenuItemMeasureModeActionPerformed
+
+private void jPnlDrawingPlaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPnlDrawingPlaneMouseMoved
+  if (MeasureMode.getIsDisplayXYCoordsEnabled()) {
+    Graphics2D g2d = (Graphics2D) jPnlDrawingPlane.getGraphics();
+    g2d.drawImage(bi, null, 0, 0);
+    System.out.println("X: " + evt.getX() + " Y: " + evt.getY());
+    if (ScreenUtilities.scalingFactor != 0) {
+      System.out.println("X: " + 
+              MeasureMode.screenCoordsToReality(0, evt.getX()) +
+              "Y: " + MeasureMode.screenCoordsToReality(1, evt.getY())
+              );
+      g2d.drawString("X: " + evt.getX() + " Y: " + evt.getY(), 
+                      evt.getX(), evt.getY()
+                    );
+    } // end if
+    
+  } // end if
+}//GEN-LAST:event_jPnlDrawingPlaneMouseMoved
+
+private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jMenuItem1ActionPerformed
+
+private void jPnlDrawingPlaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPnlDrawingPlaneMouseClicked
+  if (evt.getButton() == MouseEvent.BUTTON3) {
+    System.out.println("RIGHT");
+    
+  }
+}//GEN-LAST:event_jPnlDrawingPlaneMouseClicked
     /**
      * @param args the command line arguments
      */
@@ -497,10 +553,10 @@ private void jMenuItemLoadPresetFileComponentHidden(java.awt.event.ComponentEven
   private javax.swing.JMenu jMenuFile;
   private javax.swing.JMenuItem jMenuItem1;
   private javax.swing.JMenuItem jMenuItem2;
-  private javax.swing.JMenuItem jMenuItem3;
   private javax.swing.JMenuItem jMenuItemClose;
   private javax.swing.JMenuItem jMenuItemCompute;
   private javax.swing.JMenuItem jMenuItemLoadPresetFile;
+  private javax.swing.JMenuItem jMenuItemMeasureMode;
   private javax.swing.JMenuItem jMenuItemOpenFile;
   private javax.swing.JMenuItem jMenuItemSetNewParameters;
   private javax.swing.JMenuItem jMenuItemStartAnimation;

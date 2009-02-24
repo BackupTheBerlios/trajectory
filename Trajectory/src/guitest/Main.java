@@ -31,11 +31,11 @@
  *                             ---------> REDUCTION OF POINTS!!! for small dt
  *                                        is urgent.
  * 
- * Todo:    A! The tested cases with `test[t]^N.txt' showed that it is 
+ * TODO:    A! The tested cases with `test[t]^N.txt' showed that it is 
  *             mandatory to reduce the points being drawed, as visualization is
  *             slowed down otherwise. DONE BE
  * 
- *          B! Known bug: content of the panel gets erased by moving it out of
+ * DONE:    B! Known bug: content of the panel gets erased by moving it out of
  *             visible range of by covering it with other windows. DONE BE
  *             
  * just 4me:
@@ -59,6 +59,7 @@ public class Main {
   // these are set via calling ScreenUtilities.computeScalingFactor!
   public static Double xMax,  xMin,  yMax,  yMin;
   public static Analysis analysisUI;
+  //public static MeasureMode mmUI;
   
   /**
    * @param args the command line arguments

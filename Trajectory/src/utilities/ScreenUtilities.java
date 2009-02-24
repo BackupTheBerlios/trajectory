@@ -20,8 +20,6 @@ import static java.lang.Math.*;
 import java.io.*;
 import java.awt.Graphics2D;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import physics.Setting;
 
 public class ScreenUtilities {
