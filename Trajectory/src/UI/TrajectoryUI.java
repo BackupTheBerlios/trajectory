@@ -53,6 +53,7 @@ import physics.MovingBody;
 public class TrajectoryUI extends javax.swing.JFrame {
 
   // member variables
+  public static DialogComputationInProgress dialog;
   private static int i = 0;
   static boolean isAnimationRunning = false;
   static Thread th;
@@ -158,7 +159,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
   public TrajectoryUI() {
     initComponents();
     jPnlDrawingPlane.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-    
+
     // double buffering items
     bi = (BufferedImage) jPnlDrawingPlane.createImage(
             1018,//jPnlDrawingPlane.getWidth(), // seems like an odd IDE-issue, that the method-call returns the initial, not the current values.
@@ -382,11 +383,11 @@ public class TrajectoryUI extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
 private void jMenuItemSetNewParametersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSetNewParametersActionPerformed
-  UserInputNewParameters dialog = new UserInputNewParameters();
+  UserInputNewParameters userInputDialog = new UserInputNewParameters();
   //dialog.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-  dialog.setAlwaysOnTop(true);
-  dialog.setVisible(true);
-  dialog.setModal(true);
+  userInputDialog.setAlwaysOnTop(true);
+  userInputDialog.setVisible(true);
+  userInputDialog.setModal(true);
 }//GEN-LAST:event_jMenuItemSetNewParametersActionPerformed
 
 private void jMenuItemStartAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartAnimationActionPerformed
@@ -443,7 +444,19 @@ private void jMenuItemOpenFileActionPerformed(java.awt.event.ActionEvent evt) {/
 // post: the datastructures `xs', `ys' in class ScreenUtilities are filled
 //       with the results of the computation.
 private void jMenuItemComputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemComputeActionPerformed
-          EulerIntegration.eulerIntegrate();
+          //EulerIntegration.eulerIntegrate();
+
+//          javax.swing.SwingUtilities.invokeLater(new Runnable(){
+//              public void run(){
+          dialog = new DialogComputationInProgress(guitest.Main.ui, false);
+          dialog.setVisible(true);
+//              }
+//            }
+//          );
+          EulerIntegration.EulerIntegrationTask task = new EulerIntegration().new EulerIntegrationTask();
+          task.addPropertyChangeListener(new EulerIntegration().new EulerIntegrationTask());
+          task.execute();
+
           System.out.println("xs-size: " + ScreenUtilities.xs.size());
           System.out.println("ys-size: " + ScreenUtilities.ys.size());
           System.out.println("positions-size: " + EulerIntegration.positions.size());
@@ -489,12 +502,12 @@ private void jMenuItemLoadPresetFileComponentHidden(java.awt.event.ComponentEven
 }//GEN-LAST:event_jMenuItemLoadPresetFileComponentHidden
 
 private void jMenuItemMeasureModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMeasureModeActionPerformed
-  AnimationStop dialog;// = new UI.AnimationStop(this,true);
-  if ((th != null) && (th.isInterrupted()))
+  AnimationStop animationStopDialog;// = new UI.AnimationStop(this,true);
+  if ((th != null) && (th.isInterrupted())) {
     modi.MeasureMode.setIsDisplayXYcoordsEnabled(true);
-  else {
-      dialog = new UI.AnimationStop(this,true);
-      dialog.setVisible(true);
+  } else {
+    animationStopDialog = new UI.AnimationStop(this, true);
+    animationStopDialog.setVisible(true);
   }
 }//GEN-LAST:event_jMenuItemMeasureModeActionPerformed
 
@@ -504,15 +517,13 @@ private void jPnlDrawingPlaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FI
     g2d.drawImage(bi, null, 0, 0);
     System.out.println("X: " + evt.getX() + " Y: " + evt.getY());
     if (ScreenUtilities.scalingFactor != 0) {
-      System.out.println("X: " + 
+      System.out.println("X: " +
               MeasureMode.screenCoordsToReality(0, evt.getX()) +
-              "Y: " + MeasureMode.screenCoordsToReality(1, evt.getY())
-              );
-      g2d.drawString("X: " + evt.getX() + " Y: " + evt.getY(), 
-                      evt.getX(), evt.getY()
-                    );
+              "Y: " + MeasureMode.screenCoordsToReality(1, evt.getY()));
+      g2d.drawString("X: " + evt.getX() + " Y: " + evt.getY(),
+              evt.getX(), evt.getY());
     } // end if
-    
+
   } // end if
 }//GEN-LAST:event_jPnlDrawingPlaneMouseMoved
 
@@ -523,7 +534,7 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void jPnlDrawingPlaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPnlDrawingPlaneMouseClicked
   if (evt.getButton() == MouseEvent.BUTTON3) {
     System.out.println("RIGHT");
-    
+
   }
 }//GEN-LAST:event_jPnlDrawingPlaneMouseClicked
     /**

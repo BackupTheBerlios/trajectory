@@ -59,6 +59,7 @@ public class Main {
   // these are set via calling ScreenUtilities.computeScalingFactor!
   public static Double xMax,  xMin,  yMax,  yMin;
   public static Analysis analysisUI;
+  public static TrajectoryUI ui;
   //public static MeasureMode mmUI;
   
   /**
@@ -74,7 +75,7 @@ public class Main {
     UI.UserInputNewParameters.currentSetting = new Setting();
 
     // bring up the GUI where all drawing, user-manipulation happens
-    TrajectoryUI ui = new TrajectoryUI();
+    ui = new TrajectoryUI();
     ui.setSize(1024, 768);  // hard-wired screen resolution...
     ui.setResizable(false); // maybe via config file, to keep it small and
     ui.setVisible(true);    // simple?

@@ -156,10 +156,10 @@ public class ScreenUtilities {
           return 0;
         }
 
-
         return min(heightScalingFactor, widthScalingFactor);
     } // end of `computeScalingFactor()'
 
+    
     // use:  filling the `xs', `ys' datastructures
     // pre:  `xs', `ys' are declared and non-null; well-formed data-file given
     // post: `xs', `ys' are filled with the contents of the datafile.
@@ -196,6 +196,7 @@ public class ScreenUtilities {
 
     } //end of `readFileToStructure()'
 
+    
     // use:  read the data of the `positions' vector into datastructures
     //       for   which   the   animation  - framework  already  exists .
     // pre:  call to `EulerIntegration.eulerIntegrate()'; proper args.
@@ -213,7 +214,6 @@ public class ScreenUtilities {
         xs.removeAllElements();
         ys.removeAllElements();
 
-        //
         for (int i = 0; i < SIZE; i++) {
             xs.add(EulerIntegration.positions.get(i).getLocation(setting).getX());
             ys.add(EulerIntegration.positions.get(i).getLocation(setting).getY());
@@ -293,17 +293,6 @@ public class ScreenUtilities {
                     ScreenUtilities.scalingFactor 
                     + ScreenUtilities.ORIGIN_OFFSET));
 
-//            System.out.println("### x-axis drawn ### ");
-//            System.out.println("y: " + (int) (ScreenUtilities.SCREEN_HEIGHT - 
-//                    (yMin + ys.get(0)) * 
-//                    ScreenUtilities.scalingFactor 
-//                    + ScreenUtilities.ORIGIN_OFFSET));
-//            System.out.println("");
-//    try {
-//      Thread.sleep(3000);
-//    } catch (InterruptedException ex) {
-//      Logger.getLogger(ScreenUtilities.class.getName()).log(Level.SEVERE, null, ex);
-//    }
       // y-axis
       g.drawLine(
               (int) (-xMin * ScreenUtilities.scalingFactor) +
@@ -314,9 +303,8 @@ public class ScreenUtilities {
               height);
 
       // Rem: it is absolutely necessary to do floating point arithmetic
-      // here in order to antialize the trajectory.
+      // here in order to obtain a nicely drawn trajectory.
     }
-    
     
 } // end of `ScreenUtilities'.
 

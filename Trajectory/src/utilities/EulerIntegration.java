@@ -10,109 +10,187 @@
  *                 time, as there is always the possibility of obtaining  non-
  *                 sensical   results  by shortening the integration interval.
  */
-
 package utilities;
+
+import UI.DialogComputationInProgress;
+import UI.TrajectoryUI;
+import java.beans.PropertyChangeEvent;
+import javax.swing.SwingWorker;
+import java.awt.Toolkit;
+import java.beans.PropertyChangeListener;
 import java.util.Vector;
 import physics.*;
 
 public class EulerIntegration {
-    final static int MSEC_PER_SEC = 1000;
-    public static Vector<MovingBody> positions = new Vector<MovingBody>();
+
+  final static int MSEC_PER_SEC = 1000;
+  public static Vector<MovingBody> positions = new Vector<MovingBody>();
+  static Long currentMillis = new Long(0);
+  
+  // use:  compute all the positions of the moving body in order to obtain its
+  //       trajectory.
+  // pre:  `currentSetting' has to be properly set up.
+  //       TODO: assure the above
+  // post: `positions'  is  filled;  `xs', `ys' are only filled with the x, y
+  //        values.
+  //
+  public static void eulerIntegrate() {
+    Setting setting = UI.UserInputNewParameters.currentSetting;
+    MovingBody tempMovingBody = null;
     
-    // use:  compute all the positions of the moving body in order to obtain its
-    //       trajectory.
-    // pre:  `currentSetting' has to be properly set up.
-    //       TODO: assure the above
-    // post: `positions'  is  filled;  `xs', `ys' are only filled with the x, y
-    //        values.
-    //
-    public static void eulerIntegrate(){
-        Setting setting = UI.UserInputNewParameters.currentSetting;
-        MovingBody tempMovingBody = null;
-        long tStart = System.currentTimeMillis(); // starting time
-        double x  = 0.0;
-        double y  = 0.0;
-        double vx = 0.0;
-        double vy = 0.0;
-        int     i = 1;
-        double  k = 0;
-	double dt = UI.UserInputNewParameters.currentSetting.getDt();
-        // allowedTime in msec
-        double allowedTime = UI.UserInputNewParameters.currentSetting.getT()
-                             * MSEC_PER_SEC;
-        final int SIZE = 3000000; // TODO: AA adjust that to hardware, maybe
-                                  //       automatically ;-)
-   
-        // clean up
-        positions.removeAllElements();
-        // set the 0th element in positions
-        positions.add(new MovingBody(setting));
-        
-        while ( // time left AND ground not hit AND space left for results
-                (gotStillTime(tStart,allowedTime)) &&
-                (positions.get(i - 1).getLocation(setting).getH() >= 0.0) &&
-                (i < SIZE)
-              ) {
- 
-            ///////////////
-
-            // compute new x,y coordinates and speed in this loop
-                tempMovingBody = positions.get(i - 1);
-                
-//                System.out.println("DEBUG_ON");
-//                tempMovingBody.printMovingBody();
-//                if (positions.get(i - 1).getLocation(setting).getH() < 0.0)
-//                  System.out.println("### H<0 ###");
-//                else System.out.println(positions.get(i - 1).getLocation(setting).getH());
-//                if (i>SIZE) System.out.println("### size ###");
-//                if (!(gotStillTime(tStart,allowedTime))) System.out.println("time out");
-//                System.out.println("DEBUG_OFF");
-                
-                
-                if (i == (6000 * k + 1)) {
-                    k++;
-                  System.out.println(tempMovingBody.getLocation(setting).getY());
-                } // Ausgabe von 50 Zwischenwerten
-                
-                x = tempMovingBody.getLocation(setting).getX() + tempMovingBody.getVx() * dt + Forces.computeDxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity()) ;
-                y = tempMovingBody.getLocation(setting).getY() + tempMovingBody.getVy() * dt + Forces.computeDyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity()) ;
-
-                // new speeds
-                vx = tempMovingBody.getVx() + Forces.computeDvxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity()) ;
-                vy = tempMovingBody.getVy() + Forces.computeDvyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity()) ;
-
-                //System.out.println(i);
-                positions.add(new MovingBody(vx, vy, new Location(x, y, setting), setting));
-
-                i++;
-            }
-        // as animation already works via the xs, ys stuff.
-        ScreenUtilities.positionsToXsYsStructures(ScreenUtilities.xs, ScreenUtilities.ys); 
-     }
+    long tStart = System.currentTimeMillis(); // starting time
+    double x = 0.0;
     
-    private static boolean gotStillTime(long tStart, double allowedTime){
-        return (boolean)(
-                (System.currentTimeMillis() - tStart)
-                <
-                allowedTime);
+    double y = 0.0;
+    double vx = 0.0;
+    double vy = 0.0;
+    
+    int    i  = 1;
+    double k  = 0;
+    double dt = UI.UserInputNewParameters.currentSetting.getDt();
+    
+    // allowedTime in msec
+    double allowedTime = UI.UserInputNewParameters.currentSetting.getT() * MSEC_PER_SEC;
+    final int SIZE = 3000000; // TODO: AA adjust that to hardware, maybe
+    //       automatically ;-)
+
+    // clean up
+    positions.removeAllElements();
+    // set the 0th element in positions
+    positions.add(new MovingBody(setting));
+
+    while ( // time left AND ground not hit AND space left for results
+            (gotStillTime(tStart, allowedTime)) &&
+            (positions.get(i - 1).getLocation(setting).getH() >= 0.0) &&
+            (i < SIZE)) {
+
+      // compute new x,y coordinates and speed in this loop
+      tempMovingBody = positions.get(i - 1);
+
+      if (i == (6000 * k + 1)) {
+        k++;
+        System.out.println(tempMovingBody.getLocation(setting).getY());
+      } // Ausgabe von 50 Zwischenwerten
+
+      x = tempMovingBody.getLocation(setting).getX() + tempMovingBody.getVx() * dt + Forces.computeDxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
+      y = tempMovingBody.getLocation(setting).getY() + tempMovingBody.getVy() * dt + Forces.computeDyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
+
+      // new speeds
+      vx = tempMovingBody.getVx() + Forces.computeDvxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
+      vy = tempMovingBody.getVy() + Forces.computeDvyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
+
+      //System.out.println(i);
+      positions.add(new MovingBody(vx, vy, new Location(x, y, setting), setting));
+
+      i++;
     }
+    // as animation already works via the xs, ys stuff.
+    ScreenUtilities.positionsToXsYsStructures(ScreenUtilities.xs, ScreenUtilities.ys);
+  }
+
+  // Use  : To determine wether there is still computing time left or not.
+  private static boolean gotStillTime(long tStart, double allowedTime) {
+    currentMillis = new Long(System.currentTimeMillis());
+    return (boolean) (( currentMillis - tStart) <
+            allowedTime);
+  }
+  
+  
+  // Use:  This class is used to provide the background working thread
+  //       facilities for the time-consuming `eulerIntegrate()' method.
+  //       As you can see the code in `doInBackground()' (below) is the
+  //       same as in `eulerIntegrate()'. Effectively, this lets the method
+  //       now run without blocking the GUI.
+  //       Thus pre-, and postcondition remain the same.
+  public class EulerIntegrationTask extends SwingWorker<Void, Void>
+  implements PropertyChangeListener {
+
+    @Override
+    //
+    protected Void doInBackground() {
+      Setting setting = UI.UserInputNewParameters.currentSetting;
+      MovingBody tempMovingBody = null;
+      long tStart = System.currentTimeMillis(); // starting time
+      double x = 0.0;
+      
+      double y = 0.0;
+      double vx = 0.0;
+      double vy = 0.0;
+      
+      int i = 1;
+      double k = 0;
+      double dt = UI.UserInputNewParameters.currentSetting.getDt();
+      // allowedTime in msec
+      double allowedTime = UI.UserInputNewParameters.currentSetting.getT() * MSEC_PER_SEC;
+      final int SIZE = 3000000; // TODO: AA adjust that to hardware, maybe
+      //       automatically ;-)
+
+      // clean up
+      positions.removeAllElements();
+      // set the 0th element in positions
+      positions.add(new MovingBody(setting));
+
+      while ( // time left AND ground not hit AND space left for results
+              (gotStillTime(tStart, allowedTime)) &&
+              (positions.get(i - 1).getLocation(setting).getH() >= 0.0) &&
+              (i < SIZE)) {
+
+        // report to progressbar (change the Progress property of this class,
+        // which extends the `SwingWorker' class, and thus owns such a field.
+        // the listener implemented below listens on this action!
+        setProgress( (int) Math.min(100 * (currentMillis - tStart)/allowedTime, 100));
+        System.out.println("############## " + ( Math.min((100 * (currentMillis - tStart)/allowedTime), 100)));
+        System.out.println("++++" + currentMillis);
+        // compute new x,y coordinates and speed in this loop
+        tempMovingBody = positions.get(i - 1);
+
+        if (i == (6000 * k + 1)) {
+          k++;
+          System.out.println(tempMovingBody.getLocation(setting).getY());
+          TrajectoryUI.dialog.jTextAreaComputationReport.append(
+                  tempMovingBody.getLocation(setting).getY() +
+                  System.getProperty("line.separator")
+                  );
+        } // Ausgabe von 50 Zwischenwerten
+
+        x = tempMovingBody.getLocation(setting).getX() + tempMovingBody.getVx() * dt + Forces.computeDxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
+        y = tempMovingBody.getLocation(setting).getY() + tempMovingBody.getVy() * dt + Forces.computeDyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
+
+        // new speeds
+        vx = tempMovingBody.getVx() + Forces.computeDvxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
+        vy = tempMovingBody.getVy() + Forces.computeDvyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
+
+        //System.out.println(i);
+        positions.add(new MovingBody(vx, vy, new Location(x, y, setting), setting));
+
+        i++;
+      } // end while
+      
+      
+      // as animation already works via the xs, ys stuff.
+      ScreenUtilities.positionsToXsYsStructures(ScreenUtilities.xs, ScreenUtilities.ys);
+
+      return null; // p.d.
+    }
+
+    /*
+     * Executed in event dispatching thread
+     */
+    @Override
+    public void done() {
+      Toolkit.getDefaultToolkit().beep();
+      setProgress(0);
+      TrajectoryUI.dialog.dispose();
+    }
+
+    
+    public void propertyChange(PropertyChangeEvent evt) {
+      if ("progress".equals(evt.getPropertyName())){
+        int progress = (Integer) evt.getNewValue();
+        DialogComputationInProgress.jProgressBarComputation.setValue(progress);
+        DialogComputationInProgress.jProgressBarComputation.setStringPainted(true);
+      }
+        
+    }
+  }
 }
-
-////// no code beyond this line !!!
-
-                // correct: first add all forces, than divide by 2m, than multiply dt^2.
-                // -------- later.
-                //sumFx = 0.0;
-                //sumFy = DiverseConstants.EQUATORIAL_SURFACE_GRAVITY_EARTH;
-
-                // new coordinates
-
-// final int SIZE = 300000; 
-// PrintWriter pw = new PrintWriter("testt.txt"); 							// Datenstruktur
-// Setting setting = new Setting(1,1254,1.48,Constants.RADIUS_EARTH,Constants.Mass_Earth,0.00001,10,Math.PI/4,10,4.2e-3,0,0,0.1,0);  // benutzerdefiniertes Setting
-// Eingabe: (h, rho, eta, R, M, dt, v, beta, mass, vol, cw, a, radius, T)
-// Start-MovingBody
-
-// initialize the element at position 0 in the vector structure
-//positions.add(new MovingBody(9.81, new Location(1,10,10,30), 15, 30, 100, 0.3));
-// later the user provided values are listed here:
