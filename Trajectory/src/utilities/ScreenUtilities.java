@@ -109,7 +109,6 @@ public class ScreenUtilities {
         guitest.Main.xMin = xs.get(xMinPos);
         guitest.Main.yMin = ys.get(yMinPos);
         
-        
         // now we have obtained the positions of the extrema, compute the
         // scaling  factor  to  map  the `real-world  coordinates' to the 
         // `screen-size'
@@ -257,9 +256,8 @@ public class ScreenUtilities {
         
     } // end `computeIncrement()'
     
+    
     // use:  to draw the coordinate system
-    // pre: 
-    // post:
     public static void drawCoordinateSystem(
             Graphics2D g,
             Vector<Double> xs,
@@ -268,28 +266,29 @@ public class ScreenUtilities {
             Double yMin,
             int width, int height)
     {
-      // x-axis   // smoother is to use `g.translate()'
-// TODO: the following commented out code worked with serious errors.
-//      g.drawLine(
-//              0,
-//              (int) (ScreenUtilities.SCREEN_HEIGHT - 
-//                    (yMin + ys.get(0)) *
-//                     ScreenUtilities.scalingFactor 
-//                     + ScreenUtilities.ORIGIN_OFFSET),
-//              width,
-//              (int) (ScreenUtilities.SCREEN_HEIGHT - 
-//                    (yMin + ys.get(0)) * 
-//                    ScreenUtilities.scalingFactor 
-//                    + ScreenUtilities.ORIGIN_OFFSET));
+      // x-axis   // using `g.translate()' could be advantageous.
+
+      // Use  : the following part is used to place the x-axis through
+      //        the first point in the xs, ys structures, in order to obtain
+      //        some orientation for the user.
+      double startingPoint = 0.0;
+      if (yMin < ys.get(0).doubleValue())
+        startingPoint = Math.abs(yMin + ys.get(0).doubleValue());
+      else
+        startingPoint = (ys.get(0).doubleValue() - guitest.Main.yMin);
+      // end of part.
+      
             g.drawLine(
               0,//TODO: CONTINUE!!! , abs() finally...
               (int) (ScreenUtilities.SCREEN_HEIGHT - 
-                    (Math.abs(yMin) + ys.get(0)) *
+                    //(Math.abs(yMin) + ys.get(0)) *
+                     startingPoint *
                      ScreenUtilities.scalingFactor 
                      + ScreenUtilities.ORIGIN_OFFSET),
               width,
               (int) (ScreenUtilities.SCREEN_HEIGHT - 
-                    (Math.abs(yMin) + ys.get(0)) * 
+                    //(Math.abs(yMin) + ys.get(0)) * 
+                    startingPoint *
                     ScreenUtilities.scalingFactor 
                     + ScreenUtilities.ORIGIN_OFFSET));
 
