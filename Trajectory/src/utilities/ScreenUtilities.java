@@ -6,11 +6,15 @@
  * History: 
  *          2009-01-01  Slight modifications to scaling procedure.
  *                      Major structural changes.
- *          2009-01-02..methods for fileIO added.  
+ *          2009-01-02..methods for fileIO added.
  * 
  * TODO:    A BE: Sometimes starting, stopping the thread seems not to work...
  *                - DONE BE
  * TODO:    C BE: Better naming/splitting of methods.
+ * TODO:    C BE: Consider using `g.translate()' for smoothing the code.
+ *
+ * REM:     BE It is absolutely necessary to do floating point arithmetic in the
+ *          drawing routine in order to obtain a nicely drawn trajectory.
  * 
  */
 package utilities;
@@ -36,12 +40,11 @@ public class ScreenUtilities {
     private static int circleHeight = 0;
     private static int circleWidth = 0;
 
-    private static double radiusPlanet = UI.UserInputNewParameters.currentSetting.getR();
-    private static double startHeight = UI.UserInputNewParameters.currentSetting.getH();
+    private static double radiusPlanet =
+            UI.UserInputNewParameters.currentSetting.getR();
 
     public static double hMin = 0.0;
     public static double hMax = 0.0;
-
 
 
     //////////////////////
@@ -50,7 +53,8 @@ public class ScreenUtilities {
   
     // datastructures
     public static Vector<Double> xs = new Vector<Double>();
-    public static Vector<Double> ys = new Vector<Double>();    // scaling related variables
+    public static Vector<Double> ys = new Vector<Double>();
+    // scaling related variables
     public static float xScaleFactor = 0;
     public static float yScaleFactor = 0;
     public static double scalingFactor;  // to fit to `jPnlDrawingPlane'
@@ -289,80 +293,23 @@ public class ScreenUtilities {
             int width, int height)
     {
 
-      // x-axis   // smoother is to use `g.translate()'
-// TODO: the following commented out code worked with serious errors.
-//      g.drawLine(
-//              0,
-//              (int) (ScreenUtilities.SCREEN_HEIGHT - 
-//                    (yMin + ys.get(0)) *
-//                     ScreenUtilities.scalingFactor 
-//                     + ScreenUtilities.ORIGIN_OFFSET),
-//              width,
-//              (int) (ScreenUtilities.SCREEN_HEIGHT - 
-//                    (yMin + ys.get(0)) * 
-//                    ScreenUtilities.scalingFactor 
-//                    + ScreenUtilities.ORIGIN_OFFSET));
-        
         if (compareTrajectories == false){
             //Koordinatensystem und Planetenumriss werden nur für erste Bahnkurve gezeichnet
-        
-     
 
-      // x-axis   // using `g.translate()' could be advantageous.
-
-      // Use  : the following part is used to place the x-axis through
-      //        the first point in the xs, ys structures, in order to obtain
-      //        some orientation for the user.
-
-/*
-            double startingPoint = 0.0;
-      if (yMin < ys.get(0).doubleValue())
-        startingPoint = Math.abs(yMin + ys.get(0).doubleValue());
-      else
-        startingPoint = (ys.get(0).doubleValue() - guitest.Main.yMin);
-      // end of part.
- */
-
+            // CT:  x-axis through ground - level in order to obtain a
+            //      graphical representation the user will understand without
+            //      further introduction.
             g.drawLine(
               0,//TODO: CONTINUE!!! , abs() finally...
               (int) (ScreenUtilities.SCREEN_HEIGHT -
                     (-(yMin) /*+ ys.get(0)*/) *
                      ScreenUtilities.scalingFactor
-                     + ScreenUtilities.ORIGIN_OFFSET /*+ startHeight * ScreenUtilities.scalingFactor*/),
-              width,                                   //Verschiebung der y-Achse auf Starthöhe
+                     + ScreenUtilities.ORIGIN_OFFSET),
+              width,
               (int) (ScreenUtilities.SCREEN_HEIGHT -
                     (-(yMin) /*+ ys.get(0)*/) *
                      ScreenUtilities.scalingFactor
-                     + ScreenUtilities.ORIGIN_OFFSET /*+ startHeight * ScreenUtilities.scalingFactor*/));
-                                                       //Verschiebung der y-Achse auf Starthöhe
-//            System.out.println("### x-axis drawn ### ");
-//            System.out.println("y: " + (int) (ScreenUtilities.SCREEN_HEIGHT - 
-//                    (yMin + ys.get(0)) * 
-//                    ScreenUtilities.scalingFactor 
-//                    + ScreenUtilities.ORIGIN_OFFSET));
-//            System.out.println("");
-//    try {
-//      Thread.sleep(3000);
-//    } catch (InterruptedException ex) {
-//      Logger.getLogger(ScreenUtilities.class.getName()).log(Level.SEVERE, null, ex);
-//    }
-
-
- /*
-              (int) (ScreenUtilities.SCREEN_HEIGHT - 
-                    //(Math.abs(yMin) + ys.get(0)) *
-                     startingPoint *
-                     ScreenUtilities.scalingFactor 
-                     + ScreenUtilities.ORIGIN_OFFSET),
-              width,
-              (int) (ScreenUtilities.SCREEN_HEIGHT - 
-                    //(Math.abs(yMin) + ys.get(0)) * 
-                    startingPoint *
-                    ScreenUtilities.scalingFactor 
-                    + ScreenUtilities.ORIGIN_OFFSET));
-
-
-  */
+                     + ScreenUtilities.ORIGIN_OFFSET));
 
       // y-axis
        g.drawLine(
@@ -373,31 +320,24 @@ public class ScreenUtilities {
                       ScreenUtilities.ORIGIN_OFFSET,
               height);
 
-
+       // values/coordinates for the circle representing the celestial body.
+       // @CT:  Better should be to compute _only_ one Double value below in
+       //       order to keep round off errors at minimum (imho). But if it is
+       //       working...
       circleXCoordinate = (-1) * (int) (radiusPlanet * ScreenUtilities.scalingFactor) + (int)((-xMin * ScreenUtilities.scalingFactor) + ScreenUtilities.ORIGIN_OFFSET);
       circleYCoordinate = (int)(ScreenUtilities.SCREEN_HEIGHT - (-(yMin) /*+ ys.get(0)*/) * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET /*+ startHeight * ScreenUtilities.scalingFactor*/);
       circleWidth = 2 * (int)(radiusPlanet * ScreenUtilities.scalingFactor);
       circleHeight = 2 * (int)(radiusPlanet * ScreenUtilities.scalingFactor);
-      //Berechnung der Koordinaten/Dimension des Kreises für den Planeten
 
       g.drawOval(circleXCoordinate, circleYCoordinate, circleWidth, circleHeight);
       //zeichnen des Planeten
       
       compareTrajectories = true;
       //Umschalten auf Beibehalten der Skalierung nach Zeichnen der ersten Bahnkurve 
-      
+      // TODO A BE: The user should be informed about this behavior and how
+      //            he can change according to his/her desire.
       }
-     
 
-      // Rem: it is absolutely necessary to do floating point arithmetic
-
-      // here in order to antialize the trajectory.    
-
-      // here in order to obtain a nicely drawn trajectory.
-
-    }
+    } // end of `if (compareTrajectories == false)'
     
 } // end of `ScreenUtilities'.
-
-    
-

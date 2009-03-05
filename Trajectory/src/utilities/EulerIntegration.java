@@ -79,7 +79,6 @@ public class EulerIntegration {
       vx = tempMovingBody.getVx() + Forces.computeDvxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
       vy = tempMovingBody.getVy() + Forces.computeDvyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity(), Forces.isActingSimpleGravity());
 
-      //System.out.println(i);
       positions.add(new MovingBody(vx, vy, new Location(x, y, setting), setting));
 
       i++;
@@ -139,19 +138,19 @@ public class EulerIntegration {
         // which extends the `SwingWorker' class, and thus owns such a field.
         // the listener implemented below listens on this action!
         setProgress( (int) Math.min(100 * (currentMillis - tStart)/allowedTime, 100));
-        System.out.println("############## " + ( Math.min((100 * (currentMillis - tStart)/allowedTime), 100)));
-        System.out.println("++++" + currentMillis);
+
         // compute new x,y coordinates and speed in this loop
         tempMovingBody = positions.get(i - 1);
 
+        // TODO: A BE improve feedback for user, possibly automate or leave out.
         if (i == (6000 * k + 1)) {
           k++;
-          System.out.println(tempMovingBody.getLocation(setting).getY());
+
           TrajectoryUI.dialog.jTextAreaComputationReport.append(
                   tempMovingBody.getLocation(setting).getY() +
                   System.getProperty("line.separator")
                   );
-        } // Ausgabe von 50 Zwischenwerten
+        }
 
         x = tempMovingBody.getLocation(setting).getX() + tempMovingBody.getVx() * dt + Forces.computeDxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
         y = tempMovingBody.getLocation(setting).getY() + tempMovingBody.getVy() * dt + Forces.computeDyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity(), Forces.isActingSimpleGravity());
@@ -160,22 +159,18 @@ public class EulerIntegration {
         vx = tempMovingBody.getVx() + Forces.computeDvxByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity());
         vy = tempMovingBody.getVy() + Forces.computeDvyByForces(dt, tempMovingBody, setting, Forces.isActingBuoyancy(), Forces.isActingFlowResistance(), Forces.isActingGravity(), Forces.isActingViscosity(), Forces.isActingSimpleGravity());
 
-        //System.out.println(i);
         positions.add(new MovingBody(vx, vy, new Location(x, y, setting), setting));
 
         i++;
       } // end while
-      
-      
+        
       // as animation already works via the xs, ys stuff.
       ScreenUtilities.positionsToXsYsStructures(ScreenUtilities.xs, ScreenUtilities.ys);
-
       return null; // p.d.
     }
 
-    /*
-     * Executed in event dispatching thread
-     */
+
+    // Use:  Beep when the task is done.
     @Override
     public void done() {
       Toolkit.getDefaultToolkit().beep();
@@ -189,8 +184,7 @@ public class EulerIntegration {
         int progress = (Integer) evt.getNewValue();
         DialogComputationInProgress.jProgressBarComputation.setValue(progress);
         DialogComputationInProgress.jProgressBarComputation.setStringPainted(true);
-      }
-        
-    }
-  }
+      }   
+    } // end `propertyChange()'
+  } // `EulerIntegrationTask'
 }
