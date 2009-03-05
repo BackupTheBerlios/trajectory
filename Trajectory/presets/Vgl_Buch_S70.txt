@@ -1,0 +1,58 @@
+// P L A N E T     Earth 
+// medium: Earth atmosphere
+//
+// height
+height  10.0
+// in m
+//
+// rho, density
+rho     1.204
+// in kg/m^3
+//
+// eta, viscosity
+eta     17.1e-6
+// in Ns/m^2
+//
+// radius planet
+radiusPlanet   6378100
+// in m
+//
+// mass planet
+massPlanet  5.974e24
+// in kg
+//
+// integration interval dt
+dt   0.00001
+// in s
+//
+// initial speed
+v     10.0
+// in m/s
+//
+// initial angle to x-axis
+beta   0.0
+// in radians
+//
+// moving body큦 mass
+massBody    0.178
+// in kg
+//
+// moving body큦 volume
+volumeBody  1.0
+// in m^3
+//
+// moving body큦 cw
+cwBody 0.45
+// relative unit
+//
+// moving body큦 friction-effective area
+areaOfBody 1.21
+// in m^2
+//
+// body큦 radius (if sphere), otherwise set it to 0.
+radiusOfBody 0.62
+// in m
+//
+// upper bound computing time 
+upperBoundComputingTime 2
+// in s

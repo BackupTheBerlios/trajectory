@@ -11,6 +11,7 @@
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
@@ -22,12 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" pref="1069" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" pref="1024" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" pref="134" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" pref="250" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -58,26 +59,595 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="713" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelMass" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelVolume" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCw" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jTfCwStart" alignment="0" pref="99" max="32767" attributes="1"/>
+                                  <Component id="jTfVolumeStart" alignment="0" pref="99" max="32767" attributes="1"/>
+                                  <Component id="jTfMassBodyStart" alignment="0" min="-2" pref="99" max="-2" attributes="1"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabelSpeed" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelAngle" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelHeight" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jTfHeightStart" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jTfSpeedStart" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jTfAngleStart" alignment="0" pref="94" max="32767" attributes="1"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabelDimensionVolume" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLblMassPlanet" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLblRadiusPlanet" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTfMassPlanetStart" pref="84" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionMassPlanet" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jTfRadiusPlanetStart" min="-2" pref="87" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabelDimensionRadiusPlanet" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelDimensionMass" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelDimensionBeta" min="-2" pref="15" max="-2" attributes="1"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLblEtaFluid" alignment="1" min="-2" max="-2" attributes="1"/>
+                                  <Component id="jLblRhoFluid" alignment="1" min="-2" max="-2" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTfEtaFluidStart" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionViscosity" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jTfRhoFluidStart" pref="92" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionDensity" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelDimensionHeight" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelDimensionSpeed" min="-2" max="-2" attributes="1"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLblRadiusBody" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLblAreaFlowBody" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionRadius" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jTfAreaAffectedStart" alignment="1" max="32767" attributes="1"/>
+                                          <Component id="jTfRadiusBodyStart" alignment="1" min="-2" pref="89" max="-2" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionArea" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="27" pref="27" max="27" attributes="0"/>
+                                              <Component id="jLblDt" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jLblProposedComputiingTime" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jTfProposedComputingTimeStart" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="jTfDtStart" alignment="0" min="-2" pref="71" max="-2" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelDimensionInterval" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelDimensionTime" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabelThrowingRange" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jTfThrowingRangeStart" min="-2" pref="47" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionRange" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jCckBxComputeDensityStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCckBxComputeBackwardsStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jCckBxGravityStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCckBxFlowResistanceStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCckBxBuoyancyStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCckBxViscosityStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCckBxSimpleGravityStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="53" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTfHeightStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelHeight" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTfSpeedStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelSpeed" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelDimensionSpeed" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTfAngleStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelAngle" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelDimensionBeta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="52" pref="52" max="52" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabelCw" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jTfCwStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabelMass" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jTfMassBodyStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabelDimensionMass" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabelVolume" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jTfVolumeStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabelDimensionVolume" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="1">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTfAreaAffectedStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelDimensionArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLblAreaFlowBody" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTfRadiusBodyStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLblRadiusBody" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelDimensionRadius" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                              <Component id="jTfRhoFluidStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLblRhoFluid" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelDimensionDensity" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="26" pref="26" max="26" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLblEtaFluid" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jTfEtaFluidStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabelDimensionViscosity" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTfRadiusPlanetStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLblRadiusPlanet" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelDimensionRadiusPlanet" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTfMassPlanetStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLblMassPlanet" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelDimensionMassPlanet" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="jLabelDimensionHeight" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLblDt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTfDtStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelDimensionInterval" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTfProposedComputingTimeStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLblProposedComputiingTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelDimensionTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionRange" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabelThrowingRange" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTfThrowingRangeStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jCckBxComputeDensityStart" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace pref="39" max="-2" attributes="0"/>
+                                      <Component id="jCckBxComputeBackwardsStart" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="jCckBxBuoyancyStart" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCckBxFlowResistanceStart" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="jCckBxGravityStart" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jCckBxViscosityStart" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCckBxSimpleGravityStart" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JTextField" name="jTfHeightStart">
               <Properties>
-                <Property name="text" type="java.lang.String" value="not implemented yet"/>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfSpeedStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfAngleStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelSpeed">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Speed:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelAngle">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Angle:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelHeight">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Height:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelMass">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mass:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelVolume">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Volume:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfVolumeStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelCw">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cw:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfCwStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLblAreaFlowBody">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="Area affected by flow:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfAreaAffectedStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLblRadiusBody">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Radius:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfRadiusBodyStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionArea">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m&#xb2;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionRadius">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfMassBodyStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionHeight">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionSpeed">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m/s"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionBeta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xb0;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionMass">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="kg"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionVolume">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m&#xb3;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLblRhoFluid">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Density:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLblEtaFluid">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Viscosity"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfRhoFluidStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfEtaFluidStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionDensity">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="kg/m&#xb3;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionViscosity">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ns/m&#xb2;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLblRadiusPlanet">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Radius, Planet:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLblMassPlanet">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mass, Planet:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLblDt">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Integration interval:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLblProposedComputiingTime">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Proposed computing time:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfProposedComputingTimeStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfDtStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfMassPlanetStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfRadiusPlanetStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionRadiusPlanet">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionMassPlanet">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="kg"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionInterval">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="s"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionTime">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="s"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelThrowingRange">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Throwing range:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDimensionRange">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="m"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTfThrowingRangeStart">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCckBxBuoyancyStart">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buoyancy"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxBuoyancyStartActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCckBxFlowResistanceStart">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Flow Resistance"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxFlowResistanceStartActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCckBxGravityStart">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gravity"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxGravityStartActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCckBxViscosityStart">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Viscosity"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxViscosityStartActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCckBxSimpleGravityStart">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Simple Gravity"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxSimpleGravityStartActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCckBxComputeDensityStart">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Compute density"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCckBxComputeBackwardsStart">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Compute backwards"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -85,8 +655,8 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Present Data (Body)">
-                <Property name="tabTitle" type="java.lang.String" value="Present Data (Body)"/>
+              <JTabbedPaneConstraints tabName="Present Data ">
+                <Property name="tabTitle" type="java.lang.String" value="Present Data "/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -138,7 +708,7 @@
                           <Component id="jTfRadiusBody" min="-2" pref="99" max="-2" attributes="0"/>
                           <Component id="jTfAreaFlowBody" min="-2" pref="99" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="612" max="32767" attributes="0"/>
+                      <EmptySpace pref="567" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -195,7 +765,7 @@
                               <Component id="jTfAreaFlowBody" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <EmptySpace pref="139" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -207,6 +777,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTfV">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -214,6 +787,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTfVx">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -221,6 +797,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTfVy">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -228,6 +807,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTfMassBody">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -235,6 +817,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTfVolumeBody">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
@@ -242,6 +827,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTfCwBody">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -250,6 +838,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTfAreaFlowBody">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="toolTipText" type="java.lang.String" value="relevant area for flow involving friction"/>
               </Properties>
             </Component>
@@ -259,6 +848,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTfRadiusBody">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -266,6 +858,176 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTfAngleVvectorToRvector">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel4">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Final Values">
+                <Property name="tabTitle" type="java.lang.String" value="Final Values"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTextFieldthrowingRange" alignment="1" max="32767" attributes="1"/>
+                          <Component id="jTextFieldhMax" max="32767" attributes="1"/>
+                          <Component id="jTextFieldhMin" alignment="0" pref="57" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTextFieldhEnd" alignment="0" pref="68" max="32767" attributes="1"/>
+                          <Component id="jTextFieldvEnd" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jTextFieldbetaEnd" alignment="0" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                      <Component id="jTextFieldthrowingTime" min="-2" pref="89" max="-2" attributes="0"/>
+                      <EmptySpace pref="404" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="540" max="32767" attributes="0"/>
+                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="439" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTextFieldhMax" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldhEnd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTextFieldhMin" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldvEnd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTextFieldthrowingRange" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldbetaEnd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jTextFieldthrowingTime" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="62" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="jTextFieldhMax">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldhMin">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldthrowingRange">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldhEnd">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Height maximum:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel11">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Height minimum:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Throwing range:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldvEnd">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldbetaEnd">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Height end:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Speed end:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Angle end:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldthrowingTime">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Throwing time:"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

@@ -3,9 +3,11 @@
  * Date:	2009-09-23
  * Purpose: This is the class implementing the `Location' of a `MovingBody'.
  * 
- * todo:	
+
+ * todo:
  * 			o CT: setAlpha() vervollst�ndigen!
- * 
+
+ *
  */
 package physics;
 //import physics.Constants;
@@ -36,14 +38,15 @@ public class Location {
 		this.alpha = 0;}									
 
 	// allgemeiner Constructor
-	public Location(double x, double y, double rho, double eta, Setting setting){
+	public Location(double x, double y, double rho, Setting setting){
 		this.x = x;
 		this.y = y;
 		this.setRcomponents(x, y, setting);
 		this.rho = rho;
-		this.eta = eta;
-		this.setAlpha(x, y, setting);}							
-	
+		this.eta = setting.getEta();
+		this.setAlpha(x, y, setting);}
+    //Anmerkung: Viskosität wird konstant gehalten, da nur im Falle von Flüssigkeiten mit laminaren Strömungen gerechnet werden kann
+
 	// Constructor f�r konstantes Rho und Eta
 	public Location(double x, double y, Setting setting){
 		this.x = x;

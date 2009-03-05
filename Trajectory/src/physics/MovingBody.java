@@ -120,8 +120,7 @@ public class MovingBody {
     Location tempLocation = new Location(
             this.location.getX(),
             this.location.getY(),
-            this.location.getRho(),
-            this.location.getEta(),
+            this.location.getRho(),      
             setting);
     return tempLocation;
   }

@@ -27,11 +27,27 @@ public class ScreenUtilities {
     public final static int ORIGIN_OFFSET = 20; // in x,y direction
     public final static int SCREEN_WIDTH = 1018 - 2 * ORIGIN_OFFSET;
     public final static int SCREEN_HEIGHT = 649 - 2 * ORIGIN_OFFSET;
-    
+
+    // options and variables
+    private static boolean compareTrajectories = false;
+
+    private static int circleXCoordinate = 0;
+    private static int circleYCoordinate = 0;
+    private static int circleHeight = 0;
+    private static int circleWidth = 0;
+
+    private static double radiusPlanet = UI.UserInputNewParameters.currentSetting.getR();
+    private static double startHeight = UI.UserInputNewParameters.currentSetting.getH();
+
+    public static double hMin = 0.0;
+    public static double hMax = 0.0;
+
+
+
     //////////////////////
     // member variables //
     //////////////////////
-    
+  
     // datastructures
     public static Vector<Double> xs = new Vector<Double>();
     public static Vector<Double> ys = new Vector<Double>();    // scaling related variables
@@ -52,8 +68,8 @@ public class ScreenUtilities {
     public static void setOpenedFile(File file) {
         ScreenUtilities.openedFile = file;
     }
-    
-    
+
+
     /////////////
     // methods //
     /////////////
@@ -98,7 +114,7 @@ public class ScreenUtilities {
                 yMaxPos = i;
             }
         }
-      
+
         // I have no idea why a pass by reference is impossible here!, but
         // direct access is. enlightenment is very welcome.
 
@@ -186,9 +202,12 @@ public class ScreenUtilities {
 
         System.out.println("xs: " + xs.size()); // TODO: debug msg
         System.out.println("ys: " + ys.size()); //
-
+      
+        if (compareTrajectories == false){
         ScreenUtilities.scalingFactor = computeScalingFactor(xs, ys,
                 SCREEN_WIDTH, SCREEN_HEIGHT);
+        }//Beibehalten der Skalierung nach erster Bahnkurve
+
         ScreenUtilities.increment = computeIncrement();
         // TODO: debug msg
         System.out.println("SCALING FACTOR: " + ScreenUtilities.scalingFactor);
@@ -218,8 +237,11 @@ public class ScreenUtilities {
             ys.add(EulerIntegration.positions.get(i).getLocation(setting).getY());
         }
 
+        if (compareTrajectories == false){
         ScreenUtilities.scalingFactor = computeScalingFactor(xs, ys,
                 SCREEN_WIDTH, SCREEN_HEIGHT);
+        }//Beibehalten der Skalierung nach erster Bahnkurve
+
         ScreenUtilities.increment = computeIncrement();
     }
     
@@ -266,20 +288,67 @@ public class ScreenUtilities {
             Double yMin,
             int width, int height)
     {
+
+      // x-axis   // smoother is to use `g.translate()'
+// TODO: the following commented out code worked with serious errors.
+//      g.drawLine(
+//              0,
+//              (int) (ScreenUtilities.SCREEN_HEIGHT - 
+//                    (yMin + ys.get(0)) *
+//                     ScreenUtilities.scalingFactor 
+//                     + ScreenUtilities.ORIGIN_OFFSET),
+//              width,
+//              (int) (ScreenUtilities.SCREEN_HEIGHT - 
+//                    (yMin + ys.get(0)) * 
+//                    ScreenUtilities.scalingFactor 
+//                    + ScreenUtilities.ORIGIN_OFFSET));
+        
+        if (compareTrajectories == false){
+            //Koordinatensystem und Planetenumriss werden nur für erste Bahnkurve gezeichnet
+        
+     
+
       // x-axis   // using `g.translate()' could be advantageous.
 
       // Use  : the following part is used to place the x-axis through
       //        the first point in the xs, ys structures, in order to obtain
       //        some orientation for the user.
-      double startingPoint = 0.0;
+
+/*
+            double startingPoint = 0.0;
       if (yMin < ys.get(0).doubleValue())
         startingPoint = Math.abs(yMin + ys.get(0).doubleValue());
       else
         startingPoint = (ys.get(0).doubleValue() - guitest.Main.yMin);
       // end of part.
-      
+ */
+
             g.drawLine(
               0,//TODO: CONTINUE!!! , abs() finally...
+              (int) (ScreenUtilities.SCREEN_HEIGHT -
+                    (-(yMin) /*+ ys.get(0)*/) *
+                     ScreenUtilities.scalingFactor
+                     + ScreenUtilities.ORIGIN_OFFSET /*+ startHeight * ScreenUtilities.scalingFactor*/),
+              width,                                   //Verschiebung der y-Achse auf Starthöhe
+              (int) (ScreenUtilities.SCREEN_HEIGHT -
+                    (-(yMin) /*+ ys.get(0)*/) *
+                     ScreenUtilities.scalingFactor
+                     + ScreenUtilities.ORIGIN_OFFSET /*+ startHeight * ScreenUtilities.scalingFactor*/));
+                                                       //Verschiebung der y-Achse auf Starthöhe
+//            System.out.println("### x-axis drawn ### ");
+//            System.out.println("y: " + (int) (ScreenUtilities.SCREEN_HEIGHT - 
+//                    (yMin + ys.get(0)) * 
+//                    ScreenUtilities.scalingFactor 
+//                    + ScreenUtilities.ORIGIN_OFFSET));
+//            System.out.println("");
+//    try {
+//      Thread.sleep(3000);
+//    } catch (InterruptedException ex) {
+//      Logger.getLogger(ScreenUtilities.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+
+
+ /*
               (int) (ScreenUtilities.SCREEN_HEIGHT - 
                     //(Math.abs(yMin) + ys.get(0)) *
                      startingPoint *
@@ -292,17 +361,40 @@ public class ScreenUtilities {
                     ScreenUtilities.scalingFactor 
                     + ScreenUtilities.ORIGIN_OFFSET));
 
+
+  */
+
       // y-axis
-      g.drawLine(
-              (int) (-xMin * ScreenUtilities.scalingFactor) +
+       g.drawLine(
+              (int) (-(xMin) * ScreenUtilities.scalingFactor) +
                       ScreenUtilities.ORIGIN_OFFSET,
                0,
-              (int) (-xMin * ScreenUtilities.scalingFactor) +
+              (int) (-(xMin) * ScreenUtilities.scalingFactor) +
                       ScreenUtilities.ORIGIN_OFFSET,
               height);
 
+
+      circleXCoordinate = (-1) * (int) (radiusPlanet * ScreenUtilities.scalingFactor) + (int)((-xMin * ScreenUtilities.scalingFactor) + ScreenUtilities.ORIGIN_OFFSET);
+      circleYCoordinate = (int)(ScreenUtilities.SCREEN_HEIGHT - (-(yMin) /*+ ys.get(0)*/) * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET /*+ startHeight * ScreenUtilities.scalingFactor*/);
+      circleWidth = 2 * (int)(radiusPlanet * ScreenUtilities.scalingFactor);
+      circleHeight = 2 * (int)(radiusPlanet * ScreenUtilities.scalingFactor);
+      //Berechnung der Koordinaten/Dimension des Kreises für den Planeten
+
+      g.drawOval(circleXCoordinate, circleYCoordinate, circleWidth, circleHeight);
+      //zeichnen des Planeten
+      
+      compareTrajectories = true;
+      //Umschalten auf Beibehalten der Skalierung nach Zeichnen der ersten Bahnkurve 
+      
+      }
+     
+
       // Rem: it is absolutely necessary to do floating point arithmetic
+
+      // here in order to antialize the trajectory.    
+
       // here in order to obtain a nicely drawn trajectory.
+
     }
     
 } // end of `ScreenUtilities'.

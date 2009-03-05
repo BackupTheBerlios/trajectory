@@ -20,7 +20,7 @@ public class Setting {
 
   // properties:
   private double h;	// Starthoehe ueber Nullniveau
-  private double rho;	// Dichte des Mediums am Ort des Starts
+  private double rho;	// Dichte des Mediums auf Höhe Null
   private double eta;	// Viskositaet des Mediums am Ort des Starts
   private double R;	// Radius des Planeten
   private double M;	// Masse des Planeten

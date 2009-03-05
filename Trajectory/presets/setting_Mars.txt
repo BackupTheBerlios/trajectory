@@ -1,0 +1,58 @@
+// P L A N E T     Mars 
+// medium: 1% of Earth atmosphere
+//
+// height
+height  0.0
+// in m
+//
+// rho, density
+rho     0.01204
+// in kg/m^3
+//
+// eta, viscosity
+eta     17.1e-8
+// in Ns/m^2
+//
+// radius planet
+radiusPlanet   3397000
+// in m
+//
+// mass planet
+massPlanet  6.419e23
+// in kg
+//
+// integration interval dt
+dt   0.006
+// in s
+//
+// initial speed
+v     3600
+// in m/s
+//
+// initial angle to x-axis
+beta   0.0
+// in radians
+//
+// moving body큦 mass
+massBody    0.0
+// in kg
+//
+// moving body큦 volume
+volumeBody  0.0
+// in m^3
+//
+// moving body큦 cw
+cwBody 0.0
+// relative unit
+//
+// moving body큦 friction-effective area
+areaOfBody 0.0
+// in m^2
+//
+// body큦 radius (if sphere), otherwise set it to 0.
+radiusOfBody 0.0
+// in m
+//
+// upper bound computing time 
+upperBoundComputingTime 5.0
+// in s

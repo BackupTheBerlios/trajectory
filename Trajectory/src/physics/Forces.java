@@ -45,6 +45,8 @@ public class Forces {
     private static boolean isActingFlowResistance = false;
     private static boolean isActingGravity        = false;
     private static boolean isActingViscosity      = false;
+    private static boolean isActingSimpleGravity  = false;
+    //einfache Gravitation über Erdbeschleunigung g
 
     // getters
     public static boolean isActingBuoyancy() {
@@ -57,6 +59,10 @@ public class Forces {
 
     public static boolean isActingGravity() {
         return isActingGravity;
+    }
+
+     public static boolean isActingSimpleGravity() {
+        return isActingSimpleGravity;
     }
 
     public static boolean isActingViscosity() {
@@ -77,6 +83,10 @@ public class Forces {
         Forces.isActingGravity = isActingGravity;
     }
 
+    public static void setIsActingSimpleGravity(boolean isActingSimpleGravity) {
+        Forces.isActingSimpleGravity = isActingSimpleGravity;
+    }
+
     public static void setIsActingViscosity(boolean isActingViscosity) {
         Forces.isActingViscosity = isActingViscosity;
     }
@@ -85,13 +95,15 @@ public class Forces {
             boolean isActingBuoyancy,
             boolean isActingFlowResistance,
             boolean isActingGravity,
-            boolean isActingViscosity) {
+            boolean isActingViscosity,
+            boolean isActingSimpleGravity) {
         Forces.isActingBuoyancy = isActingBuoyancy;
         Forces.isActingFlowResistance = isActingFlowResistance;
         Forces.isActingGravity = isActingGravity;
         Forces.isActingViscosity = isActingViscosity;
+        Forces.isActingSimpleGravity = isActingGravity;
     }
-    
+
     // use: print selected forces to command line.
     public static void currentForces(){
         System.out.println("currentForces:");
@@ -103,12 +115,23 @@ public class Forces {
         if (isActingFlowResistance()){
             tmp = tmp + "F; ";
         }
-        if (isActingGravity()){
+        if (isActingGravity() || isActingSimpleGravity()){
             tmp = tmp + "G; ";
         }
         if (isActingViscosity()){
-            tmp = tmp + "V.";
+            tmp = tmp + "V; ";
         }
+        if (utilities.Options.getComputeBackwards()){
+           tmp = tmp + "backwards; ";
+        }
+           if (utilities.Options.getComputeBackwards()){
+           tmp = tmp + String.valueOf(utilities.Options.getThrowingRange()) + " ";
+        }
+        if (utilities.Options.getComputeDensity()){
+           tmp = tmp + "density; ";
+        }
+
+
       System.out.println(tmp);
     }
     
@@ -222,8 +245,25 @@ public class Forces {
         dvy = dt * (((6 * Math.PI * movingBody.getR() * movingBody.getLocation(setting).getEta() * movingBody.getV()) * (-1) * movingBody.getVvectory()) / movingBody.getM());
         return dvy;
     }
-    
-    
+
+    //bei der Wahl von SimpleGravity, hier wird von einem quellenfreien Gravitationspotential ausgegangen, die Höhe spielt also auch keine Rolle
+
+    //Ortsänderung:
+
+    public static double simpleGravityForceY(double dt){
+      double dy;
+      dy = 0.5 * Math.pow(dt, 2) * (-1) * Constants.g;
+      return dy;
+    }
+
+    //Geschwindigkeitsänderung:
+
+    public static double simpleGravityForceVy(double dt){
+      double dvy;
+      dvy = dt * (-1) * Constants.g;
+      return dvy;
+    }
+
     /*---------------------- shortcut methods ------------------------------*/
     
     // TODO: B: see discussion on optimization, as this is truely inefficient.
@@ -241,12 +281,30 @@ public class Forces {
             double dt, MovingBody movingBody, Setting setting,
             boolean isActingBuoyancy, boolean isActingFlowResistance,
             boolean isActingGravity, boolean isActingViscosity){
-     double sum = 0.0;
+     
+        double sum = 0.0;
         
      if (isActingBuoyancy) sum += buoyantForceX(dt,movingBody,setting);
-     if (isActingFlowResistance) sum += flowResistanceX(dt,movingBody,setting);
-     if (isActingGravity) sum+= gravityForceX(dt,movingBody,setting);
-     if (isActingViscosity) sum += viscosityForceX(dt,movingBody,setting);
+
+     if (isActingFlowResistance){
+         if (utilities.Options.computeBackwards == false){
+             sum += flowResistanceX(dt,movingBody,setting);
+             }
+         else{
+             sum -= flowResistanceX(dt,movingBody,setting); 
+         }
+     }
+
+     if (isActingGravity) sum+= gravityForceX(dt,movingBody,setting);   
+     
+     if (isActingViscosity){
+         if(utilities.Options.computeBackwards == false){
+            sum += viscosityForceX(dt,movingBody,setting);
+         }
+         else{
+             sum -= viscosityForceX(dt,movingBody,setting);
+         }
+     }
             
      return sum;
     } // end of computeDxByForces()
@@ -258,13 +316,34 @@ public class Forces {
      public static double computeDyByForces(
             double dt, MovingBody movingBody, Setting setting,
             boolean isActingBuoyancy, boolean isActingFlowResistance,
-            boolean isActingGravity, boolean isActingViscosity){
-      double sum = 0.0;
+            boolean isActingGravity, boolean isActingViscosity,
+            boolean isActingSimpleGravity){
+      
+         double sum = 0.0;
         
-      if (isActingBuoyancy) sum += buoyantForceY(dt,movingBody,setting);
-      if (isActingFlowResistance) sum += flowResistanceY(dt,movingBody,setting);
+      if (isActingBuoyancy) sum += buoyantForceY(dt,movingBody,setting);   
+      
+      if (isActingFlowResistance){
+          if (utilities.Options.computeBackwards == false){
+             sum += flowResistanceY(dt,movingBody,setting);
+             }
+         else{
+             sum -= flowResistanceY(dt,movingBody,setting);
+         }
+     }
+
       if (isActingGravity) sum+= gravityForceY(dt,movingBody,setting);
-      if (isActingViscosity) sum += viscosityForceY(dt,movingBody,setting);
+         
+      if (isActingSimpleGravity) sum+= simpleGravityForceY(dt);   
+
+      if (isActingViscosity){
+           if(utilities.Options.computeBackwards == false){
+            sum += viscosityForceY(dt,movingBody,setting);
+         }
+         else{
+             sum -= viscosityForceY(dt,movingBody,setting);
+         }
+     }
             
      return sum;
     } // end of computeDyByForces()
@@ -276,12 +355,30 @@ public class Forces {
             double dt, MovingBody movingBody, Setting setting,
             boolean isActingBuoyancy, boolean isActingFlowResistance,
             boolean isActingGravity, boolean isActingViscosity){
-      double sum = 0.0;
+      
+        double sum = 0.0;
         
       if (isActingBuoyancy) sum += buoyantForceVx(dt,movingBody,setting);
-      if (isActingFlowResistance) sum += flowResistanceVx(dt,movingBody,setting);
+      
+      if (isActingFlowResistance){
+          if(utilities.Options.computeBackwards == false){
+          sum += flowResistanceVx(dt,movingBody,setting);
+          }
+          else{
+          sum -= flowResistanceVx(dt,movingBody,setting);
+          }
+      }
+
       if (isActingGravity) sum+= gravityForceVx(dt,movingBody,setting);
-      if (isActingViscosity) sum += viscosityForceVx(dt,movingBody,setting);
+
+      if (isActingViscosity){
+           if(utilities.Options.computeBackwards == false){
+           sum += viscosityForceVx(dt,movingBody,setting);
+          }
+          else{
+           sum -= viscosityForceVx(dt,movingBody,setting);
+          }
+      }
             
      return sum;
     } // end of computeDvxByForces() 
@@ -293,14 +390,35 @@ public class Forces {
     public static double computeDvyByForces(
             double dt, MovingBody movingBody, Setting setting,
             boolean isActingBuoyancy, boolean isActingFlowResistance,
-            boolean isActingGravity, boolean isActingViscosity){
-      double sum = 0.0;
+            boolean isActingGravity, boolean isActingViscosity,
+            boolean isActingSimpleGravity){
+     
+        double sum = 0.0;
         
       if (isActingBuoyancy) sum += buoyantForceVy(dt,movingBody,setting);
-      if (isActingFlowResistance) sum += flowResistanceVy(dt,movingBody,setting);
+      
+      if (isActingFlowResistance){
+          if(utilities.Options.computeBackwards == false){
+          sum += flowResistanceVy(dt,movingBody,setting);
+          }
+          else{
+          sum -= flowResistanceVy(dt,movingBody,setting);
+          }
+      }
+
       if (isActingGravity) sum+= gravityForceVy(dt,movingBody,setting);
-      if (isActingViscosity) sum += viscosityForceVy(dt,movingBody,setting);
-            
+        
+      if (isActingSimpleGravity) sum+= simpleGravityForceVy(dt);  
+      
+      if (isActingViscosity){
+         if(utilities.Options.computeBackwards == false){
+           sum += viscosityForceVy(dt,movingBody,setting);
+          }
+          else{
+           sum -= viscosityForceVy(dt,movingBody,setting);
+          }
+      }
+                
      return sum;
     } // end of computeDvyByForces() 
     
