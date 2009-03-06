@@ -370,8 +370,8 @@ UserInputNewParameters.currentSetting.setRho(physics.Constants.DENSITY_GLYCERIN)
 UserInputNewParameters.currentSetting.setEta(physics.Constants.VISCOSITY_GLYCERIN);
 }
 if (jRadioButtonPetroleum.isSelected()){
-UserInputNewParameters.currentSetting.setRho(physics.Constants.DENSITY_PETROLEUM);
-UserInputNewParameters.currentSetting.setEta(physics.Constants.VISCOSITY_PETROLEUM);
+UserInputNewParameters.currentSetting.setRho(physics.Constants.DENSITY_PARAFFIN);
+UserInputNewParameters.currentSetting.setEta(physics.Constants.VISCOSITY_PARAFFIN);
 }
 if (jRadioButtonMercury.isSelected()){
 UserInputNewParameters.currentSetting.setRho(physics.Constants.DENSITY_MERCURY);

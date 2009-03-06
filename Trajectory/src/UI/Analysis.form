@@ -179,10 +179,7 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="27" pref="27" max="27" attributes="0"/>
-                                              <Component id="jLblDt" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLblDt" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLblProposedComputiingTime" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -340,12 +337,9 @@
                                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                       <Component id="jLabelDimensionRange" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabelThrowingRange" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTfThrowingRangeStart" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                      <Component id="jLabelThrowingRange" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTfThrowingRangeStart" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -913,7 +907,7 @@
                       <EmptySpace pref="404" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="540" max="32767" attributes="0"/>
+                      <EmptySpace pref="509" max="32767" attributes="0"/>
                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="439" max="-2" attributes="0"/>
                   </Group>

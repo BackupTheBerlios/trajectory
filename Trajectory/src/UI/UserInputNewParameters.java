@@ -241,11 +241,26 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jTfThrowingRange.setText("0");
 
-        jComboBoxPlanet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Planet", "Earth", "Moon", "Mars", "Mercur", "Venus" }));
+        jComboBoxPlanet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined planet", "Earth", "Moon", "Mars", "Mercur", "Venus" }));
+        jComboBoxPlanet.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxPlanetItemStateChanged(evt);
+            }
+        });
 
-        jComboBoxMedium.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medium", "Air", "Water" }));
+        jComboBoxMedium.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined medium", "Air", "Helium", "Hydrogen", "Water", "Glycerin", "Paraffin", "Mercury", "Honey" }));
+        jComboBoxMedium.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMediumItemStateChanged(evt);
+            }
+        });
 
-        jComboBoxBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Body", "Sphere", "Cube" }));
+        jComboBoxBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere", "Cube", "Airfoil", "Parachute", "Human", "Penguin" }));
+        jComboBoxBody.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxBodyItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Choose planet:");
 
@@ -275,7 +290,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(662, Short.MAX_VALUE))
+                        .addContainerGap(723, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTfCwBody, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -738,6 +753,111 @@ private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event
 private void jCckBxSimpleGravityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxSimpleGravityActionPerformed
   // reading the values via the OK-button event handler is less error-prone.
 }//GEN-LAST:event_jCckBxSimpleGravityActionPerformed
+
+private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPlanetItemStateChanged
+
+    if (jComboBoxPlanet.getSelectedIndex() == 0){
+    jTfRadiusPlanet.setText("0.0");
+    jTfMassPlanet.setText("0.0");
+    jTfRhoFluid.setText("0.0");
+    jTfEtaFluid.setText("0.0");
+    }
+
+    if (jComboBoxPlanet.getSelectedIndex() == 1){
+    jTfRadiusPlanet.setText(String.valueOf(physics.Constants.RADIUS_EARTH));
+    jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_EARTH));
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_EARTH));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_EARTH));
+    }
+
+    if (jComboBoxPlanet.getSelectedIndex() == 2){
+    jTfRadiusPlanet.setText(String.valueOf(physics.Constants.RADIUS_MOON));
+    jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_MOON));
+    jTfRhoFluid.setText("0.0");
+    jTfEtaFluid.setText("0.0");
+    }
+
+    if (jComboBoxPlanet.getSelectedIndex() == 3){
+    jTfRadiusPlanet.setText(String.valueOf(physics.Constants.RADIUS_MARS));
+    jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_MARS));
+    jTfRhoFluid.setText("0.0");
+    jTfEtaFluid.setText("0.0");
+    }
+
+    if (jComboBoxPlanet.getSelectedIndex() == 4){
+    jTfRadiusPlanet.setText(String.valueOf(physics.Constants.RADIUS_MERCUR));
+    jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_MERCUR));
+    jTfRhoFluid.setText("0.0");
+    jTfEtaFluid.setText("0.0");
+    }
+
+    if (jComboBoxPlanet.getSelectedIndex() == 5){
+    jTfRadiusPlanet.setText(String.valueOf(physics.Constants.RADIUS_VENUS));
+    jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_VENUS));
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_VENUS));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_VENUS));
+    }
+}//GEN-LAST:event_jComboBoxPlanetItemStateChanged
+
+private void jComboBoxMediumItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMediumItemStateChanged
+
+    if (jComboBoxMedium.getSelectedIndex() == 0){
+    jTfRhoFluid.setText("0.0");
+    jTfEtaFluid.setText("0.0");
+    }
+
+    if (jComboBoxMedium.getSelectedIndex() == 1){
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_AIR));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_AIR));
+    }
+
+    if (jComboBoxMedium.getSelectedIndex() == 2){
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HELIUM));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HELIUM));
+    }
+
+    if (jComboBoxMedium.getSelectedIndex() == 3){
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HYDROGEN));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HYDROGEN));
+    }
+    
+    if (jComboBoxMedium.getSelectedIndex() == 4){
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_WATER));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_WATER));
+    }
+
+    if (jComboBoxMedium.getSelectedIndex() == 5){
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_GLYCERIN));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_GLYCERIN));
+    }
+
+    if (jComboBoxMedium.getSelectedIndex() == 6){
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_PARAFFIN));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_PARAFFIN));
+    }
+
+    if (jComboBoxMedium.getSelectedIndex() == 7){
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_MERCURY));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_MERCURY));
+    }
+
+    if (jComboBoxMedium.getSelectedIndex() == 8){
+    jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HONEY));
+    jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HONEY));
+    }
+    
+}//GEN-LAST:event_jComboBoxMediumItemStateChanged
+
+private void jComboBoxBodyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBodyItemStateChanged
+
+    if (jComboBoxPlanet.getSelectedIndex() == 0){
+    jTfRadiusPlanet.setText("0.0");
+    jTfMassPlanet.setText("0.0");
+    jTfRhoFluid.setText("0.0");
+    jTfEtaFluid.setText("0.0");
+    }
+
+}//GEN-LAST:event_jComboBoxBodyItemStateChanged
 
     /**
     * @param args the command line arguments

@@ -47,8 +47,8 @@ public class Constants {
     public final static double DENSITY_GLYCERIN             = 1260;
 	public final static double VISCOSITY_GLYCERIN           = 1.48;
 
-    public final static double DENSITY_PETROLEUM            = 740;
-	public final static double VISCOSITY_PETROLEUM          = 0.65e-3;
+    public final static double DENSITY_PARAFFIN            = 740;
+	public final static double VISCOSITY_PARAFFIN          = 0.65e-3;
 
     public final static double DENSITY_MERCURY              = 13546;
 	public final static double VISCOSITY_MERCURY            = 1.55e-3;
@@ -94,7 +94,6 @@ public class Constants {
     public final static double Cw_GLEITSCHIRM               = 0.6;
     
     //Planet - Masse, Radius, Dichte (kg, m, kg/m³)
-
     public final static double MASS_EARTH               = 5.974e24;
     public final static double RADIUS_EARTH             = 6378100;
     public final static double DENSITY_EARTH            = 1.204;
