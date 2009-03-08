@@ -15,6 +15,8 @@ package utilities;
 import UI.DialogComputationInProgress;
 import UI.TrajectoryUI;
 import java.beans.PropertyChangeEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingWorker;
 import java.awt.Toolkit;
 import java.beans.PropertyChangeListener;
@@ -26,7 +28,18 @@ public class EulerIntegration {
   final static int MSEC_PER_SEC = 1000;
   public static Vector<MovingBody> positions = new Vector<MovingBody>();
   static Long currentMillis = new Long(0);
-  
+
+  // Use:   Proved valuable during debugging. Helped finding unneccessary thread.
+  //        The bug that cost me 3 work days of my life.
+  private static int taskID = 0;
+  public int getTaskID(){
+      return taskID;
+  }
+  public int incTaskID(){
+      taskID++;
+      return taskID;
+  }
+
   // use:  compute all the positions of the moving body in order to obtain its
   //       trajectory.
   // pre:  `currentSetting' has to be properly set up.
@@ -104,6 +117,18 @@ public class EulerIntegration {
   public class EulerIntegrationTask extends SwingWorker<Void, Void>
   implements PropertyChangeListener {
 
+      // constructor
+      public EulerIntegrationTask(){
+          incTaskID();
+          System.out.println("TASK_ID: " + getTaskID());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(EulerIntegration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      }
+
+      
     @Override
     //
     protected Void doInBackground() {
@@ -138,7 +163,7 @@ public class EulerIntegration {
         // which extends the `SwingWorker' class, and thus owns such a field.
         // the listener implemented below listens on this action!
         setProgress( (int) Math.min(100 * (currentMillis - tStart)/allowedTime, 100));
-
+        
         // compute new x,y coordinates and speed in this loop
         tempMovingBody = positions.get(i - 1);
 

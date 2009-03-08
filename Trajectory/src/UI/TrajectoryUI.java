@@ -454,12 +454,13 @@ private void jMenuItemComputeActionPerformed(java.awt.event.ActionEvent evt) {//
 //            }
 //          );
           EulerIntegration.EulerIntegrationTask task = new EulerIntegration().new EulerIntegrationTask();
-          task.addPropertyChangeListener(new EulerIntegration().new EulerIntegrationTask());
+          task.addPropertyChangeListener(task);
           task.execute();
+          Thread.yield();
 
-          System.out.println("xs-size: " + ScreenUtilities.xs.size());
-          System.out.println("ys-size: " + ScreenUtilities.ys.size());
-          System.out.println("positions-size: " + EulerIntegration.positions.size());
+          System.out.println("hi!"); // + ScreenUtilities.xs.size());
+//          System.out.println("ys-size: " + ScreenUtilities.ys.size());
+//          System.out.println("positions-size: " + EulerIntegration.positions.size());
 
 }//GEN-LAST:event_jMenuItemComputeActionPerformed
 
