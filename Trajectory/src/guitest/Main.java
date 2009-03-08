@@ -84,5 +84,7 @@ public class Main {
     analysisUI = new Analysis();
     analysisUI.setVisible(true);
 
+    // test
+      utilities.SystemData.testCleanUp();
   } // end `main()'
 } // end `Main'

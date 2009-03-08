@@ -154,6 +154,8 @@ public class EulerIntegration {
       // set the 0th element in positions
       positions.add(new MovingBody(setting));
 
+      System.out.println("asdfL");
+      utilities.SystemData.testCleanUp();
       while ( // time left AND ground not hit AND space left for results
               (gotStillTime(tStart, allowedTime)) &&
               (positions.get(i - 1).getLocation(setting).getH() >= 0.0) &&
@@ -191,6 +193,7 @@ public class EulerIntegration {
         
       // as animation already works via the xs, ys stuff.
       ScreenUtilities.positionsToXsYsStructures(ScreenUtilities.xs, ScreenUtilities.ys);
+      utilities.SystemData.testCleanUp();
       return null; // p.d.
     }
 
