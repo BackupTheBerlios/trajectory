@@ -89,7 +89,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jTfRadiusBody" linkSize="11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="757" max="32767" attributes="0"/>
+                          <EmptySpace pref="758" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -747,12 +747,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPresetBody">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="8">
                 <StringItem index="0" value="User defined body"/>
                 <StringItem index="1" value="Sphere of polystyrene"/>
                 <StringItem index="2" value="Sphere of wood"/>
                 <StringItem index="3" value="Sphere of iron"/>
                 <StringItem index="4" value="Helium balloon"/>
+                <StringItem index="5" value="Human with parachute"/>
+                <StringItem index="6" value="Small penguin"/>
+                <StringItem index="7" value="Average human"/>
               </StringArray>
             </Property>
           </Properties>

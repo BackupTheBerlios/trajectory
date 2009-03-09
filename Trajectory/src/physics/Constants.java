@@ -126,6 +126,22 @@ public class Constants {
 
 
     //preset Bodys, mass, volume, radius, area:
+    public final static double MASS_PENGUIN             = 0;
+    public final static double VOLUME_PENGUIN           = 0;
+    public final static double AREA_PENGUIN             = 0;
+
+    public final static double MASS_HUMAN               = 0;
+    public final static double VOLUME_HUMAN             = 0;
+    public final static double AREA_HUMAN               = 0;
+
+    public final static double MASS_PARACHUTE           = 0;    //with human
+    public final static double VOLUME_PARACHUTE         = 0;
+    public final static double AREA_PARACHUTE           = 0;
+
+    public final static double MASS_AIRFOIL             = 0;
+    public final static double VOLUME_AIRFOIL           = 0;
+    public final static double AREA_AIRFOIL             = 0;
+
     public final static double MASS_SPHERE_POLYSTYRENE  = 0.212058;
     public final static double MASS_SPHERE_WOOD         = 7.06860;
     public final static double MASS_SPHERE_IRON         = 110.272;

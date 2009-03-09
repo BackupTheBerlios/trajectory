@@ -276,7 +276,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jLabel3.setText("Choose body:");
 
-        jComboBoxPresetBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere of polystyrene", "Sphere of wood", "Sphere of iron", "Helium balloon" }));
+        jComboBoxPresetBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere of polystyrene", "Sphere of wood", "Sphere of iron", "Helium balloon", "Human with parachute", "Small penguin", "Average human" }));
         jComboBoxPresetBody.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxPresetBodyItemStateChanged(evt);
@@ -307,7 +307,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(757, Short.MAX_VALUE))
+                        .addContainerGap(758, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTfCwBody, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1026,6 +1026,30 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_HELIUM));
     jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
     selectedItemPresetBody = 4;
+    }
+
+    if (jComboBoxPresetBody.getSelectedIndex() == 5){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_PARACHUTE));
+    jTfVolumeBody.setText(String.valueOf(physics.Constants.VOLUME_PARACHUTE));
+    jTfMassBody.setText(String.valueOf(physics.Constants.MASS_PARACHUTE));
+    jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_PARACHUTE));
+    selectedItemPresetBody = 5;
+    }
+
+    if (jComboBoxPresetBody.getSelectedIndex() == 6){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_PENGUIN));
+    jTfVolumeBody.setText(String.valueOf(physics.Constants.VOLUME_PENGUIN));
+    jTfMassBody.setText(String.valueOf(physics.Constants.MASS_PENGUIN));
+    jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_PENGUIN));
+    selectedItemPresetBody = 6;
+    }
+
+    if (jComboBoxPresetBody.getSelectedIndex() == 7){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_HUMAN));
+    jTfVolumeBody.setText(String.valueOf(physics.Constants.VOLUME_HUMAN));
+    jTfMassBody.setText(String.valueOf(physics.Constants.MASS_HUMAN));
+    jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_HUMAN));
+    selectedItemPresetBody = 7;
     }
 
 
