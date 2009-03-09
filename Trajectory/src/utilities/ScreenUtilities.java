@@ -40,6 +40,10 @@ public class ScreenUtilities {
         compareTrajectories = compare;
     }
 
+    public static boolean getCompareTrajectories(){
+        return compareTrajectories;
+    }
+
     private static int circleXCoordinate = 0;
     private static int circleYCoordinate = 0;
     private static int circleHeight = 0;

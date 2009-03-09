@@ -19,7 +19,6 @@ import java.text.DecimalFormat;
 public class Analysis extends javax.swing.JFrame {
     //final static int WIDTH = 1024;
 
-   public static DecimalFormat finalFormat = new DecimalFormat("#.#");
 
    // trajactories final values
    private static double hMax = 0.0;
@@ -66,8 +65,79 @@ public class Analysis extends javax.swing.JFrame {
     /** Creates new form Analysis */
     public Analysis() {
         initComponents();
-        setSize(1024,250);
-        
+        setSize(1024,250);        
+    }
+
+    public static DecimalFormat computeValueFormat(double value){
+       DecimalFormat format = new DecimalFormat("0");
+       value = Math.abs(value);
+       int dimension = 0;
+         if (value > 1){
+           for (int i = 1; i<17; i++){
+             value = value / 10;
+             if (value < 1){
+                 dimension = i;
+                 i = 17;
+             }
+           }
+           if (dimension == 1){
+              format = new DecimalFormat("0.000000000000000");
+           }
+           if (dimension == 2){
+              format = new DecimalFormat("0.00000000000000");
+           }
+           if (dimension == 3){
+              format = new DecimalFormat("0.0000000000000");
+           }
+           if (dimension == 4){
+              format = new DecimalFormat("0.000000000000");
+           }
+           if (dimension == 5){
+              format = new DecimalFormat("0.00000000000");
+           }
+           if (dimension == 6){
+              format = new DecimalFormat("0.0000000000");
+           }
+           if (dimension == 7){
+              format = new DecimalFormat("0.000000000");
+           }
+           if (dimension == 8){
+              format = new DecimalFormat("0.00000000");
+           }
+           if (dimension == 9){
+              format = new DecimalFormat("0.0000000");
+           }
+           if (dimension == 10){
+              format = new DecimalFormat("0.000000");
+           }
+           if (dimension == 11){
+              format = new DecimalFormat("0.00000");
+           }
+           if (dimension == 12){
+              format = new DecimalFormat("0.0000");
+           }
+           if (dimension == 13){
+              format = new DecimalFormat("0.000");
+           }
+           if (dimension == 14){
+              format = new DecimalFormat("0.00");
+           }
+           if (dimension == 15){
+              format = new DecimalFormat("0.0");
+           }
+           if (dimension == 16){
+              format = new DecimalFormat("0");
+           }
+         }
+         else{
+           if (value == 0){
+            format = new DecimalFormat("0.0");
+           }
+           else{
+            format = new DecimalFormat("0.000000000000000");
+           }
+         }
+         return format;
     }
 
     // display start values on the form
@@ -118,15 +188,15 @@ public class Analysis extends javax.swing.JFrame {
           double rho, double beta, double angleGround
             )
     {
-      jTfV.setText(Double.toString(v));
-      jTfVx.setText(Double.toString(vx));
-      jTfVy.setText(Double.toString(vy));
-      jTfX.setText(Double.toString(x));
-      jTfY.setText(Double.toString(y));
-      jTfHeight.setText(Double.toString(h));
-      jTfDensity.setText(Double.toString(rho));
-      jTfAngleXAxis.setText(Double.toString(beta));
-      jTfAngleGround.setText(Double.toString(angleGround));
+      jTfV.setText(String.valueOf(computeValueFormat(v).format(v)));
+      jTfVx.setText(String.valueOf(computeValueFormat(vx).format(vx)));
+      jTfVy.setText(String.valueOf(computeValueFormat(vy).format(vy)));
+      jTfX.setText(String.valueOf(computeValueFormat(x).format(x)));
+      jTfY.setText(String.valueOf(computeValueFormat(y).format(y)));
+      jTfHeight.setText(String.valueOf(computeValueFormat(h).format(h)));
+      jTfDensity.setText(String.valueOf(computeValueFormat(rho).format(rho)));
+      jTfAngleXAxis.setText(String.valueOf(computeValueFormat(beta).format(beta)));
+      jTfAngleGround.setText(String.valueOf(computeValueFormat(angleGround).format(angleGround)));
     } // end `displayValues()'
 
 
@@ -244,15 +314,15 @@ public class Analysis extends javax.swing.JFrame {
     }
 
                         
-    public static void displayFinalValues(double hMax, double hMin, double throwingRange, double vEnd, double betaEnd, double hEnd, double throwingTime, DecimalFormat finalFormat) {
-        jTextFieldhMax.setText(String.valueOf(hMax));
-        jTextFieldhMin.setText(String.valueOf(hMin));
-        jTextFieldthrowingRange.setText(String.valueOf(finalFormat.format(throwingRange)));
-        jTextFieldvEnd.setText(String.valueOf(vEnd));
-        jTextFieldbetaEnd.setText(String.valueOf(betaEnd));
-        jTextFieldhEnd.setText(String.valueOf(hEnd));
-        jTextFieldthrowingTime.setText(String.valueOf(throwingTime));
-    }
+ public static void displayFinalValues(double hMax, double hMin, double throwingRange, double vEnd, double betaEnd, double hEnd, double throwingTime) {
+        jTextFieldhMax.setText(String.valueOf(computeValueFormat(hMax).format(hMax)));
+        jTextFieldhMin.setText(String.valueOf(computeValueFormat(hMin).format(hMin)));
+        jTextFieldthrowingRange.setText(String.valueOf(computeValueFormat(throwingRange).format(throwingRange)));
+        jTextFieldvEnd.setText(String.valueOf(computeValueFormat(vEnd).format(vEnd)));
+        jTextFieldbetaEnd.setText(String.valueOf(computeValueFormat(betaEnd).format(betaEnd)));
+        jTextFieldhEnd.setText(String.valueOf(computeValueFormat(hEnd).format(hEnd)));
+        jTextFieldthrowingTime.setText(String.valueOf(computeValueFormat(throwingTime).format(throwingTime)));
+ }
 
 
  public static void computeFinalValues(Vector<MovingBody> positions, Setting setting){
@@ -963,9 +1033,11 @@ public class Analysis extends javax.swing.JFrame {
                     .addComponent(jLabel15))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldhEnd, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                     .addComponent(jTextFieldvEnd)
-                    .addComponent(jTextFieldbetaEnd))
+                    .addComponent(jTextFieldbetaEnd)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jTextFieldhEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
@@ -981,7 +1053,7 @@ public class Analysis extends javax.swing.JFrame {
                                 .addComponent(jLabel17))
                             .addComponent(jLabel20)
                             .addComponent(jLabel19))))
-                .addContainerGap(386, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(453, 453, 453)
                 .addComponent(jButtonSetFinalValuesToStartParameters)

@@ -42,6 +42,7 @@ import java.lang.Thread;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.Color;
+import java.text.DecimalFormat;
 
 import UI.UserInputNewParameters;
 import java.awt.Cursor;

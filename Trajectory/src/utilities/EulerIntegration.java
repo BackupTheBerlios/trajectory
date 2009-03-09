@@ -169,6 +169,9 @@ public class EulerIntegration {
       //Startwert der Dichte (Höhe Null!), sollte bei einer Starthöhe>0 begonnen werden,
       //wird die Dichte im ersten Schritt an die tatsächliche Höhe angepasst
 
+      System.out.println("asdfL");
+ //    // utilities.SystemData.testCleanUp();
+
       //Abfrage, ob vorwärts oder rückwärts gerechnet wird und ob einfache Gravitation aktiv:
       if (Options.getComputeBackwards() == false && Forces.isActingGravity() == true){
 
@@ -223,10 +226,10 @@ public class EulerIntegration {
 
 
        UI.Analysis.computeFinalValues(utilities.EulerIntegration.positions, UI.UserInputNewParameters.currentSetting);
-       UI.Analysis.displayFinalValues(UI.Analysis.getHMax(), UI.Analysis.getHMin(), UI.Analysis.getThrowingRange(), UI.Analysis.getVEnd(), UI.Analysis.getBetaEnd(), UI.Analysis.getHEnd(), UI.Analysis.getThrowingTime(), UI.Analysis.finalFormat);
+       UI.Analysis.displayFinalValues(UI.Analysis.getHMax(), UI.Analysis.getHMin(), UI.Analysis.getThrowingRange(), UI.Analysis.getVEnd(), UI.Analysis.getBetaEnd(), UI.Analysis.getHEnd(), UI.Analysis.getThrowingTime());
     // as animation already works via the xs, ys stuff.
       ScreenUtilities.positionsToXsYsStructures(ScreenUtilities.xs, ScreenUtilities.ys);
-      utilities.SystemData.testCleanUp();
+//     // utilities.SystemData.testCleanUp();
       return null; // p.d.
     }
 
