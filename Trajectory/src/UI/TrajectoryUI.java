@@ -38,13 +38,10 @@ import javax.swing.*;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.util.Vector;
-import java.lang.Thread;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.Color;
-import java.text.DecimalFormat;
 
-import UI.UserInputNewParameters;
 import java.awt.Cursor;
 import utilities.*;
 import static utilities.EulerIntegration.*;
@@ -62,8 +59,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
   Graphics2D big; // graphic context for the buffered image above
   
   private static int animationSpeed = 0;
-  
-  
+
+
   // setters
   public static void setAnimationSpeed(int speed){
       animationSpeed = speed;
@@ -99,7 +96,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
           isAnimationRunning = false;
         }
         i = 0;
-      }
+      } // end if
 
 
   if (Analysis.getSelectedIndexJComboBoxAnimationSpeed() == 0){
@@ -126,48 +123,30 @@ public class TrajectoryUI extends javax.swing.JFrame {
               jPnlDrawingPlane.getHeight());
 
       // TODO: BE: C  improve transformation.
-      g.drawOval((int) (xs.get(i).floatValue() * ScreenUtilities.scalingFactor - guitest.Main.xMin * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET),
+      g.drawOval((int) (xs.get(i).floatValue() * ScreenUtilities.scalingFactor - 
+              guitest.Main.xMin * ScreenUtilities.scalingFactor +
+              ScreenUtilities.ORIGIN_OFFSET),
               (int) (ScreenUtilities.SCREEN_HEIGHT -
               (ys.get(i).floatValue() - guitest.Main.yMin) *
               ScreenUtilities.scalingFactor) + ScreenUtilities.ORIGIN_OFFSET,
               5, 5);
-      /////System.out.println(TrajectoryUI.jPnlDrawingPlane.getWidth() + " " + TrajectoryUI.jPnlDrawingPlane.getHeight());
 
       // as drawing has been directed to the buffered image `bi' before,
       // now display the results on the screen (a.k.a. `jPnlDrawingPlane')
       Graphics2D tmpG2d = (Graphics2D) jPnlDrawingPlane.getGraphics();
       tmpG2d.drawImage(bi, 0, 0, this);
 
-      if (positions.size() != 0) {
-        MovingBody tmp = positions.get(i);
-        physics.Setting tempSetting = UserInputNewParameters.currentSetting;
-        double hTemp = 0.0;
-        double angleTemp = 0.0;
-        if (!physics.Forces.isActingGravity()){
-            hTemp = tmp.getLocation(tempSetting).getY();
-            angleTemp = tmp.getBeta();
-        }
-        else{
-            hTemp = tmp.getLocation(tempSetting).getH();
-            angleTemp = (tmp.getAngleVvectorToRvector() - 90);
-        }
-        guitest.Main.analysisUI.displayValues(
-                tmp.getV(),
-                tmp.getVx(),
-                tmp.getVy(),
-                tmp.getLocation(tempSetting).getX(),
-                tmp.getLocation(tempSetting).getY(),
-                hTemp,
-                tmp.getLocation(tempSetting).getRho(),
-                tmp.getBeta(),
-                angleTemp);
+      // TODO: B BE: data flow?
+      if (positions.size() != 0) {   // if there is something to draw at all:
+        displayValuesOnAnalysisUI(); // of the current Body being drawn
       }
-      System.out.println("### inc: " + ScreenUtilities.increment);
+
       i += ScreenUtilities.increment; // reduction of pts to draw happens here
 
     } catch (NullPointerException ex) {
       // TODO: BE: C encapsulate a ~th.myStop() method...
       ex.getCause().printStackTrace(System.out);
+      System.out.print("~~~ If you can read this s.th. went terribly wrong:");
       System.out.println("method myPaint: " + ex);
       System.out.println("stack-trace: ");
       System.out.println("stopping runner (thread)...");
@@ -175,22 +154,13 @@ public class TrajectoryUI extends javax.swing.JFrame {
       isAnimationRunning = false;
       System.out.println("runner stopped.");
     } finally { // lots of info
-      System.out.println("i: " + i);
-      System.out.println("xs(0): " + xs.get(0));
-      System.out.println("ys(0): " + ys.get(0));
-      System.out.println("size:" + EulerIntegration.positions.size());
-      System.out.println("xs-size: " + xs.size());
-      System.out.println("xs-size: " + xs.size());
-      System.out.println("sf: " + ScreenUtilities.scalingFactor);
-      System.out.println("inc: " + ScreenUtilities.increment);
-      System.out.println("ymax: " + guitest.Main.yMax);
-      System.out.println("ymin: " + guitest.Main.yMin);
-      System.out.println("xmax: " + guitest.Main.xMax);
-      System.out.println("xmin: " + guitest.Main.xMin);
+      dumpInfoToStdOut(xs, ys);
     }
-  }
 
-  /** Creates new form TrajectoryUI */
+  } // end `myPaint()'
+
+  
+  // constructor
   public TrajectoryUI() {
     initComponents();
     jPnlDrawingPlane.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
@@ -205,8 +175,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
     big = (Graphics2D) bi.getGraphics();
   }
 
-  private class DrawingPanel extends JPanel {
 
+  private class DrawingPanel extends JPanel {
     public DrawingPanel() {
       super(true); // double-buffered enabled JPanel
     }
@@ -218,176 +188,216 @@ public class TrajectoryUI extends javax.swing.JFrame {
     }
   } // end `DrawingPanel'
 
+
+  // Use:  Computing height and angle according to the user´s choice,
+  //       isActingGravity == {true, false}; Print computed values to AnalysisUI
+  // Pre:  Just useful where it stands right now ;-(
+  private void displayValuesOnAnalysisUI(){
+    MovingBody tmp = positions.get(i);
+    physics.Setting tempSetting = UserInputNewParameters.currentSetting;
+    double hTemp = 0.0;
+    double angleTemp = 0.0;
+
+    // compute the potentially different height and angle
+    if (!physics.Forces.isActingGravity()) {
+      hTemp = tmp.getLocation(tempSetting).getY();
+      angleTemp = tmp.getBeta();
+    } else {
+      hTemp = tmp.getLocation(tempSetting).getH();
+      angleTemp = (tmp.getAngleVvectorToRvector() - 90);
+    }
+    guitest.Main.analysisUI.displayValues(
+       tmp.getV(), tmp.getVx(), tmp.getVy(),
+       tmp.getLocation(tempSetting).getX(), tmp.getLocation(tempSetting).getY(),
+       hTemp, tmp.getLocation(tempSetting).getRho(), tmp.getBeta(), angleTemp);
+
+  } // end `displayValuesOnAnalysisUI()'
+
+  private void dumpInfoToStdOut(Vector<Double> xs, Vector<Double> ys){
+    System.out.println("i: " + i);
+    System.out.println("### inc: " + ScreenUtilities.increment);
+    System.out.println("xs(0): " + xs.get(0));
+    System.out.println("ys(0): " + ys.get(0));
+    System.out.println("size:" + EulerIntegration.positions.size());
+    System.out.println("xs-size: " + xs.size());
+    System.out.println("xs-size: " + xs.size());
+    System.out.println("sf: " + ScreenUtilities.scalingFactor);
+    System.out.println("inc: " + ScreenUtilities.increment);
+    System.out.println("ymax: " + guitest.Main.yMax);
+    System.out.println("ymin: " + guitest.Main.yMin);
+    System.out.println("xmax: " + guitest.Main.xMax);
+    System.out.println("xmin: " + guitest.Main.xMin);
+  }
+
   /** This method is called from within the constructor to
    * initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is
    * always regenerated by the Form Editor.
    */
   @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+  private void initComponents() {
 
-        jPnlDrawingPlane = new DrawingPanel();
-        jMenuBar = new javax.swing.JMenuBar();
-        jMenuFile = new javax.swing.JMenu();
-        jMenuItemOpenFile = new javax.swing.JMenuItem();
-        jMenuItemClose = new javax.swing.JMenuItem();
-        jMenuSet = new javax.swing.JMenu();
-        jMenuItemSetNewParameters = new javax.swing.JMenuItem();
-        jMenuItemLoadPresetFile = new javax.swing.JMenuItem();
-        jMenuComputation = new javax.swing.JMenu();
-        jMenuItemCompute = new javax.swing.JMenuItem();
-        jMenuItemClearScreenAndScalingFactor = new javax.swing.JMenuItem();
-        jMenuAnimation = new javax.swing.JMenu();
-        jMenuItemStartAnimation = new javax.swing.JMenuItem();
-        jMenuEdit = new javax.swing.JMenu();
-        jMenuItemMeasureMode = new javax.swing.JMenuItem();
+    jPnlDrawingPlane = new DrawingPanel();
+    jMenuBar = new javax.swing.JMenuBar();
+    jMenuFile = new javax.swing.JMenu();
+    jMenuItemOpenFile = new javax.swing.JMenuItem();
+    jMenuItemClose = new javax.swing.JMenuItem();
+    jMenuSet = new javax.swing.JMenu();
+    jMenuItemSetNewParameters = new javax.swing.JMenuItem();
+    jMenuItemLoadPresetFile = new javax.swing.JMenuItem();
+    jMenuComputation = new javax.swing.JMenu();
+    jMenuItemCompute = new javax.swing.JMenuItem();
+    jMenuItemReset = new javax.swing.JMenuItem();
+    jMenuAnimation = new javax.swing.JMenu();
+    jMenuItemStartAnimation = new javax.swing.JMenuItem();
+    jMenuEdit = new javax.swing.JMenu();
+    jMenuItemMeasureMode = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPnlDrawingPlane.setBackground(new java.awt.Color(255, 204, 0));
-        jPnlDrawingPlane.setName("jPnlDrawingPlane"); // NOI18N
-        jPnlDrawingPlane.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPnlDrawingPlaneMouseClicked(evt);
-            }
-        });
-        jPnlDrawingPlane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jPnlDrawingPlaneMouseMoved(evt);
-            }
-        });
+    jPnlDrawingPlane.setBackground(new java.awt.Color(255, 204, 0));
+    jPnlDrawingPlane.setName("jPnlDrawingPlane"); // NOI18N
+    jPnlDrawingPlane.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jPnlDrawingPlaneMouseClicked(evt);
+      }
+    });
+    jPnlDrawingPlane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+      public void mouseMoved(java.awt.event.MouseEvent evt) {
+        jPnlDrawingPlaneMouseMoved(evt);
+      }
+    });
 
-        javax.swing.GroupLayout jPnlDrawingPlaneLayout = new javax.swing.GroupLayout(jPnlDrawingPlane);
-        jPnlDrawingPlane.setLayout(jPnlDrawingPlaneLayout);
-        jPnlDrawingPlaneLayout.setHorizontalGroup(
-            jPnlDrawingPlaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPnlDrawingPlaneLayout.setVerticalGroup(
-            jPnlDrawingPlaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 273, Short.MAX_VALUE)
-        );
+    javax.swing.GroupLayout jPnlDrawingPlaneLayout = new javax.swing.GroupLayout(jPnlDrawingPlane);
+    jPnlDrawingPlane.setLayout(jPnlDrawingPlaneLayout);
+    jPnlDrawingPlaneLayout.setHorizontalGroup(
+      jPnlDrawingPlaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 400, Short.MAX_VALUE)
+    );
+    jPnlDrawingPlaneLayout.setVerticalGroup(
+      jPnlDrawingPlaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 273, Short.MAX_VALUE)
+    );
 
-        jMenuBar.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentHidden(java.awt.event.ComponentEvent evt) {
-                jMenuBarComponentHidden(evt);
-            }
-        });
+    jMenuBar.addComponentListener(new java.awt.event.ComponentAdapter() {
+      public void componentHidden(java.awt.event.ComponentEvent evt) {
+        jMenuBarComponentHidden(evt);
+      }
+    });
 
-        jMenuFile.getPopupMenu().setLightWeightPopupEnabled(false);
-        jMenuFile.setText("File");
-        jMenuFile.setDelay(100);
+    jMenuFile.getPopupMenu().setLightWeightPopupEnabled(false);
+    jMenuFile.setText("File");
+    jMenuFile.setDelay(100);
 
-        jMenuItemOpenFile.setToolTipText("Open a file to read data.");
-        jMenuItemOpenFile.setActionCommand("OpenFile");
-        jMenuItemOpenFile.setLabel("Open File...");
-        jMenuItemOpenFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemOpenFileActionPerformed(evt);
-            }
-        });
-        jMenuFile.add(jMenuItemOpenFile);
+    jMenuItemOpenFile.setToolTipText("Open a file to read data.");
+    jMenuItemOpenFile.setActionCommand("OpenFile");
+    jMenuItemOpenFile.setLabel("Open File...");
+    jMenuItemOpenFile.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemOpenFileActionPerformed(evt);
+      }
+    });
+    jMenuFile.add(jMenuItemOpenFile);
 
-        jMenuItemClose.setLabel("Exit");
-        jMenuFile.add(jMenuItemClose);
+    jMenuItemClose.setLabel("Exit");
+    jMenuFile.add(jMenuItemClose);
 
-        jMenuBar.add(jMenuFile);
+    jMenuBar.add(jMenuFile);
 
-        jMenuSet.getPopupMenu().setLightWeightPopupEnabled(false);
-        jMenuSet.setText("Set");
+    jMenuSet.getPopupMenu().setLightWeightPopupEnabled(false);
+    jMenuSet.setText("Set");
 
-        jMenuItemSetNewParameters.setText("New Parameters...");
-        jMenuItemSetNewParameters.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSetNewParametersActionPerformed(evt);
-            }
-        });
-        jMenuSet.add(jMenuItemSetNewParameters);
+    jMenuItemSetNewParameters.setText("New Parameters...");
+    jMenuItemSetNewParameters.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemSetNewParametersActionPerformed(evt);
+      }
+    });
+    jMenuSet.add(jMenuItemSetNewParameters);
 
-        jMenuItemLoadPresetFile.setText("Load Preset File...");
-        jMenuItemLoadPresetFile.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentHidden(java.awt.event.ComponentEvent evt) {
-                jMenuItemLoadPresetFileComponentHidden(evt);
-            }
-        });
-        jMenuItemLoadPresetFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemLoadPresetFileActionPerformed(evt);
-            }
-        });
-        jMenuSet.add(jMenuItemLoadPresetFile);
+    jMenuItemLoadPresetFile.setText("Load Preset File...");
+    jMenuItemLoadPresetFile.addComponentListener(new java.awt.event.ComponentAdapter() {
+      public void componentHidden(java.awt.event.ComponentEvent evt) {
+        jMenuItemLoadPresetFileComponentHidden(evt);
+      }
+    });
+    jMenuItemLoadPresetFile.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemLoadPresetFileActionPerformed(evt);
+      }
+    });
+    jMenuSet.add(jMenuItemLoadPresetFile);
 
-        jMenuBar.add(jMenuSet);
+    jMenuBar.add(jMenuSet);
 
-        jMenuComputation.getPopupMenu().setLightWeightPopupEnabled(false);
-        jMenuComputation.setText("Computation");
+    jMenuComputation.getPopupMenu().setLightWeightPopupEnabled(false);
+    jMenuComputation.setText("Computation");
 
-        jMenuItemCompute.setText("Compute");
-        jMenuItemCompute.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemComputeActionPerformed(evt);
-            }
-        });
-        jMenuComputation.add(jMenuItemCompute);
+    jMenuItemCompute.setText("Compute");
+    jMenuItemCompute.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemComputeActionPerformed(evt);
+      }
+    });
+    jMenuComputation.add(jMenuItemCompute);
 
-        jMenuItemClearScreenAndScalingFactor.setText("Clear screen");
-        jMenuItemClearScreenAndScalingFactor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemClearScreenAndScalingFactorActionPerformed(evt);
-            }
-        });
-        jMenuComputation.add(jMenuItemClearScreenAndScalingFactor);
+    jMenuItemReset.setText("Clear screen");
+    jMenuItemReset.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemResetActionPerformed(evt);
+      }
+    });
+    jMenuComputation.add(jMenuItemReset);
 
-        jMenuBar.add(jMenuComputation);
+    jMenuBar.add(jMenuComputation);
 
-        jMenuAnimation.getPopupMenu().setLightWeightPopupEnabled(false);
-        jMenuAnimation.setText("Animation");
+    jMenuAnimation.getPopupMenu().setLightWeightPopupEnabled(false);
+    jMenuAnimation.setText("Animation");
 
-        jMenuItemStartAnimation.setText("Start Animation(File)");
-        jMenuItemStartAnimation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemStartAnimationActionPerformed(evt);
-            }
-        });
-        jMenuAnimation.add(jMenuItemStartAnimation);
+    jMenuItemStartAnimation.setText("Start Animation(File)");
+    jMenuItemStartAnimation.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemStartAnimationActionPerformed(evt);
+      }
+    });
+    jMenuAnimation.add(jMenuItemStartAnimation);
 
-        jMenuBar.add(jMenuAnimation);
+    jMenuBar.add(jMenuAnimation);
 
-        jMenuEdit.getPopupMenu().setLightWeightPopupEnabled(false);
-        jMenuEdit.setText("Edit");
+    jMenuEdit.getPopupMenu().setLightWeightPopupEnabled(false);
+    jMenuEdit.setText("Edit");
 
-        jMenuItemMeasureMode.setText("Measure Mode");
-        jMenuItemMeasureMode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemMeasureModeActionPerformed(evt);
-            }
-        });
-        jMenuEdit.add(jMenuItemMeasureMode);
+    jMenuItemMeasureMode.setText("Measure Mode");
+    jMenuItemMeasureMode.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemMeasureModeActionPerformed(evt);
+      }
+    });
+    jMenuEdit.add(jMenuItemMeasureMode);
 
-        jMenuBar.add(jMenuEdit);
+    jMenuBar.add(jMenuEdit);
 
-        setJMenuBar(jMenuBar);
+    setJMenuBar(jMenuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPnlDrawingPlane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPnlDrawingPlane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(jPnlDrawingPlane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    layout.setVerticalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jPnlDrawingPlane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+    pack();
+  }// </editor-fold>//GEN-END:initComponents
 
 private void jMenuItemSetNewParametersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSetNewParametersActionPerformed
   UserInputNewParameters userInputDialog = new UserInputNewParameters();
-  //dialog.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
   userInputDialog.setAlwaysOnTop(true);
   userInputDialog.setVisible(true);
   userInputDialog.setModal(true);
@@ -447,35 +457,17 @@ private void jMenuItemOpenFileActionPerformed(java.awt.event.ActionEvent evt) {/
 // post: the datastructures `xs', `ys' in class ScreenUtilities are filled
 //       with the results of the computation.
 private void jMenuItemComputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemComputeActionPerformed
-          //EulerIntegration.eulerIntegrate();
+      dialog = new DialogComputationInProgress(guitest.Main.ui, false);
+      dialog.setVisible(true);
 
-//          javax.swing.SwingUtilities.invokeLater(new Runnable(){
-//              public void run(){
-          dialog = new DialogComputationInProgress(guitest.Main.ui, false);
-          dialog.setVisible(true);
-//              }
-//            }
-//          );
-          EulerIntegration.EulerIntegrationTask task = new EulerIntegration().new EulerIntegrationTask();
-          task.addPropertyChangeListener(task);
-          task.execute();
-
-          
-         // System.out.println("xs-size: " + ScreenUtilities.xs.size());
-         //System.out.println("ys-size: " + ScreenUtilities.ys.size());
-         //System.out.println("positions-size: " + EulerIntegration.positions.size());
-
-          Thread.yield();
-
-          System.out.println("hi!"); // + ScreenUtilities.xs.size());
-//        System.out.println("ys-size: " + ScreenUtilities.ys.size());
-//        System.out.println("positions-size: " + EulerIntegration.positions.size());
-
-
+      EulerIntegration.EulerIntegrationTask task = new EulerIntegration().new EulerIntegrationTask();
+      task.addPropertyChangeListener(task);
+      task.execute();
+      Thread.yield();
 }//GEN-LAST:event_jMenuItemComputeActionPerformed
 
 private void jMenuItemLoadPresetFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoadPresetFileActionPerformed
-// TODO: B pack some more preset files.
+  // TODO: B pack some more preset files.
   File file;
   JFileChooser fc = new JFileChooser(); // bring up a new filechooser
 
@@ -484,12 +476,12 @@ private void jMenuItemLoadPresetFileActionPerformed(java.awt.event.ActionEvent e
   File pathToDeliveredProgram = new File("");
   fc.setCurrentDirectory(new File(
           pathToDeliveredProgram.getAbsolutePath().toString() + System.getProperty("file.separator") + "presets"));
-
   // TODO: END WORKAROUND.
-
-
   int retval = fc.showOpenDialog(this); // show open file dialog
 
+  // BE: netbeansIDE signals a warning, but SUN says it is alright like this.
+  //     I vote for leaving the warning, otherwise if something goes wrong, it
+  //     would be shaded by the IDE imho.
   if (retval == fc.APPROVE_OPTION) { // check whether file selected or aborted
     try {
       file = fc.getSelectedFile();
@@ -501,16 +493,18 @@ private void jMenuItemLoadPresetFileActionPerformed(java.awt.event.ActionEvent e
       System.out.println(ex);
     }
   }
-
 }//GEN-LAST:event_jMenuItemLoadPresetFileActionPerformed
+
 
 private void jMenuBarComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jMenuBarComponentHidden
 // TODO add your handling code here:
 }//GEN-LAST:event_jMenuBarComponentHidden
 
+
 private void jMenuItemLoadPresetFileComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jMenuItemLoadPresetFileComponentHidden
 // TODO add your handling code here:
 }//GEN-LAST:event_jMenuItemLoadPresetFileComponentHidden
+
 
 private void jMenuItemMeasureModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMeasureModeActionPerformed
   AnimationStop animationStopDialog;// = new UI.AnimationStop(this,true);
@@ -521,6 +515,7 @@ private void jMenuItemMeasureModeActionPerformed(java.awt.event.ActionEvent evt)
     animationStopDialog.setVisible(true);
   }
 }//GEN-LAST:event_jMenuItemMeasureModeActionPerformed
+
 
 private void jPnlDrawingPlaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPnlDrawingPlaneMouseMoved
   if (MeasureMode.getIsDisplayXYCoordsEnabled()) {
@@ -534,9 +529,9 @@ private void jPnlDrawingPlaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FI
       g2d.drawString("X: " + evt.getX() + " Y: " + evt.getY(),
               evt.getX(), evt.getY());
     } // end if
-
   } // end if
 }//GEN-LAST:event_jPnlDrawingPlaneMouseMoved
+
 
 private void jPnlDrawingPlaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPnlDrawingPlaneMouseClicked
   if (evt.getButton() == MouseEvent.BUTTON3) {
@@ -545,17 +540,18 @@ private void jPnlDrawingPlaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-
   }
 }//GEN-LAST:event_jPnlDrawingPlaneMouseClicked
 
-private void jMenuItemClearScreenAndScalingFactorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClearScreenAndScalingFactorActionPerformed
+
+private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetActionPerformed
     //RunnerThread.interrupt();
     //th.interrupt();
     //isAnimationRunning = false;
     big.clearRect(0, 0, jPnlDrawingPlane.getWidth(), jPnlDrawingPlane.getHeight());
     //utilities.ScreenUtilities.setCompareTrajectories(false);
     
-}//GEN-LAST:event_jMenuItemClearScreenAndScalingFactorActionPerformed
-    /**
-     * @param args the command line arguments
-     */
+}//GEN-LAST:event_jMenuItemResetActionPerformed
+
+
+    // Use:  to run the form itself.
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -564,33 +560,36 @@ private void jMenuItemClearScreenAndScalingFactorActionPerformed(java.awt.event.
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenuAnimation;
-    private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JMenu jMenuComputation;
-    private javax.swing.JMenu jMenuEdit;
-    private javax.swing.JMenu jMenuFile;
-    private javax.swing.JMenuItem jMenuItemClearScreenAndScalingFactor;
-    private javax.swing.JMenuItem jMenuItemClose;
-    private javax.swing.JMenuItem jMenuItemCompute;
-    private javax.swing.JMenuItem jMenuItemLoadPresetFile;
-    private javax.swing.JMenuItem jMenuItemMeasureMode;
-    private javax.swing.JMenuItem jMenuItemOpenFile;
-    private javax.swing.JMenuItem jMenuItemSetNewParameters;
-    private javax.swing.JMenuItem jMenuItemStartAnimation;
-    private javax.swing.JMenu jMenuSet;
-    private static javax.swing.JPanel jPnlDrawingPlane;
-    // End of variables declaration//GEN-END:variables
+    
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JMenu jMenuAnimation;
+  private javax.swing.JMenuBar jMenuBar;
+  private javax.swing.JMenu jMenuComputation;
+  private javax.swing.JMenu jMenuEdit;
+  private javax.swing.JMenu jMenuFile;
+  private javax.swing.JMenuItem jMenuItemClose;
+  private javax.swing.JMenuItem jMenuItemCompute;
+  private javax.swing.JMenuItem jMenuItemLoadPresetFile;
+  private javax.swing.JMenuItem jMenuItemMeasureMode;
+  private javax.swing.JMenuItem jMenuItemOpenFile;
+  private javax.swing.JMenuItem jMenuItemReset;
+  private javax.swing.JMenuItem jMenuItemSetNewParameters;
+  private javax.swing.JMenuItem jMenuItemStartAnimation;
+  private javax.swing.JMenu jMenuSet;
+  private static javax.swing.JPanel jPnlDrawingPlane;
+  // End of variables declaration//GEN-END:variables
+
   
     public void startAnimation() {
         th = new RunnerThread(); // TODO: possible spamming prevention
         th.start();
     }
 
-    
+
+    // Use:  Class providing the animation thread.
     private class RunnerThread extends Thread {
 
-        @Override
+      @Override
       public void run() {
         while (!isInterrupted()) {
           myPaint(big,

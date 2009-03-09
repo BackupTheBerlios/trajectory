@@ -76,12 +76,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemComputeActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemClearScreenAndScalingFactor">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemReset">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Clear screen"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemClearScreenAndScalingFactorActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemResetActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
