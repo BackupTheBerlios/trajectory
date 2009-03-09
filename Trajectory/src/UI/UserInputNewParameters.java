@@ -23,8 +23,14 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
     // TODO: A create a common place for all data in order to avoid scattering.
     public static Setting currentSetting;
-    
     /** Creates new form UserInputNewParameters */
+
+    // saving state of selected items to show them again when opening the form
+    private static int selectedItemPlanet = 0;
+    private static int selectedItemMedium = 0;
+    private static int selectedItemBody = 0;
+    private static int selectedItemPresetBody = 0;
+
     public UserInputNewParameters() {
         initComponents();
         this.setResizable(false);
@@ -99,6 +105,8 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jComboBoxPresetBody = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
         jBtOK = new javax.swing.JButton();
         jBtReset = new javax.swing.JButton();
 
@@ -268,6 +276,15 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jLabel3.setText("Choose body:");
 
+        jComboBoxPresetBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere of polystyrene", "Sphere of wood", "Sphere of iron", "Helium balloon" }));
+        jComboBoxPresetBody.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxPresetBodyItemStateChanged(evt);
+            }
+        });
+
+        jLabel4.setText("Choose preset body:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -290,7 +307,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(723, Short.MAX_VALUE))
+                        .addContainerGap(757, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTfCwBody, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,10 +408,19 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel4)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jComboBoxPresetBody, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(5, 5, 5))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(163, 163, 163))))
         );
 
@@ -468,42 +494,48 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                             .addComponent(jLabel2)
                             .addComponent(jComboBoxMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblCwBody)
-                    .addComponent(jTfCwBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfProposedComputingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblProposedComputiingTime)
-                    .addComponent(jLabelDimensionTime))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfAreaAffected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCckBxBuoyancy)
-                            .addComponent(jLabelDimensionArea)
-                            .addComponent(jLblAreaFlowBody, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblRadiusBody)
-                            .addComponent(jCckBxFlowResistance)
-                            .addComponent(jLabelDimensionRadius))
+                            .addComponent(jLblCwBody)
+                            .addComponent(jTfCwBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfProposedComputingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblProposedComputiingTime)
+                            .addComponent(jLabelDimensionTime)
+                            .addComponent(jLabel4))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jCckBxGravity)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCckBxViscosity)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCckBxSimpleGravity)
-                                .addContainerGap(24, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTfAreaAffected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCckBxBuoyancy)
+                                    .addComponent(jLabelDimensionArea)
+                                    .addComponent(jLblAreaFlowBody, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblRadiusBody)
+                                    .addComponent(jCckBxFlowResistance)
+                                    .addComponent(jLabelDimensionRadius))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jCckBxGravity)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCckBxViscosity)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCckBxSimpleGravity)
+                                        .addContainerGap(24, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCckBxComputeDensity)
+                                        .addGap(48, 48, 48))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCckBxComputeDensity)
-                                .addGap(48, 48, 48))))
+                                .addGap(124, 124, 124)
+                                .addComponent(jLabelDimensionRange)
+                                .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jLabelDimensionRange)
+                        .addComponent(jComboBoxPresetBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(269, Short.MAX_VALUE)
@@ -565,8 +597,11 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 // use : At the time all values are resetted to 0 (in the `jTfXXX').
 // TODO: check for non-numerical, nonsense input ->method taking a `setting'.
 private void jBtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtResetActionPerformed
+
   // show 0 values only on UI, changes to the real setting-object occur on
-  // OK button´s action event.
+  // OK button´s action event
+  // resetting selected options and forces
+
   this.jTfHeight.setText("0");
   this.jTfRhoFluid.setText("0");
   this.jTfEtaFluid.setText("0");
@@ -588,7 +623,16 @@ private void jBtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
   this.jCckBxViscosity.setSelected(false);
   this.jCckBxSimpleGravity.setSelected(false);
   this.jCckBxComputeBackwards.setSelected(false);
-  this.jCckBxComputeDensity.setSelected(false);
+  this.jCckBxComputeDensity.setSelected(false); 
+  selectedItemPlanet = 0;
+  selectedItemMedium = 0;
+  selectedItemBody = 0;
+  selectedItemPresetBody = 0;
+  jComboBoxPlanet.setSelectedIndex(selectedItemPlanet);
+  jComboBoxMedium.setSelectedIndex(selectedItemMedium);
+  jComboBoxBody.setSelectedIndex(selectedItemBody);
+  jComboBoxPresetBody.setSelectedIndex(selectedItemPresetBody);
+
 }//GEN-LAST:event_jBtResetActionPerformed
 
 private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtOKActionPerformed
@@ -685,7 +729,8 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
             jTfMassPlanet.getText(),
             jTfDt.getText(),
             jTfSpeed.getText(),
-            String.valueOf(2*Math.PI*Double.valueOf(jTfBeta.getText())/360),
+            //String.valueOf(2*Math.PI*Double.valueOf(jTfBeta.getText())/360),
+            jTfBeta.getText(),
             jTfMassBody.getText(),
             jTfVolumeBody.getText(),
             jTfCwBody.getText(),
@@ -740,7 +785,8 @@ private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event
             jTfMassPlanet.setText(String.valueOf(currentSetting.getM()));
             jTfDt.setText(String.valueOf(currentSetting.getDt()));
             jTfSpeed.setText(String.valueOf(currentSetting.getV()));
-            jTfBeta.setText(String.valueOf(360*currentSetting.getBeta()/(2*Math.PI)));
+            //jTfBeta.setText(String.valueOf(360*currentSetting.getBeta()/(2*Math.PI)));
+            jTfBeta.setText(String.valueOf(currentSetting.getBeta()));
             jTfMassBody.setText(String.valueOf(currentSetting.getMass()));
             jTfVolumeBody.setText(String.valueOf(currentSetting.getVol()));
             jTfCwBody.setText(String.valueOf(currentSetting.getCw()));
@@ -748,6 +794,35 @@ private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event
             jTfRadiusBody.setText(String.valueOf(currentSetting.getRadius()));
             jTfProposedComputingTime.setText(String.valueOf(currentSetting.getT()));
             jTfThrowingRange.setText(String.valueOf(utilities.Options.getThrowingRange()));
+
+            jComboBoxPlanet.setSelectedIndex(selectedItemPlanet);
+            jComboBoxMedium.setSelectedIndex(selectedItemMedium);
+            jComboBoxBody.setSelectedIndex(selectedItemBody);
+            jComboBoxPresetBody.setSelectedIndex(selectedItemPresetBody);
+
+            if (Forces.isActingBuoyancy()){
+                jCckBxBuoyancy.setSelected(true);
+            }
+            if (Forces.isActingGravity()){
+                jCckBxGravity.setSelected(true);
+            }
+            if (Forces.isActingSimpleGravity()){
+                jCckBxSimpleGravity.setSelected(true);
+            }
+            if (Forces.isActingFlowResistance()){
+                jCckBxFlowResistance.setSelected(true);
+            }
+            if (Forces.isActingViscosity()){
+                jCckBxViscosity.setSelected(true);
+            }
+
+            if (utilities.Options.getComputeBackwards() == true){
+                jCckBxComputeBackwards.setSelected(true);
+            }
+            if (utilities.Options.getComputeDensity() == true){
+                jCckBxComputeDensity.setSelected(true);
+            }
+            
 }//GEN-LAST:event_formWindowOpened
 
 private void jCckBxSimpleGravityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxSimpleGravityActionPerformed
@@ -761,6 +836,7 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfMassPlanet.setText("0.0");
     jTfRhoFluid.setText("0.0");
     jTfEtaFluid.setText("0.0");
+    selectedItemPlanet = 0;
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 1){
@@ -768,6 +844,7 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_EARTH));
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_EARTH));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_EARTH));
+    selectedItemPlanet = 1;
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 2){
@@ -775,6 +852,7 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_MOON));
     jTfRhoFluid.setText("0.0");
     jTfEtaFluid.setText("0.0");
+    selectedItemPlanet = 2;
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 3){
@@ -782,6 +860,7 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_MARS));
     jTfRhoFluid.setText("0.0");
     jTfEtaFluid.setText("0.0");
+    selectedItemPlanet = 3;
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 4){
@@ -789,6 +868,7 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_MERCUR));
     jTfRhoFluid.setText("0.0");
     jTfEtaFluid.setText("0.0");
+    selectedItemPlanet = 4;
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 5){
@@ -796,6 +876,7 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfMassPlanet.setText(String.valueOf(physics.Constants.MASS_VENUS));
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_VENUS));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_VENUS));
+    selectedItemPlanet = 5;
     }
 }//GEN-LAST:event_jComboBoxPlanetItemStateChanged
 
@@ -804,60 +885,151 @@ private void jComboBoxMediumItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     if (jComboBoxMedium.getSelectedIndex() == 0){
     jTfRhoFluid.setText("0.0");
     jTfEtaFluid.setText("0.0");
+    selectedItemMedium = 0;
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 1){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_AIR));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_AIR));
+    selectedItemMedium = 1;
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 2){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HELIUM));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HELIUM));
+    selectedItemMedium = 2;
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 3){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HYDROGEN));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HYDROGEN));
+    selectedItemMedium = 3;
     }
     
     if (jComboBoxMedium.getSelectedIndex() == 4){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_WATER));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_WATER));
+    selectedItemMedium = 4;
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 5){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_GLYCERIN));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_GLYCERIN));
+    selectedItemMedium = 5;
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 6){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_PARAFFIN));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_PARAFFIN));
+    selectedItemMedium = 6;
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 7){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_MERCURY));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_MERCURY));
+    selectedItemMedium = 7;
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 8){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HONEY));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HONEY));
+    selectedItemMedium = 8;
     }
     
 }//GEN-LAST:event_jComboBoxMediumItemStateChanged
 
 private void jComboBoxBodyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBodyItemStateChanged
 
-    if (jComboBoxPlanet.getSelectedIndex() == 0){
-    jTfRadiusPlanet.setText("0.0");
-    jTfMassPlanet.setText("0.0");
-    jTfRhoFluid.setText("0.0");
-    jTfEtaFluid.setText("0.0");
+    if (jComboBoxBody.getSelectedIndex() == 0){
+    jTfCwBody.setText("0.0");
+    jTfRadiusBody.setText("0.0");
+    jTfVolumeBody.setText("0.0");
+    jTfMassBody.setText("0.0");
+    jTfAreaAffected.setText("0.0");
+    selectedItemBody = 0;
+    }
+
+    if (jComboBoxBody.getSelectedIndex() == 1){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_SPHERE));
+    selectedItemBody = 1;
+    }
+
+    if (jComboBoxBody.getSelectedIndex() == 2){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_CUBE));
+    selectedItemBody = 2;
+    }
+
+    if (jComboBoxBody.getSelectedIndex() == 3){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_AIRFOIL));
+    selectedItemBody = 3;
+    }
+
+    if (jComboBoxBody.getSelectedIndex() == 4){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_PARACHUTE));
+    selectedItemBody = 4;
+    }
+
+    if (jComboBoxBody.getSelectedIndex() == 5){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_HUMAN));
+    selectedItemBody = 5;
+    }
+
+    if (jComboBoxBody.getSelectedIndex() == 6){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_PENGUIN));
+    selectedItemBody = 6;
     }
 
 }//GEN-LAST:event_jComboBoxBodyItemStateChanged
+
+private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPresetBodyItemStateChanged
+
+    if (jComboBoxPresetBody.getSelectedIndex() == 0){
+    jTfCwBody.setText("0.0");
+    jTfRadiusBody.setText("0.0");
+    jTfVolumeBody.setText("0.0");
+    jTfMassBody.setText("0.0");
+    jTfAreaAffected.setText("0.0");
+    selectedItemPresetBody = 0;
+    }
+
+    if (jComboBoxPresetBody.getSelectedIndex() == 1){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_SPHERE));
+    jTfRadiusBody.setText(String.valueOf(physics.Constants.RADIUS_SPHERE));
+    jTfVolumeBody.setText(String.valueOf(physics.Constants.VOLUME_SPHERE));
+    jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_POLYSTYRENE));
+    jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
+    selectedItemPresetBody = 1;
+    }
+
+    if (jComboBoxPresetBody.getSelectedIndex() == 2){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_SPHERE));
+    jTfRadiusBody.setText(String.valueOf(physics.Constants.RADIUS_SPHERE));
+    jTfVolumeBody.setText(String.valueOf(physics.Constants.VOLUME_SPHERE));
+    jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_WOOD));
+    jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
+    selectedItemPresetBody = 2;
+    }
+
+    if (jComboBoxPresetBody.getSelectedIndex() == 3){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_SPHERE));
+    jTfRadiusBody.setText(String.valueOf(physics.Constants.RADIUS_SPHERE));
+    jTfVolumeBody.setText(String.valueOf(physics.Constants.VOLUME_SPHERE));
+    jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_IRON));
+    jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
+    selectedItemPresetBody = 3;
+    }
+
+    if (jComboBoxPresetBody.getSelectedIndex() == 4){
+    jTfCwBody.setText(String.valueOf(physics.Constants.Cw_SPHERE));
+    jTfRadiusBody.setText(String.valueOf(physics.Constants.RADIUS_SPHERE));
+    jTfVolumeBody.setText(String.valueOf(physics.Constants.VOLUME_SPHERE));
+    jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_HELIUM));
+    jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
+    selectedItemPresetBody = 4;
+    }
+
+
+}//GEN-LAST:event_jComboBoxPresetBodyItemStateChanged
 
     /**
     * @param args the command line arguments
@@ -883,9 +1055,11 @@ private void jComboBoxBodyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     private javax.swing.JComboBox jComboBoxBody;
     private javax.swing.JComboBox jComboBoxMedium;
     private javax.swing.JComboBox jComboBoxPlanet;
+    private javax.swing.JComboBox jComboBoxPresetBody;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelDimensionArea;
     private javax.swing.JLabel jLabelDimensionBeta;
     private javax.swing.JLabel jLabelDimensionDensity;

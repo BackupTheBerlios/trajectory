@@ -287,7 +287,7 @@ public class Forces {
      if (isActingBuoyancy) sum += buoyantForceX(dt,movingBody,setting);
 
      if (isActingFlowResistance){
-         if (utilities.Options.computeBackwards == false){
+         if (utilities.Options.getComputeBackwards() == false){
              sum += flowResistanceX(dt,movingBody,setting);
              }
          else{
@@ -298,7 +298,7 @@ public class Forces {
      if (isActingGravity) sum+= gravityForceX(dt,movingBody,setting);   
      
      if (isActingViscosity){
-         if(utilities.Options.computeBackwards == false){
+         if(utilities.Options.getComputeBackwards() == false){
             sum += viscosityForceX(dt,movingBody,setting);
          }
          else{
@@ -324,7 +324,7 @@ public class Forces {
       if (isActingBuoyancy) sum += buoyantForceY(dt,movingBody,setting);   
       
       if (isActingFlowResistance){
-          if (utilities.Options.computeBackwards == false){
+          if (utilities.Options.getComputeBackwards() == false){
              sum += flowResistanceY(dt,movingBody,setting);
              }
          else{
@@ -337,7 +337,7 @@ public class Forces {
       if (isActingSimpleGravity) sum+= simpleGravityForceY(dt);   
 
       if (isActingViscosity){
-           if(utilities.Options.computeBackwards == false){
+           if(utilities.Options.getComputeBackwards() == false){
             sum += viscosityForceY(dt,movingBody,setting);
          }
          else{
@@ -361,7 +361,7 @@ public class Forces {
       if (isActingBuoyancy) sum += buoyantForceVx(dt,movingBody,setting);
       
       if (isActingFlowResistance){
-          if(utilities.Options.computeBackwards == false){
+          if(utilities.Options.getComputeBackwards() == false){
           sum += flowResistanceVx(dt,movingBody,setting);
           }
           else{
@@ -372,7 +372,7 @@ public class Forces {
       if (isActingGravity) sum+= gravityForceVx(dt,movingBody,setting);
 
       if (isActingViscosity){
-           if(utilities.Options.computeBackwards == false){
+           if(utilities.Options.getComputeBackwards() == false){
            sum += viscosityForceVx(dt,movingBody,setting);
           }
           else{
@@ -398,7 +398,7 @@ public class Forces {
       if (isActingBuoyancy) sum += buoyantForceVy(dt,movingBody,setting);
       
       if (isActingFlowResistance){
-          if(utilities.Options.computeBackwards == false){
+          if(utilities.Options.getComputeBackwards() == false){
           sum += flowResistanceVy(dt,movingBody,setting);
           }
           else{
@@ -411,7 +411,7 @@ public class Forces {
       if (isActingSimpleGravity) sum+= simpleGravityForceVy(dt);  
       
       if (isActingViscosity){
-         if(utilities.Options.computeBackwards == false){
+         if(utilities.Options.getComputeBackwards() == false){
            sum += viscosityForceVy(dt,movingBody,setting);
           }
           else{

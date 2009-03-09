@@ -26,7 +26,7 @@ public class Setting {
   private double M;	// Masse des Planeten
   private double dt;	// Zeitintervall ueber das genaehert wird
   private double v;	// Startgeschwindigkeit
-  private double beta;	// Startwinkel gegenueber der x-Achse (Bogenmaß).
+  private double beta;	// Startwinkel gegenueber der x-Achse (Gradmaß).
   private double mass;  // Masse des Koerpers
   private double vol;	// Volumen des Koerpers
   private double cw;	// Cw-Wert des Koerpers

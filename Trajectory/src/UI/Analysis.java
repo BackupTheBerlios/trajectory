@@ -11,13 +11,57 @@
 package UI;
 import java.util.Vector;
 import physics.*;
+import java.text.DecimalFormat;
 /**
  *
  * @author  BE
  */
 public class Analysis extends javax.swing.JFrame {
     //final static int WIDTH = 1024;
-    
+
+   public static DecimalFormat finalFormat = new DecimalFormat("#.#");
+
+   // trajactories final values
+   private static double hMax = 0.0;
+   private static double hMin = 0.0;
+   private static double throwingRange = 0.0;
+   private static double hEnd = 0.0;
+   private static double vEnd = 0.0;
+   private static double betaEnd = 0.0;
+   private static double throwingTime = 0.0;
+
+   // to find the global extrema
+   private static double hMinGlobal = 0.0;
+   private static double hMaxGlobal = 0.0;
+
+   // getters:
+   public static double getHMax(){
+       return hMax;
+   }
+
+      public static double getHMin(){
+       return hMin;
+   }
+
+    public static double getThrowingRange(){
+       return throwingRange;
+   }
+
+   public static double getHEnd(){
+       return hEnd;
+   }
+
+   public static double getVEnd(){
+       return vEnd;
+   }
+
+   public static double getBetaEnd(){
+       return betaEnd;
+   }
+
+   public static double getThrowingTime(){
+       return throwingTime;
+   }
 
     /** Creates new form Analysis */
     public Analysis() {
@@ -26,6 +70,7 @@ public class Analysis extends javax.swing.JFrame {
         
     }
 
+    // display start values on the form
     public void displayStartValues(physics.Setting setting){
             this.jTfHeightStart.setText(String.valueOf(setting.getH()));
             this.jTfRhoFluidStart.setText(String.valueOf(setting.getRho()));
@@ -34,7 +79,8 @@ public class Analysis extends javax.swing.JFrame {
             this.jTfMassPlanetStart.setText(String.valueOf(setting.getM()));
             this.jTfDtStart.setText(String.valueOf(setting.getDt()));
             this.jTfSpeedStart.setText(String.valueOf(setting.getV()));
-            this.jTfAngleStart.setText(String.valueOf(360*setting.getBeta()/(2*Math.PI)));
+            //this.jTfAngleStart.setText(String.valueOf(360*setting.getBeta()/(2*Math.PI)));
+            this.jTfAngleStart.setText(String.valueOf(setting.getBeta()));
             this.jTfMassBodyStart.setText(String.valueOf(setting.getMass()));
             this.jTfVolumeStart.setText(String.valueOf(setting.getVol()));
             this.jTfCwStart.setText(String.valueOf(setting.getCw()));
@@ -57,10 +103,10 @@ public class Analysis extends javax.swing.JFrame {
          if (physics.Forces.isActingBuoyancy()){
             this.jCckBxBuoyancyStart.setSelected(true);
            }
-         if (utilities.Options.computeBackwards){
+         if (utilities.Options.getComputeBackwards()){
             this.jCckBxComputeBackwardsStart.setSelected(true);
            }
-         if (utilities.Options.computeDensity){
+         if (utilities.Options.getComputeDensity()){
             this.jCckBxComputeDensityStart.setSelected(true);  
            }
     }
@@ -68,75 +114,156 @@ public class Analysis extends javax.swing.JFrame {
 
     // use: to display values on the form.
     public void displayValues(
-            double angleVvectorToRvector, double areaFlowBody, double cwBody,
-            double massBody, double radiusBody, double v,
-            double volumeBody, double vx, double vy
+          double v, double vx, double vy, double x, double y, double h,
+          double rho, double beta, double angleGround
             )
     {
-      jTfAngleVvectorToRvector.setText(Double.toString(angleVvectorToRvector));
-      jTfAreaFlowBody.setText(Double.toString(areaFlowBody));
-      jTfCwBody.setText(Double.toString(cwBody));
-      jTfMassBody.setText(Double.toString(massBody));
-      jTfRadiusBody.setText(Double.toString(radiusBody));
       jTfV.setText(Double.toString(v));
-      jTfVolumeBody.setText(Double.toString(volumeBody));
       jTfVx.setText(Double.toString(vx));
       jTfVy.setText(Double.toString(vy));
+      jTfX.setText(Double.toString(x));
+      jTfY.setText(Double.toString(y));
+      jTfHeight.setText(Double.toString(h));
+      jTfDensity.setText(Double.toString(rho));
+      jTfAngleXAxis.setText(Double.toString(beta));
+      jTfAngleGround.setText(Double.toString(angleGround));
     } // end `displayValues()'
 
 
 
-    public double computeThrowingTime(int i, double dt){
-        double throwingTime = 0.0;
-        throwingTime = ((double)(i-1))*dt;
-        return throwingTime;
+    public static double computeThrowingTime(int i, double dt){
+        double throwingTimeTemp = 0.0;
+        throwingTimeTemp = (double)(i)*dt;
+        return throwingTimeTemp;
     }
 
 
-/*   public double computeExtrema(Vector<MovingBody> positions, Setting setting){
-          double hMin = 0.0;
-          double hMax = 0.0;
-          double throwingRange = 0.0;
-          double vEnd = 0.0;
-          double betaEnd = 0.0;
-          double hEnd = 0.0;
-          double throwingTime = 0.0;
-          
-          throwingTime = computeThrowingTime(utilities.EulerIntegration.i, setting.getDt());
-              
-       for (int i = 0; i < positions.size(); i++) {
-            
-           if (positions.get(i+1).getLocation(setting).getH() < positions.get(i).getLocation(setting).getH()) {
-                hMin = positions.get(i+1).getLocation(setting).getH();
-           } 
-           if (positions.get(i+1).getLocation(setting).getH() > positions.get(i).getLocation(setting).getH()) {
-                hMax = positions.get(i+1).getLocation(setting).getH();
-           }     
-         }
-          
-          throwingRange = positions.get(utilities.EulerIntegration.i).getLocation(setting).getX();
-          //Anmerkung: trifft nur zu, wenn die Erdkrümmung vernachlässigt wird!
-          vEnd = positions.get(utilities.EulerIntegration.i).getV();
-          betaEnd = positions.get(utilities.EulerIntegration.i).getBeta();
-          hEnd = positions.get(utilities.EulerIntegration.i).getLocation(setting).getH();       
-          
-          return hMax;
-          return hMin;
-          return throwingRange;
-          return vEnd;
-          return betaEnd;
-          return hEnd;
-          return throwingTime;
-           
-       } 
+    public static double computeHMin(Vector<MovingBody> positions, Setting setting){
+      double hMinTemp = 0.0;
+      if (Forces.isActingGravity()){
+        hMinTemp = positions.get(0).getLocation(setting).getH();
+        hMinGlobal = positions.get(0).getLocation(setting).getH();
+        for (int i = 1; i < positions.size(); i++) {
+            if (positions.get(i).getLocation(setting).getH() < positions.get(i-1).getLocation(setting).getH() && positions.get(i).getLocation(setting).getH() < hMinGlobal) {
+                hMinTemp = positions.get(i).getLocation(setting).getH();
+                hMinGlobal = hMinTemp;
+             }
+          }
+      }
+      else{
+        hMinTemp = positions.get(0).getLocation(setting).getY();
+        hMinGlobal = positions.get(0).getLocation(setting).getY();
+        for (int i = 1; i < positions.size(); i++) {
+            if (positions.get(i).getLocation(setting).getY() < positions.get(i-1).getLocation(setting).getY() && positions.get(i).getLocation(setting).getY() < hMinGlobal) {
+                hMinTemp = positions.get(i).getLocation(setting).getY();
+                hMinGlobal = hMinTemp;
+             }
+          }
+      }
+        if(hMinTemp < 0){
+        hMinTemp = 0.0;
+        }
+        return hMinTemp;
+    }
    
-
-
-    public void displayFinalValues(double hMax, double hMin, double throwingRange, double vEnd, double betaEnd, double hEnd, double throwingTime) {
-
+    
+    public static double computeHMax(Vector<MovingBody> positions, Setting setting){
+      double hMaxTemp = 0.0;
+      if (Forces.isActingGravity()){
+        hMaxTemp = positions.get(0).getLocation(setting).getH();
+        hMaxGlobal = positions.get(0).getLocation(setting).getH();
+        for (int i = 1; i < positions.size(); i++) {
+            if (positions.get(i).getLocation(setting).getH() > positions.get(i-1).getLocation(setting).getH() && positions.get(i).getLocation(setting).getH() > hMaxGlobal) {
+                hMaxTemp = positions.get(i).getLocation(setting).getH();
+                hMaxGlobal = hMaxTemp;
+             }
+          }
+      }
+      else{
+        hMaxTemp = positions.get(0).getLocation(setting).getY();
+        hMaxGlobal = positions.get(0).getLocation(setting).getY();
+        for (int i = 1; i < positions.size(); i++) {
+            if (positions.get(i).getLocation(setting).getY() > positions.get(i-1).getLocation(setting).getY() && positions.get(i).getLocation(setting).getY() > hMaxGlobal) {
+                hMaxTemp = positions.get(i).getLocation(setting).getY();
+                hMaxGlobal = hMaxTemp;
+             }
+          }
+      }
+      return hMaxTemp;
     }
 
-*/
+
+    public static double computeThrowingRange(Vector<MovingBody> positions, Setting setting){
+        double throwingRangeTemp = 0.0;
+        double alpha = 0.0;
+        if(Forces.isActingGravity()){
+         alpha = Math.acos((-1)*positions.get(positions.size()-1).getLocation(setting).getRvectory());
+          if(positions.get(positions.size()-1).getLocation(setting).getX()<0){
+            alpha = 2*Math.PI - alpha;
+          }
+         throwingRangeTemp = alpha * setting.getR();
+        }
+        else{
+        throwingRangeTemp = positions.get(positions.size()-1).getLocation(setting).getX();
+        }
+        return throwingRangeTemp;
+    }
+
+
+    public static double computeVEnd(Vector<MovingBody> positions){
+        double vEndTemp = 0.0;
+        vEndTemp = positions.get(positions.size()-1).getV();
+        return vEndTemp;
+    }
+
+
+    public static double computeBetaEnd(Vector<MovingBody> positions, Setting setting){
+        double betaEndTemp = 0.0;
+        if (!Forces.isActingGravity()){
+        betaEndTemp = positions.get(positions.size()-1).getBeta();
+        }
+        else{
+        betaEndTemp = (positions.get(positions.size()-1).getAngleVvectorToRvector() - 90);
+        }
+        return betaEndTemp;
+    }
+          
+
+    public static double computeHEnd(Vector<MovingBody> positions, Setting setting){
+        double hEndTemp = 0.0;
+      if (!Forces.isActingGravity()){
+        hEndTemp = positions.get(positions.size()-1).getLocation(setting).getY();
+      }
+      else{
+        hEndTemp = positions.get(positions.size()-1).getLocation(setting).getH();
+      }
+        if(hEndTemp < 0){
+        hEndTemp = 0.0;
+        }
+        return hEndTemp;
+    }
+
+                        
+    public static void displayFinalValues(double hMax, double hMin, double throwingRange, double vEnd, double betaEnd, double hEnd, double throwingTime, DecimalFormat finalFormat) {
+        jTextFieldhMax.setText(String.valueOf(hMax));
+        jTextFieldhMin.setText(String.valueOf(hMin));
+        jTextFieldthrowingRange.setText(String.valueOf(finalFormat.format(throwingRange)));
+        jTextFieldvEnd.setText(String.valueOf(vEnd));
+        jTextFieldbetaEnd.setText(String.valueOf(betaEnd));
+        jTextFieldhEnd.setText(String.valueOf(hEnd));
+        jTextFieldthrowingTime.setText(String.valueOf(throwingTime));
+    }
+
+
+ public static void computeFinalValues(Vector<MovingBody> positions, Setting setting){
+        hMax =  UI.Analysis.computeHMax(positions, setting);
+        hMin =UI.Analysis.computeHMin(positions, setting);
+        throwingRange = UI.Analysis.computeThrowingRange(positions, setting);
+        vEnd = UI.Analysis.computeVEnd(positions);
+        betaEnd = UI.Analysis.computeBetaEnd(positions, setting);
+        hEnd =  UI.Analysis.computeHEnd(positions, setting);
+        throwingTime = UI.Analysis.computeThrowingTime((positions.size()-1), setting.getDt());
+ }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -210,17 +337,17 @@ public class Analysis extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTfVy = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTfMassBody = new javax.swing.JTextField();
+        jTfX = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTfVolumeBody = new javax.swing.JTextField();
+        jTfY = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTfCwBody = new javax.swing.JTextField();
+        jTfHeight = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTfAreaFlowBody = new javax.swing.JTextField();
+        jTfDensity = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTfRadiusBody = new javax.swing.JTextField();
+        jTfAngleGround = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTfAngleVvectorToRvector = new javax.swing.JTextField();
+        jTfAngleXAxis = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jTextFieldhMax = new javax.swing.JTextField();
         jTextFieldhMin = new javax.swing.JTextField();
@@ -236,6 +363,15 @@ public class Analysis extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jTextFieldthrowingTime = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        jButtonSetFinalValuesToStartParameters = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analysis");
@@ -467,9 +603,7 @@ public class Analysis extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jLblDt))
+                                    .addComponent(jLblDt)
                                     .addComponent(jLblProposedComputiingTime))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -589,11 +723,9 @@ public class Analysis extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jLabelDimensionRange))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelThrowingRange)
-                                    .addComponent(jTfThrowingRangeStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelThrowingRange)
+                                .addComponent(jTfThrowingRangeStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -630,30 +762,30 @@ public class Analysis extends javax.swing.JFrame {
 
         jTfVy.setEditable(false);
 
-        jLabel4.setText("Mass:");
+        jLabel4.setText("x:");
 
-        jTfMassBody.setEditable(false);
+        jTfX.setEditable(false);
 
-        jLabel5.setText("Volume:");
+        jLabel5.setText("y:");
 
-        jTfVolumeBody.setEditable(false);
+        jTfY.setEditable(false);
 
-        jLabel6.setText("Cw:");
+        jLabel6.setText("Height:");
 
-        jTfCwBody.setEditable(false);
+        jTfHeight.setEditable(false);
 
-        jLabel8.setText("Area (Body):");
+        jLabel8.setText("Density:");
 
-        jTfAreaFlowBody.setEditable(false);
-        jTfAreaFlowBody.setToolTipText("relevant area for flow involving friction");
+        jTfDensity.setEditable(false);
+        jTfDensity.setToolTipText("relevant area for flow involving friction");
 
-        jLabel9.setText("Radius (Body):");
+        jLabel9.setText("Angle(ground):");
 
-        jTfRadiusBody.setEditable(false);
+        jTfAngleGround.setEditable(false);
 
-        jLabel10.setText("Angle (v,r ):");
+        jLabel10.setText("Angle(x-axis):");
 
-        jTfAngleVvectorToRvector.setEditable(false);
+        jTfAngleXAxis.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -681,9 +813,9 @@ public class Analysis extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTfCwBody, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfMassBody, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfVolumeBody, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTfHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfX, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfY, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
@@ -691,10 +823,10 @@ public class Analysis extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTfAngleVvectorToRvector, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfAreaFlowBody, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(567, Short.MAX_VALUE))
+                    .addComponent(jTfAngleXAxis, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfAngleGround, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfDensity, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(568, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -713,29 +845,29 @@ public class Analysis extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel6)
-                            .addComponent(jTfCwBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTfVy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTfMassBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTfX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTfVolumeBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTfY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jTfAngleVvectorToRvector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTfAngleXAxis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTfAngleGround, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
-                        .addComponent(jTfAreaFlowBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTfDensity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
 
@@ -769,10 +901,37 @@ public class Analysis extends javax.swing.JFrame {
 
         jLabel16.setText("Throwing time:");
 
+        jButtonSetFinalValuesToStartParameters.setText("Set");
+        jButtonSetFinalValuesToStartParameters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSetFinalValuesToStartParametersActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Set final values as new start parameters:");
+
+        jLabel18.setText("s");
+
+        jLabel19.setText("m");
+
+        jLabel20.setText("m/s");
+
+        jLabel21.setText("°");
+
+        jLabel22.setText("m");
+
+        jLabel23.setText("m");
+
+        jLabel24.setText("m");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(509, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addGap(439, 439, 439))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -783,28 +942,50 @@ public class Analysis extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jLabel12)))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldthrowingRange, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldhMax)
-                    .addComponent(jTextFieldhMin, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
-                .addGap(74, 74, 74)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldthrowingRange, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldhMin, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jTextFieldhMax, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
-                .addGap(31, 31, 31)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldhEnd, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                     .addComponent(jTextFieldvEnd)
                     .addComponent(jTextFieldbetaEnd))
-                .addGap(86, 86, 86)
-                .addComponent(jTextFieldthrowingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(404, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(540, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addGap(439, 439, 439))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jTextFieldthrowingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel18))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(62, 62, 62)
+                                .addComponent(jLabel17))
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel19))))
+                .addContainerGap(386, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(453, 453, 453)
+                .addComponent(jButtonSetFinalValuesToStartParameters)
+                .addContainerGap(517, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -813,28 +994,40 @@ public class Analysis extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldhMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jTextFieldhEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel22)
+                            .addComponent(jTextFieldhMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldhMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
                             .addComponent(jTextFieldvEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel23))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldthrowingRange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addComponent(jTextFieldbetaEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15)))
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel24)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(jLabel16)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldthrowingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldthrowingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel17)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSetFinalValuesToStartParameters)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Final Values", jPanel4);
@@ -873,6 +1066,16 @@ public class Analysis extends javax.swing.JFrame {
         // reading the values via the OK-button event handler is less error-prone.
 }//GEN-LAST:event_jCckBxSimpleGravityStartActionPerformed
 
+    private void jButtonSetFinalValuesToStartParametersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetFinalValuesToStartParametersActionPerformed
+
+        UserInputNewParameters.currentSetting.setH(Double.valueOf(jTextFieldhEnd.getText()));
+        //UserInputNewParameters.currentSetting.setBeta(-Double.valueOf(jTextFieldbetaEnd.getText())*2*Math.PI/360);
+        UserInputNewParameters.currentSetting.setBeta(-Double.valueOf(jTextFieldbetaEnd.getText()));
+        UserInputNewParameters.currentSetting.setV(Double.valueOf(jTextFieldvEnd.getText()));
+        utilities.Options.setComputeBackwards(false);
+        utilities.Options.setThrowingRange(0.0);
+
+}//GEN-LAST:event_jButtonSetFinalValuesToStartParametersActionPerformed
    
     /**
     * @param args the command line arguments
@@ -897,6 +1100,7 @@ public class Analysis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonSetFinalValuesToStartParameters;
     private javax.swing.JCheckBox jCckBxBuoyancyStart;
     private javax.swing.JCheckBox jCckBxComputeBackwardsStart;
     private javax.swing.JCheckBox jCckBxComputeDensityStart;
@@ -904,7 +1108,6 @@ public class Analysis extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCckBxGravityStart;
     private javax.swing.JCheckBox jCckBxSimpleGravityStart;
     private javax.swing.JCheckBox jCckBxViscosityStart;
-    private javax.swing.JCheckBox jCheckBoxGravity1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -913,7 +1116,15 @@ public class Analysis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -922,115 +1133,69 @@ public class Analysis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelAngle;
-    private javax.swing.JLabel jLabelAngle1;
     private javax.swing.JLabel jLabelCw;
-    private javax.swing.JLabel jLabelCw1;
     private javax.swing.JLabel jLabelDimensionArea;
-    private javax.swing.JLabel jLabelDimensionArea1;
     private javax.swing.JLabel jLabelDimensionBeta;
-    private javax.swing.JLabel jLabelDimensionBeta1;
     private javax.swing.JLabel jLabelDimensionDensity;
-    private javax.swing.JLabel jLabelDimensionDensity1;
     private javax.swing.JLabel jLabelDimensionHeight;
-    private javax.swing.JLabel jLabelDimensionHeight1;
     private javax.swing.JLabel jLabelDimensionInterval;
-    private javax.swing.JLabel jLabelDimensionInterval1;
     private javax.swing.JLabel jLabelDimensionMass;
-    private javax.swing.JLabel jLabelDimensionMass1;
     private javax.swing.JLabel jLabelDimensionMassPlanet;
-    private javax.swing.JLabel jLabelDimensionMassPlanet1;
     private javax.swing.JLabel jLabelDimensionRadius;
-    private javax.swing.JLabel jLabelDimensionRadius1;
     private javax.swing.JLabel jLabelDimensionRadiusPlanet;
-    private javax.swing.JLabel jLabelDimensionRadiusPlanet1;
     private javax.swing.JLabel jLabelDimensionRange;
-    private javax.swing.JLabel jLabelDimensionRange1;
     private javax.swing.JLabel jLabelDimensionSpeed;
-    private javax.swing.JLabel jLabelDimensionSpeed1;
     private javax.swing.JLabel jLabelDimensionTime;
-    private javax.swing.JLabel jLabelDimensionTime1;
     private javax.swing.JLabel jLabelDimensionViscosity;
-    private javax.swing.JLabel jLabelDimensionViscosity1;
     private javax.swing.JLabel jLabelDimensionVolume;
-    private javax.swing.JLabel jLabelDimensionVolume1;
     private javax.swing.JLabel jLabelHeight;
-    private javax.swing.JLabel jLabelHeight1;
     private javax.swing.JLabel jLabelMass;
-    private javax.swing.JLabel jLabelMass1;
     private javax.swing.JLabel jLabelSpeed;
-    private javax.swing.JLabel jLabelSpeed1;
     private javax.swing.JLabel jLabelThrowingRange;
-    private javax.swing.JLabel jLabelThrowingRange1;
     private javax.swing.JLabel jLabelVolume;
-    private javax.swing.JLabel jLabelVolume1;
     private javax.swing.JLabel jLblAreaFlowBody;
-    private javax.swing.JLabel jLblAreaFlowBody1;
     private javax.swing.JLabel jLblDt;
-    private javax.swing.JLabel jLblDt1;
     private javax.swing.JLabel jLblEtaFluid;
-    private javax.swing.JLabel jLblEtaFluid1;
     private javax.swing.JLabel jLblMassPlanet;
-    private javax.swing.JLabel jLblMassPlanet1;
     private javax.swing.JLabel jLblProposedComputiingTime;
-    private javax.swing.JLabel jLblProposedComputiingTime1;
     private javax.swing.JLabel jLblRadiusBody;
-    private javax.swing.JLabel jLblRadiusBody1;
     private javax.swing.JLabel jLblRadiusPlanet;
-    private javax.swing.JLabel jLblRadiusPlanet1;
     private javax.swing.JLabel jLblRhoFluid;
-    private javax.swing.JLabel jLblRhoFluid1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextFieldbetaEnd;
-    private javax.swing.JTextField jTextFieldhEnd;
-    private javax.swing.JTextField jTextFieldhMax;
-    private javax.swing.JTextField jTextFieldhMin;
-    private javax.swing.JTextField jTextFieldthrowingRange;
-    private javax.swing.JTextField jTextFieldthrowingTime;
-    private javax.swing.JTextField jTextFieldvEnd;
+    private static javax.swing.JTextField jTextFieldbetaEnd;
+    private static javax.swing.JTextField jTextFieldhEnd;
+    private static javax.swing.JTextField jTextFieldhMax;
+    private static javax.swing.JTextField jTextFieldhMin;
+    private static javax.swing.JTextField jTextFieldthrowingRange;
+    private static javax.swing.JTextField jTextFieldthrowingTime;
+    private static javax.swing.JTextField jTextFieldvEnd;
+    private javax.swing.JTextField jTfAngleGround;
     private javax.swing.JTextField jTfAngleStart;
-    private javax.swing.JTextField jTfAngleStart1;
-    private javax.swing.JTextField jTfAngleVvectorToRvector;
+    private javax.swing.JTextField jTfAngleXAxis;
     private javax.swing.JTextField jTfAreaAffectedStart;
-    private javax.swing.JTextField jTfAreaAffectedStart1;
-    private javax.swing.JTextField jTfAreaFlowBody;
-    private javax.swing.JTextField jTfCwBody;
     private javax.swing.JTextField jTfCwStart;
-    private javax.swing.JTextField jTfCwStart1;
+    private javax.swing.JTextField jTfDensity;
     private javax.swing.JTextField jTfDtStart;
-    private javax.swing.JTextField jTfDtStart1;
     private javax.swing.JTextField jTfEtaFluidStart;
-    private javax.swing.JTextField jTfEtaFluidStart1;
+    private javax.swing.JTextField jTfHeight;
     private javax.swing.JTextField jTfHeightStart;
-    private javax.swing.JTextField jTfHeightStart1;
-    private javax.swing.JTextField jTfMassBody;
     private javax.swing.JTextField jTfMassBodyStart;
-    private javax.swing.JTextField jTfMassBodyStart1;
     private javax.swing.JTextField jTfMassPlanetStart;
-    private javax.swing.JTextField jTfMassPlanetStart1;
     private javax.swing.JTextField jTfProposedComputingTimeStart;
-    private javax.swing.JTextField jTfProposedComputingTimeStart1;
-    private javax.swing.JTextField jTfRadiusBody;
     private javax.swing.JTextField jTfRadiusBodyStart;
-    private javax.swing.JTextField jTfRadiusBodyStart1;
     private javax.swing.JTextField jTfRadiusPlanetStart;
-    private javax.swing.JTextField jTfRadiusPlanetStart1;
     private javax.swing.JTextField jTfRhoFluidStart;
-    private javax.swing.JTextField jTfRhoFluidStart1;
     private javax.swing.JTextField jTfSpeedStart;
-    private javax.swing.JTextField jTfSpeedStart1;
     private javax.swing.JTextField jTfThrowingRangeStart;
-    private javax.swing.JTextField jTfThrowingRangeStart1;
     private javax.swing.JTextField jTfV;
-    private javax.swing.JTextField jTfVolumeBody;
     private javax.swing.JTextField jTfVolumeStart;
-    private javax.swing.JTextField jTfVolumeStart1;
     private javax.swing.JTextField jTfVx;
     private javax.swing.JTextField jTfVy;
+    private javax.swing.JTextField jTfX;
+    private javax.swing.JTextField jTfY;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -33,14 +33,14 @@ public class MovingBody {
   private double v;	// Betrag der Geschwindigkeit
   private double vvectorx;// Einheitsvektorkomponente x der Geschwindigkeit  
   private double vvectory;// Einheitsvektorkomponente y der Geschwindigkeit 
-  private double beta;	// Winkel der Bewegungsrichtung gegenueber x-Achse (rad)
+  private double beta;	// Winkel der Bewegungsrichtung gegenueber x-Achse (degree)
   private double m;	// Masse des Koerpers
   private double vol;	// Volumen des Koerpers
   private double cw;	// Cw-Wert des Koerpers
   private double a;	// stroemungswirksame Flaeche des Koerpers
   private double r;	// Radius des Koerpers (bei Kugel)
   private Location location; // Eigenschaften des Orts des Koerpers
-  private double angleVvectorToRvector; // 
+  private double angleVvectorToRvector; //Gradmaß
 
   // Constructors
   // Constructor fuer Start-MovingBody
@@ -188,8 +188,8 @@ public class MovingBody {
 /////////////
   
   private void setVcomponentsVBeta(double v, double beta) {
-    this.vx = Math.cos(beta) * v;
-    this.vy = Math.sin(beta) * v;
+    this.vx = Math.cos(beta*2*Math.PI/360) * v;
+    this.vy = Math.sin(beta*2*Math.PI/360) * v;
     if (v==0) {
       this.vvectorx = 0;
       this.vvectory = 0;
@@ -202,7 +202,12 @@ public class MovingBody {
   private void setVcomponentsVxVy(double vx, double vy) {
     this.v = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
     if (v != 0) {
-      this.beta = Math.acos(vx / v);
+      if(vy < 0){
+        this.beta = (-1) * (Math.acos(vx / v) * 360 ) / (Math.PI * 2);
+      }
+      else{
+        this.beta = (Math.acos(vx / v) * 360 ) / (Math.PI * 2);
+      }
       this.vvectorx = vx / this.v;
       this.vvectory = vy / this.v;
     } else {

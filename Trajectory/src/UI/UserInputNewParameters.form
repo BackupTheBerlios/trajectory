@@ -89,7 +89,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jTfRadiusBody" linkSize="11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="723" max="32767" attributes="0"/>
+                          <EmptySpace pref="757" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -215,12 +215,26 @@
                                   <Component id="jComboBoxMedium" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="1">
+                              <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxBody" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxPresetBody" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxBody" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
@@ -315,49 +329,58 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLblCwBody" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTfCwBody" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTfProposedComputingTime" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLblProposedComputiingTime" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelDimensionTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTfAreaAffected" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCckBxBuoyancy" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelDimensionArea" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLblAreaFlowBody" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTfRadiusBody" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLblRadiusBody" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCckBxFlowResistance" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelDimensionRadius" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLblCwBody" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTfCwBody" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTfProposedComputingTime" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLblProposedComputiingTime" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelDimensionTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                  <Component id="jCckBxGravity" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jCckBxViscosity" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jCckBxSimpleGravity" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jTfAreaAffected" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCckBxBuoyancy" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLblAreaFlowBody" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jTfRadiusBody" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLblRadiusBody" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCckBxFlowResistance" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelDimensionRadius" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                          <Component id="jCckBxGravity" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jCckBxViscosity" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jCckBxSimpleGravity" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jCckBxComputeDensity" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                                  <Component id="jLabelDimensionRange" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jCckBxComputeDensity" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
-                          <Component id="jLabelDimensionRange" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jComboBoxPresetBody" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -719,6 +742,27 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Choose body:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBoxPresetBody">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="User defined body"/>
+                <StringItem index="1" value="Sphere of polystyrene"/>
+                <StringItem index="2" value="Sphere of wood"/>
+                <StringItem index="3" value="Sphere of iron"/>
+                <StringItem index="4" value="Helium balloon"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxPresetBodyItemStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Choose preset body:"/>
           </Properties>
         </Component>
       </SubComponents>

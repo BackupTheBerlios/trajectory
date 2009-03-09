@@ -11,13 +11,13 @@ package utilities;
  */
 public class Options {
 
-     public static boolean computeBackwards = false;
+    private static boolean computeBackwards = false;
     //Abfrage ob vorwärts oder rückwärts gerechnet werden soll, false = vorwärts
 
-    public static double throwingRange = 0.0;
+    private static double throwingRange = 0.0;
     //gewünschte Wurfweite beim Rückwärtsrechnen, geht nur, wenn die Erdkrümmung vernachlässigt wird (simple gravity!)
 
-    public static boolean computeDensity = false;
+    private static boolean computeDensity = false;
     //bei Bedarf Abschalten der Dichtekorrektur, spart Rechenkapazität, Vergleich, ob vernachlässigbar
 
 
@@ -51,8 +51,9 @@ public static void setComputeDensity(boolean computeDensity){
   }
 
 
-public static double computeDensity(double rho, physics.MovingBody tempMovingBody, physics.Setting setting){
-   rho = setting.getRho()*Math.exp((-setting.getRho()/101300) * physics.Constants.g * tempMovingBody.getLocation(setting).getH());
+public static double computeDensity(physics.MovingBody tempMovingBody, physics.Setting setting){
+    double rho;
+    rho = setting.getRho()*Math.exp((-setting.getRho()/101300) * physics.Constants.g * tempMovingBody.getLocation(setting).getH());
                     //Anmerkung: gilt in der Form nur für Erdatmosphäre, Druck auf Höhe Null muss passend gewählt werden
                     //durch den Benutzer muss der Dichtewert auf Höhe Null eingegeben werden
    return rho;

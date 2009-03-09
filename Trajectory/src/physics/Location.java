@@ -5,7 +5,6 @@
  * 
 
  * todo:
- * 			o CT: setAlpha() vervollst�ndigen!
 
  *
  */
@@ -20,10 +19,10 @@ public class Location {
 	private double r;			// Abstand zum Planetenmittelpunkt
 	private double rvectorx;	// Einheitsvektorkomponente x von location zu Mittelpunkt
 	private double rvectory;	// Einheitsvektorkomponente y von location zu Mittelpunkt
-	private double h;			// H�he �ber Nullniveau
+	private double h;			// Hoehe ueber Nullniveau
 	private double rho;			// Dichte des Mediums (in kg/m^3)
-	private double eta;			// Viskosit�t des Mediums
-	private double alpha;		// Winkel bez�glich der y-Achse (Bogenma�)
+	private double eta;			// Viskositaet des Mediums
+	//private double alpha;		// Winkel bezueglich der y-Achse (Bogenmaß), zwischen r-Vektor und y-Achse
         
         
 	// constructors:
@@ -35,7 +34,7 @@ public class Location {
 		this.setRcomponents(0, setting.getH(), setting);
 		this.rho = setting.getRho();
 		this.eta = setting.getEta();
-		this.alpha = 0;}									
+		/*this.alpha = 0;*/}
 
 	// allgemeiner Constructor
 	public Location(double x, double y, double rho, Setting setting){
@@ -44,7 +43,7 @@ public class Location {
 		this.setRcomponents(x, y, setting);
 		this.rho = rho;
 		this.eta = setting.getEta();
-		this.setAlpha(x, y, setting);}
+		/*this.setAlpha();*/}
     //Anmerkung: Viskosität wird konstant gehalten, da nur im Falle von Flüssigkeiten mit laminaren Strömungen gerechnet werden kann
 
 	// Constructor f�r konstantes Rho und Eta
@@ -54,7 +53,7 @@ public class Location {
 		this.setRcomponents(x, y, setting);
 		this.rho = setting.getRho();
 		this.eta = setting.getEta();
-		this.setAlpha(x, y, setting);}						
+		/*this.setAlpha();*/}
 	
 	// getters: 
 	public double getX(){
@@ -81,8 +80,8 @@ public class Location {
 	public double getEta(){
 		return this.eta;}
 
-	public double getAlpha(){
-		return this.alpha;}
+/*	public double getAlpha(){
+		return this.alpha;} */
 	
 	// setters: 
 	public void setLocation(double x, double y, double rho, double eta, Setting setting){
@@ -91,7 +90,7 @@ public class Location {
 		this.setRcomponents(x, y, setting);
 		this.rho = rho;
 		this.eta = eta;
-		this.setAlpha(x, y, setting);}							// allgemeiner Setter
+		/*this.setAlpha();*/}							// allgemeiner Setter
 
 	public void setRho(double rho) {
 		this.rho = rho;}
@@ -108,8 +107,11 @@ public class Location {
 		this.rvectory = ((-1)*setting.getR()-y)/this.r; 								// normierte y-Komponente von Vektor r
 		this.h = this.r-setting.getR();}												// H�he �ber Nullniveau						
 																
-	private void setAlpha(double x, double y, Setting setting){
-		this.alpha = 0;}										// private set-Methode f�r alpha
+/*	private void setAlpha(){
+		this.alpha = (Math.acos(
+                     (-this.rvectory) * 360 ) / (Math.PI * 2));
+    }
+        // private set-Methode f�r alpha */
 	
 	// use:	print instance of class `Location' on command line.
 	// rem:	every newly created property/debugInfo should be listed here.
@@ -123,6 +125,6 @@ public class Location {
 		System.out.println("h: " + this.h);
 		System.out.println("rho: " + this.rho);
 		System.out.println("eta: " + this.eta);
-		System.out.println("alpha: " + this.alpha);}
+		/*System.out.println("alpha: " + this.alpha);*/}
 	
 }

@@ -32,8 +32,13 @@ public class ScreenUtilities {
     public final static int SCREEN_WIDTH = 1018 - 2 * ORIGIN_OFFSET;
     public final static int SCREEN_HEIGHT = 649 - 2 * ORIGIN_OFFSET;
 
-    // options and variables
+    // automatically compare further trajectories to the first one
+    // (remember the clear-screen-function in the compute-menu)
     private static boolean compareTrajectories = false;
+
+    public static void setCompareTrajectories(boolean compare){
+        compareTrajectories = compare;
+    }
 
     private static int circleXCoordinate = 0;
     private static int circleYCoordinate = 0;
@@ -43,8 +48,8 @@ public class ScreenUtilities {
     private static double radiusPlanet =
             UI.UserInputNewParameters.currentSetting.getR();
 
-    public static double hMin = 0.0;
-    public static double hMax = 0.0;
+    //public static double hMin = 0.0;
+    //public static double hMax = 0.0;
 
 
     //////////////////////
@@ -206,11 +211,12 @@ public class ScreenUtilities {
 
         System.out.println("xs: " + xs.size()); // TODO: debug msg
         System.out.println("ys: " + ys.size()); //
-      
+
+        //after the first trajectory this factor remains constant
         if (compareTrajectories == false){
         ScreenUtilities.scalingFactor = computeScalingFactor(xs, ys,
                 SCREEN_WIDTH, SCREEN_HEIGHT);
-        }//Beibehalten der Skalierung nach erster Bahnkurve
+        }
 
         ScreenUtilities.increment = computeIncrement();
         // TODO: debug msg
@@ -241,10 +247,11 @@ public class ScreenUtilities {
             ys.add(EulerIntegration.positions.get(i).getLocation(setting).getY());
         }
 
+        //after the first trajectory this factor remains constant
         if (compareTrajectories == false){
         ScreenUtilities.scalingFactor = computeScalingFactor(xs, ys,
                 SCREEN_WIDTH, SCREEN_HEIGHT);
-        }//Beibehalten der Skalierung nach erster Bahnkurve
+        }
 
         ScreenUtilities.increment = computeIncrement();
     }
@@ -293,8 +300,9 @@ public class ScreenUtilities {
             int width, int height)
     {
 
+        // drawing coordinate-system and planet for the first trajectory
         if (compareTrajectories == false){
-            //Koordinatensystem und Planetenumriss werden nur für erste Bahnkurve gezeichnet
+
 
             // CT:  x-axis through ground - level in order to obtain a
             //      graphical representation the user will understand without
@@ -324,16 +332,22 @@ public class ScreenUtilities {
        // @CT:  Better should be to compute _only_ one Double value below in
        //       order to keep round off errors at minimum (imho). But if it is
        //       working...
+
+       
+    // drawing the planet in cases of gravitation (and an existing planet of course)
+    if (physics.Forces.isActingGravity()){
       circleXCoordinate = (-1) * (int) (radiusPlanet * ScreenUtilities.scalingFactor) + (int)((-xMin * ScreenUtilities.scalingFactor) + ScreenUtilities.ORIGIN_OFFSET);
-      circleYCoordinate = (int)(ScreenUtilities.SCREEN_HEIGHT - (-(yMin) /*+ ys.get(0)*/) * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET /*+ startHeight * ScreenUtilities.scalingFactor*/);
+      circleYCoordinate = (int)(ScreenUtilities.SCREEN_HEIGHT - (-(yMin) /*+ ys.get(0)*/) * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET);
       circleWidth = 2 * (int)(radiusPlanet * ScreenUtilities.scalingFactor);
       circleHeight = 2 * (int)(radiusPlanet * ScreenUtilities.scalingFactor);
 
       g.drawOval(circleXCoordinate, circleYCoordinate, circleWidth, circleHeight);
-      //zeichnen des Planeten
-      
+    }
+
+      //automatically changing to hold-state of the scaling-factor and the axis
+      // reset via clear screen (compute-menu)
       compareTrajectories = true;
-      //Umschalten auf Beibehalten der Skalierung nach Zeichnen der ersten Bahnkurve 
+ 
       // TODO A BE: The user should be informed about this behavior and how
       //            he can change according to his/her desire.
       }

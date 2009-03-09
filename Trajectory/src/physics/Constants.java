@@ -113,4 +113,25 @@ public class Constants {
     public final static double DENSITY_VENUS            = 60.2;
     public final static double VISCOSITY_VENUS          = 855e-6;
 
+
+    //preset Bodys, density:
+    public final static double DENSITY_POLYSTYRENE      = 15;
+    public final static double DENSITY_IRON             = 7800;
+    public final static double DENSITY_WOOD             = 500;
+    public final static double DENSITY_PLUMBUM          = 11300;
+    public final static double DENSITY_KORK             = 150;
+    public final static double DENSITY_GRANIT           = 2800;
+    public final static double DENSITY_ALU              = 2700;
+    public final static double DENSITY_ICE              = 920;
+
+
+    //preset Bodys, mass, volume, radius, area:
+    public final static double MASS_SPHERE_POLYSTYRENE  = 0.212058;
+    public final static double MASS_SPHERE_WOOD         = 7.06860;
+    public final static double MASS_SPHERE_IRON         = 110.272;
+    public final static double MASS_SPHERE_HELIUM       = 2.51642e-3;
+    public final static double VOLUME_SPHERE            = 0.0141372;
+    public final static double RADIUS_SPHERE            = 0.15;
+    public final static double AREA_SPHERE              = 0.0706858;
+
 }

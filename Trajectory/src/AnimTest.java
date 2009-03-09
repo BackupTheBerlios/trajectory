@@ -8,13 +8,6 @@ extends Frame
 {
   int cnt = 0;
 
-  public static void main(String[] args)
-  {
-    AnimTest wnd = new AnimTest();
-    wnd.setSize(250,150);
-    wnd.setVisible(true);
-    wnd.startAnimation();
-  }
 
   public AnimTest()
   {
