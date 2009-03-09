@@ -188,15 +188,15 @@ public class Analysis extends javax.swing.JFrame {
           double rho, double beta, double angleGround
             )
     {
-      jTfV.setText(String.valueOf(computeValueFormat(v).format(v)));
-      jTfVx.setText(String.valueOf(computeValueFormat(vx).format(vx)));
-      jTfVy.setText(String.valueOf(computeValueFormat(vy).format(vy)));
-      jTfX.setText(String.valueOf(computeValueFormat(x).format(x)));
-      jTfY.setText(String.valueOf(computeValueFormat(y).format(y)));
-      jTfHeight.setText(String.valueOf(computeValueFormat(h).format(h)));
-      jTfDensity.setText(String.valueOf(computeValueFormat(rho).format(rho)));
-      jTfAngleXAxis.setText(String.valueOf(computeValueFormat(beta).format(beta)));
-      jTfAngleGround.setText(String.valueOf(computeValueFormat(angleGround).format(angleGround)));
+      jTfV.setText(String.valueOf(computeValueFormat(v).format(v)).replace(',','.'));
+      jTfVx.setText(String.valueOf(computeValueFormat(vx).format(vx)).replace(',','.'));
+      jTfVy.setText(String.valueOf(computeValueFormat(vy).format(vy)).replace(',','.'));
+      jTfX.setText(String.valueOf(computeValueFormat(x).format(x)).replace(',','.'));
+      jTfY.setText(String.valueOf(computeValueFormat(y).format(y)).replace(',','.'));
+      jTfHeight.setText(String.valueOf(computeValueFormat(h).format(h)).replace(',','.'));
+      jTfDensity.setText(String.valueOf(computeValueFormat(rho).format(rho)).replace(',','.'));
+      jTfAngleXAxis.setText(String.valueOf(computeValueFormat(beta).format(beta)).replace(',','.'));
+      jTfAngleGround.setText(String.valueOf(computeValueFormat(angleGround).format(angleGround)).replace(',','.'));
     } // end `displayValues()'
 
 
@@ -315,13 +315,13 @@ public class Analysis extends javax.swing.JFrame {
 
                         
  public static void displayFinalValues(double hMax, double hMin, double throwingRange, double vEnd, double betaEnd, double hEnd, double throwingTime) {
-        jTextFieldhMax.setText(String.valueOf(computeValueFormat(hMax).format(hMax)));
-        jTextFieldhMin.setText(String.valueOf(computeValueFormat(hMin).format(hMin)));
-        jTextFieldthrowingRange.setText(String.valueOf(computeValueFormat(throwingRange).format(throwingRange)));
-        jTextFieldvEnd.setText(String.valueOf(computeValueFormat(vEnd).format(vEnd)));
-        jTextFieldbetaEnd.setText(String.valueOf(computeValueFormat(betaEnd).format(betaEnd)));
-        jTextFieldhEnd.setText(String.valueOf(computeValueFormat(hEnd).format(hEnd)));
-        jTextFieldthrowingTime.setText(String.valueOf(computeValueFormat(throwingTime).format(throwingTime)));
+        jTextFieldhMax.setText(String.valueOf(computeValueFormat(hMax).format(hMax)).replace(',','.'));
+        jTextFieldhMin.setText(String.valueOf(computeValueFormat(hMin).format(hMin)).replace(',','.'));
+        jTextFieldthrowingRange.setText(String.valueOf(computeValueFormat(throwingRange).format(throwingRange)).replace(',','.'));
+        jTextFieldvEnd.setText(String.valueOf(computeValueFormat(vEnd).format(vEnd)).replace(',','.'));
+        jTextFieldbetaEnd.setText(String.valueOf(computeValueFormat(betaEnd).format(betaEnd)).replace(',','.'));
+        jTextFieldhEnd.setText(String.valueOf(computeValueFormat(hEnd).format(hEnd)).replace(',','.'));
+        jTextFieldthrowingTime.setText(String.valueOf(computeValueFormat(throwingTime).format(throwingTime)).replace(',','.'));
  }
 
 
