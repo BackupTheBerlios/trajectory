@@ -60,8 +60,15 @@ public class TrajectoryUI extends javax.swing.JFrame {
   static Thread th;
   BufferedImage bi;
   Graphics2D big; // graphic context for the buffered image above
-
+  
+  private static int animationSpeed = 0;
+  
+  
   // setters
+  public static void setAnimationSpeed(int speed){
+      animationSpeed = speed;
+  }
+
   public static void setCounterToZero() {
     TrajectoryUI.i = 0;
   }
@@ -93,6 +100,22 @@ public class TrajectoryUI extends javax.swing.JFrame {
         }
         i = 0;
       }
+
+
+  if (Analysis.getSelectedIndexJComboBoxAnimationSpeed() == 0){
+     animationSpeed = 100;
+  }
+  if (Analysis.getSelectedIndexJComboBoxAnimationSpeed() == 1){
+     animationSpeed = 25;
+  }
+  if (Analysis.getSelectedIndexJComboBoxAnimationSpeed() == 2){
+     animationSpeed = 0;
+  }
+
+  try {
+        Thread.sleep(animationSpeed);
+      } catch (InterruptedException ex) {}
+
 
       // TODO: BE: B  draw a nice coordinate system.
       ScreenUtilities.drawCoordinateSystem(
