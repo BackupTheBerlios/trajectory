@@ -25,20 +25,26 @@ import physics.*;
 
 public class EulerIntegration {
 
+  // variables and constants
   final static int MSEC_PER_SEC = 1000;
+
   public static Vector<MovingBody> positions = new Vector<MovingBody>();
   static Long currentMillis = new Long(0);
 
   private static double rho = 0.0;
   private static double dt = 0.0;
-  private MovingBody tempMovingBody = null;
-  private Setting setting = null;
-  private static long tStart = 0;
+  private static long   tStart = 0;
   private static double allowedTime = 0.0;
   private static int i = 0;
   private static int k = 0;
 
+  private MovingBody tempMovingBody = null;
+  private Setting setting = null;
 
+  /////////////
+  // Methods //
+  /////////////
+  
   // Use:   Proved valuable during debugging. Helped finding unneccessary thread.
   //        The bug that cost me 3 work days of my life.
   private static int taskID = 0;
@@ -58,6 +64,8 @@ public class EulerIntegration {
             allowedTime);
   }
 
+
+  // inner class
 
   // Use:  This class is used to provide the background working thread
   //       facilities for the time-consuming `eulerIntegrate()' method.
@@ -140,7 +148,9 @@ public class EulerIntegration {
     @Override
     //
     protected Void doInBackground() {
-
+      System.out.println("Mem comparison: ");
+      utilities.SystemData.testCleanUp();
+        
       setting = UI.UserInputNewParameters.currentSetting;
       tStart = System.currentTimeMillis(); // starting time
       //Variable zur Zwischenspeicherung und Neuberechnung der Dichte in Abhängigkeit von der Höhe
@@ -158,9 +168,6 @@ public class EulerIntegration {
       rho = positions.get(0).getLocation(setting).getRho();
       //Startwert der Dichte (Höhe Null!), sollte bei einer Starthöhe>0 begonnen werden,
       //wird die Dichte im ersten Schritt an die tatsächliche Höhe angepasst
-
-      System.out.println("asdfL");
-      utilities.SystemData.testCleanUp();
 
       //Abfrage, ob vorwärts oder rückwärts gerechnet wird und ob einfache Gravitation aktiv:
       if (Options.getComputeBackwards() == false && Forces.isActingGravity() == true){
