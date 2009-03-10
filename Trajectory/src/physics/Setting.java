@@ -7,7 +7,7 @@
  *          VALUES (via the `UserInputNewParametersUI'.
  * TODO:    BE: Slightly better structure is to put `Setting' into `utilities'
  *          package (imho).
- * TODO:    degrees (user-interface) ----> radians
+ * TODO:    degrees (user-interface) ----> radians, DONE CT.
  * 
  */
 package physics;
@@ -37,39 +37,39 @@ public class Setting {
   // constructors:
   // Constructor zur Erzeugung eines (einzelnen) Settings, numerisch
   public Setting(double h, double rho, double eta, double R, double M, double dt, double v, double beta, double mass, double vol, double cw, double a, double radius, double T) {
-    this.h = h;
-    this.rho = rho;
-    this.eta = eta;
-    this.R = R;
-    this.M = M;
-    this.dt = dt;
-    this.v = v;
+    this.h    = h;
+    this.rho  = rho;
+    this.eta  = eta;
+    this.R    = R;
+    this.M    = M;
+    this.dt   = dt;
+    this.v    = v;
     this.beta = beta;
     this.mass = mass;
-    this.vol = vol;
-    this.cw = cw;
-    this.a = a;
+    this.vol  = vol;
+    this.cw   = cw;
+    this.a    = a;
     this.radius = radius;
-    this.T = T;
+    this.T      = T;
   }
 
   
   // use: Constructor for string values
   public Setting(String h, String rho, String eta, String R, String M, String dt, String v, String beta, String mass, String vol, String cw, String a, String radius, String T) {
-    this.h = Double.parseDouble(h);
-    this.rho = Double.parseDouble(rho);
-    this.eta = Double.parseDouble(eta);
-    this.R = Double.parseDouble(R);
-    this.M = Double.parseDouble(M);
-    this.dt = Double.parseDouble(dt);
-    this.v = Double.parseDouble(v);
-    this.beta = Double.parseDouble(beta);
-    this.mass = Double.parseDouble(mass);
-    this.vol = Double.parseDouble(vol);
-    this.cw = Double.parseDouble(cw);
-    this.a = Double.parseDouble(a);
+    this.h      = Double.parseDouble(h);
+    this.rho    = Double.parseDouble(rho);
+    this.eta    = Double.parseDouble(eta);
+    this.R      = Double.parseDouble(R);
+    this.M      = Double.parseDouble(M);
+    this.dt     = Double.parseDouble(dt);
+    this.v      = Double.parseDouble(v);
+    this.beta   = Double.parseDouble(beta);
+    this.mass   = Double.parseDouble(mass);
+    this.vol    = Double.parseDouble(vol);
+    this.cw     = Double.parseDouble(cw);
+    this.a      = Double.parseDouble(a);
     this.radius = Double.parseDouble(radius);
-    this.T = Double.parseDouble(T);
+    this.T      = Double.parseDouble(T);
   }
   
   
@@ -193,15 +193,18 @@ public class Setting {
   public void setVol(double vol) {
     this.vol = vol;
   }
+
+  
   /////////////
   // methods //
   /////////////
+
   // use:  set all values in a setting-object at once.
   public void setSetting(
-          double h, double rho, double eta,
-          double R, double M, double dt,
-          double v, double beta, double mass,
-          double vol, double cw, double a,
+          double h     , double rho  , double eta,
+          double R     , double M    , double dt,
+          double v     , double beta , double mass,
+          double vol   , double cw   , double a,
           double radius, double T) {
     this.setH(h);
     this.setRho(rho);
@@ -217,7 +220,9 @@ public class Setting {
     this.setA(a);
     this.setRadius(radius);
     this.setT(T);
-  }
+  } // end `setSetting'
+
+  
   // use:  set all values in a given setting to zero.
   public void zeroSetting() {
     this.setSetting(
@@ -227,6 +232,8 @@ public class Setting {
             0.0, 0.0, 0.0,
             0.0, 0.0);
   }
+
+
   // use:  debug, informational; print all entries of an instance of class
   //       `Setting'.
   // pre:  caller is an instance of class `Setting'.
@@ -234,22 +241,24 @@ public class Setting {
   public void printSetting() {
     String CrLf = System.getProperty("line.separator");
     String tmp = "==========================================" + CrLf +
-            "H        : " + getH() + CrLf +
-            "v        : " + getV() + CrLf +
-            "Beta:    : " + getBeta() + CrLf +
-            "Mass     : " + getMass() + CrLf +
-            "Volume   : " + getVol() + CrLf +
-            "Cw       : " + getCw() + CrLf +
-            "Area     : " + getA() + CrLf +
-            "Rho      : " + getRho() + CrLf +
-            "Eta      : " + getEta() + CrLf +
-            "RadiusP  : " + getR() + CrLf +
-            "Mass  P  : " + getM() + CrLf +
-            "dt       : " + getDt() + CrLf +
+            "H        : " + getH()      + CrLf +
+            "v        : " + getV()      + CrLf +
+            "Beta:    : " + getBeta()   + CrLf +
+            "Mass     : " + getMass()   + CrLf +
+            "Volume   : " + getVol()    + CrLf +
+            "Cw       : " + getCw()     + CrLf +
+            "Area     : " + getA()      + CrLf +
+            "Rho      : " + getRho()    + CrLf +
+            "Eta      : " + getEta()    + CrLf +
+            "RadiusP  : " + getR()      + CrLf +
+            "Mass  P  : " + getM()      + CrLf +
+            "dt       : " + getDt()     + CrLf +
             "Radius B : " + getRadius() + CrLf +
-            "CTL      : " + getT() + CrLf;
+            "CTL      : " + getT()      + CrLf;  // tmp is built now.
     System.out.println(tmp);
   }
+
+
   // use:  set   all   properties  of the calling setting - instance via file.
   // pre:  caller is instance of class `Setting'. the file is  well  formatted
   // post: all  properties  are set  to  the  values  provided  by  the  file.
@@ -346,7 +355,7 @@ public class Setting {
         } // else: a useless line...
       } // end while
     } catch (FileNotFoundException ex) {
-      System.out.println("From Setting.load(): " + ex.toString());
+        System.out.println("From Setting.load(): " + ex.toString());
     } finally {
       if (br != null) {
         br.close();
@@ -357,6 +366,8 @@ public class Setting {
 
     return store;
   }
+
+
   // use:  to determine whether a string is the empty one or a comment.
   // pre:  s is string
   // post: the return value is true if s is empty or a comment (a line pre-
@@ -365,131 +376,6 @@ public class Setting {
   private static boolean isCommentOrEmptyLine(String s) {
     String tmp = s.trim();
     return (tmp.startsWith("/") || (tmp.length() == 0));
-  }  // ------------------------ only old code beyond this line ----------- //
-  //System.out.println("####" + isCommentOrEmptyLine(tmp) + " " + tmp.length());
-  // getters:
-   /*
-  public static double getAngle() {
-  return angle;
   }
-  
-  public static double getComputingTimeLimit() {
-  return computingTimeLimit;
-  }
-  
-  public static double getDeltaT() {
-  return deltaT;
-  }
-  
-  public static double getG() {
-  return g;
-  }
-  
-  public static double getHeight() {
-  return height;
-  }
-  
-  public static double getMass() {
-  return mass;
-  }
-  
-  public static double getSpeed() {
-  return speed;
-  }
-  
-  public static double getVolume() {
-  return volume;
-  }
-  
-  public static double getVx() {
-  return vx;
-  }
-  
-  public static double getVy() {
-  return vy;
-  }
-  // EVERY setter-method is overloaded in order to be applied to
-  // `double' and `String' argument.
-  public static void setAngle(double angle) {
-  Settings.angle = angle;
-  }
-  
-  public static void setAngle(String angle) {
-  Settings.angle = (Double.valueOf(angle)).doubleValue();
-  }
-  
-  public static void setComputingTimeLimit(double computingTimeLimit) {
-  Settings.computingTimeLimit = computingTimeLimit;
-  }
-  
-  public static void setComputingTimeLimit(String limit) {
-  Settings.computingTimeLimit = (Double.valueOf(limit)).doubleValue();
-  }
-  
-  public static void setDeltaT(double deltaT) {
-  Settings.deltaT = deltaT;
-  }
-  
-  public static void setDeltaT(String deltaT) {
-  Settings.deltaT = (Double.valueOf(deltaT)).doubleValue();
-  }
-  
-  public static void setG(double g) {
-  Settings.g = g;
-  }
-  
-  public static void setG(String g) {
-  Settings.g = (Double.valueOf(g)).doubleValue();
-  }
-  
-  public static void setHeight(double height) {
-  Settings.height = height;
-  }
-  
-  public static void setHeight(String height) {
-  Settings.height = (Double.valueOf(height)).doubleValue();
-  }
-  
-  public static void setMass(double mass) {
-  Settings.mass = mass;
-  }
-  
-  public static void setMass(String mass) {
-  Settings.mass = (Double.valueOf(mass)).doubleValue();
-  }
-  
-  // USE:   Compute the components of the velocity vector immediatly and set
-  //        them.
-  // PRE:  `Settings.angle' must be already set.
-  // POST: `Settings.vx', `Settings.vy' are computed and set.
-  public static void setSpeed(double speed) {
-  Settings.speed = speed;
-  
-  Settings.setVx(Math.cos(Math.toRadians(Settings.getAngle())) * speed);
-  Settings.setVy(Math.sin(Math.toRadians(Settings.getAngle())) * speed);
-  System.out.println("vx: " + Settings.getVx() + "vy: " + Settings.getVy());
-  }
-  
-  public static void setSpeed(String speed) {
-  double tmpSpeed = (Double.valueOf(speed)).doubleValue();
-  Settings.setSpeed(tmpSpeed);
-  }
-  
-  public static void setVolume(double volume) {
-  Settings.volume = volume;
-  }
-  
-  public static void setVolume(String volume) {
-  Settings.volume = (Double.valueOf(volume)).doubleValue();
-  }
-  // For internal use only, as this is the SETTINGS class, and not the
-  // MOVINGBODY class. In the latter, it is utterly important to update
-  // vx, vy, but this is what you might have already guessed.
-  private static void setVx(double vx) {
-  Settings.vx = vx;
-  }
-  
-  private static void setVy(double vy) {
-  Settings.vy = vy;
-  }*/
-}
+
+} // end of `Setting'

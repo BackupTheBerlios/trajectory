@@ -140,8 +140,9 @@ public class EulerIntegration {
       // informational purposes only (during development)
       // @CT: feel free to comment out where neccessary, if you encounter the
       // routine again. You can delete this comment.
-      System.out.println("Mem comparison: ");
-      utilities.SystemData.testCleanUp();
+      System.out.println("Mem comparison: location doInBackground");
+      //utilities.SystemData.testCleanUp();
+      // TODO: clean up
 
       setUpInitialValues();
 

@@ -21,7 +21,7 @@
  *          netbeans IDE.
  * TODO:    BE: C Write a method that dumps all data into one "dump"-object for
  *          later sending bug reports automatically.
- * DONE:    BE: A KILLERBUG: paint() redraw nastily interwoven with paint()
+ * DONE:    BE: A BUG: paint() redraw nastily interwoven with paint()
  *          animation! animation starts by moving the screen ;-( subtle.
  * TODO:    BE: B Rethink: Trade-off: Code-reuse against speed and memory.
  *          Drawing via `xs' `ys' after reading them from the vector of moving
@@ -32,32 +32,34 @@
  */
 package UI;
 
+import java.awt.image.BufferedImage;
 import java.awt.event.MouseEvent;
-import java.io.*;
-import javax.swing.*;
-import javax.swing.JPanel;
+import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.util.Vector;
-import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
 import java.awt.Color;
+import javax.swing.*;
+import java.io.*;
 
+import static utilities.EulerIntegration.*;
+import physics.MovingBody;
 import java.awt.Cursor;
 import utilities.*;
-import static utilities.EulerIntegration.*;
 import modi.*;
-import physics.MovingBody;
 
+
+// Use  : This class provides the users "main frame".
 public class TrajectoryUI extends javax.swing.JFrame {
 
   // member variables
   public static DialogComputationInProgress dialog;
-  private static int i = 0;
-  static boolean isAnimationRunning = false;
-  static Thread th;
-  BufferedImage bi;
-  Graphics2D big; // graphic context for the buffered image above
   
+  static boolean isAnimationRunning = false;
+  BufferedImage bi;
+  static Thread th;
+  Graphics2D big; // graphic context for the buffered image above
+
+  private static int i = 0;
   private static int animationSpeed = 0;
 
 
@@ -87,32 +89,42 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
     try { // catching a NullPointerException in this try-block
 
-      if (i >= xs.size()) {     // TODO: on debugging animation runs again
-        try {                   //       after a pause of 3 seconds
+      if (i >= xs.size()) {     // TODO: Discuss: Best behavior? Keep it or
+        try {                   //       change it to let the user start again.
           Thread.sleep(3000);   //
         } catch (InterruptedException ex) {
           System.out.println("caught: " + ex);
           th.interrupt();
           isAnimationRunning = false;
         }
-        i = 0;
+        i = 0; // i >= number of movingBodies to draw, start from the beginning.
       } // end if
 
+      // TODO : @CT in every call to `myPaint()' this will be evaluated...
+      // moving the code to Analysis in the eventhandler of your combobox
+      // is best. then work with get and set to retrieve the value here.
+      // i was tempted to do it for you, but remembered, that you were working
+      // on stuff there. in order to make life easier for you i stopped.
+      switch(Analysis.getSelectedIndexJComboBoxAnimationSpeed()){
+        case 0: animationSpeed = 100;
+          break;
+        case 1: animationSpeed = 25;
+          break;
+        case 2: animationSpeed = 0; // if  trouble occurrs set to 5.
+          break;
+        default:
+          System.out.println("You should never be able to read this.");
+      } // end `switch'
 
-  if (Analysis.getSelectedIndexJComboBoxAnimationSpeed() == 0){
-     animationSpeed = 100;
-  }
-  if (Analysis.getSelectedIndexJComboBoxAnimationSpeed() == 1){
-     animationSpeed = 25;
-  }
-  if (Analysis.getSelectedIndexJComboBoxAnimationSpeed() == 2){
-     animationSpeed = 0;
-  }
-
-  try {
-        Thread.sleep(animationSpeed);
-      } catch (InterruptedException ex) {}
-
+      // doesn´t work here: a thread a sleeps within thread b and catches the
+      // message for thread b. by the way it is clumsy -> see run method
+      // instead; otherwise fine.
+      // TODO: @CT feel free to delete this comment.
+//      try {
+//        Thread.sleep(animationSpeed);
+//      } catch (InterruptedException ex) {
+//        System.out.println("myPaint(): " + ex);
+//      }
 
       // TODO: BE: B  draw a nice coordinate system.
       ScreenUtilities.drawCoordinateSystem(
@@ -153,8 +165,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
       th.interrupt();
       isAnimationRunning = false;
       System.out.println("runner stopped.");
-    } finally { // lots of info
-      dumpInfoToStdOut(xs, ys);
+    } finally { 
+      dumpInfoToStdOut(xs, ys); // lots of info
     }
 
   } // end `myPaint()'
@@ -169,9 +181,10 @@ public class TrajectoryUI extends javax.swing.JFrame {
     bi = (BufferedImage) jPnlDrawingPlane.createImage(
             1018,//jPnlDrawingPlane.getWidth(), // seems like an odd IDE-issue, that the method-call returns the initial, not the current values.
             708);//jPnlDrawingPlane.getHeight()); // TODO: investigate the issue further :-(
+
     System.out.println("bi: " + bi.getWidth() + " " + bi.getHeight());
-    System.out.println(
-            "jpnl: " + jPnlDrawingPlane.getWidth() + " " + jPnlDrawingPlane.getHeight());
+    System.out.println("jpnl: " + jPnlDrawingPlane.getWidth() + " " +
+            jPnlDrawingPlane.getHeight());
     big = (Graphics2D) bi.getGraphics();
   }
 
@@ -181,6 +194,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
       super(true); // double-buffered enabled JPanel
     }
 
+ // Use: DrawingPanels´ paint method
     @Override
     public void paint(Graphics g) {
       Graphics2D g2d = (Graphics2D) g;
@@ -342,7 +356,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
     });
     jMenuComputation.add(jMenuItemCompute);
 
-    jMenuItemReset.setText("Clear screen");
+    jMenuItemReset.setText("Reset");
+    jMenuItemReset.setToolTipText("Stops the animation and clears the screen.");
+    jMenuItemReset.setActionCommand("Reset");
     jMenuItemReset.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jMenuItemResetActionPerformed(evt);
@@ -404,14 +420,12 @@ private void jMenuItemSetNewParametersActionPerformed(java.awt.event.ActionEvent
 }//GEN-LAST:event_jMenuItemSetNewParametersActionPerformed
 
 private void jMenuItemStartAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartAnimationActionPerformed
-  //UI.TrajectoryUI.setCounterToZero();
+
   if (!isAnimationRunning) {
     startAnimation();
     isAnimationRunning = true;
-  } else {
+  } else { // don´t start another thread. // TODO: BE inform user
     System.out.println("already running...");
-    //th.interrupt();
-    //isAnimationRunning = false;
   }
 }//GEN-LAST:event_jMenuItemStartAnimationActionPerformed
 
@@ -542,12 +556,23 @@ private void jPnlDrawingPlaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-
 
 
 private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetActionPerformed
-    //RunnerThread.interrupt();
-    //th.interrupt();
-    //isAnimationRunning = false;
-    big.clearRect(0, 0, jPnlDrawingPlane.getWidth(), jPnlDrawingPlane.getHeight());
-    //utilities.ScreenUtilities.setCompareTrajectories(false);
-    
+    if (isAnimationRunning) {
+      System.out.println("+++++ trying to stop thread...");
+      th.interrupt();
+      System.out.println("+++++ painting thread stopped.");
+      isAnimationRunning = false;
+      bi = (BufferedImage) jPnlDrawingPlane.createImage(jPnlDrawingPlane.getWidth(),jPnlDrawingPlane.getHeight());
+      System.out.println("############################################ pic created.");
+      big = (Graphics2D)bi.getGraphics();
+      System.out.println("############################################ gc fetched.");
+      TrajectoryUI.setCounterToZero();
+      ScreenUtilities.setCompareTrajectories(true);
+      System.out.println("############################################ comp: " + ScreenUtilities.getCompareTrajectories());
+      System.out.println("############################################ i:=0. " + i);
+      System.out.println("############################################ bi.width(): " + bi.getWidth() + " bi.height(): " + bi.getHeight());
+      System.out.println("############################################ jPnl.width(): " + jPnlDrawingPlane.getWidth() + " jPnl.height(): " + jPnlDrawingPlane.getHeight());
+    }
+
 }//GEN-LAST:event_jMenuItemResetActionPerformed
 
 
@@ -588,20 +613,36 @@ private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
 
     // Use:  Class providing the animation thread.
     private class RunnerThread extends Thread {
+      private int runnerID = 0;
+
+      // constructor
+      public RunnerThread(){
+        incID();
+        System.out.println("~~~~~~~~~~~~~~~~~~~+I am alive: " + this.getID());
+      }
+
+      // methods
+      public void incID(){
+        runnerID++;
+      }
+      
+      public int getID(){
+        return this.runnerID;
+      }
 
       @Override
       public void run() {
         while (!isInterrupted()) {
-          myPaint(big,
-                  ScreenUtilities.xs, ScreenUtilities.ys);
-          //jPnlDrawingPlane.repaint();
+          myPaint(big, ScreenUtilities.xs, ScreenUtilities.ys);
+
           try {
-            Thread.sleep(25); // TODO: C BE: variable speeds possible.
+            Thread.sleep(TrajectoryUI.animationSpeed); // TODO: C BE: variable speeds possible.
           } catch (InterruptedException ex) {
-            System.out.println(ex);
+            System.out.println("################################ " + ex + " " + this.getID());
             return; // good style?
           }
-        }
-      }
+
+        } // end while
+      } // end run()
     } // end `RunnerThread'
 } // end of class `TrajectoryUI'

@@ -55,16 +55,17 @@ import physics.Setting;
  * @author BE
  */
 public class Main {
-  // TODO: A! put code where it belongs.
+  // TODO: A! put code where it belongs. Too much static variables crept in over
+  //          the time.
+
   // these are set via calling ScreenUtilities.computeScalingFactor!
   public static Double xMax,  xMin,  yMax,  yMin;
   public static Analysis analysisUI;
   public static TrajectoryUI ui;
   //public static MeasureMode mmUI;
   
-  /**
-   * @param args the command line arguments
-   */
+  // Use  : This is the absolute main method of the project. Everything starts
+  //        here.
   public static void main(String[] args)
           throws FileNotFoundException, InterruptedException {
 
@@ -72,6 +73,8 @@ public class Main {
     // INITIALIZATION //
     ////////////////////
 
+    // generate a unique instance keeping track of the user-provided physical
+    // parametervalues as defined in class `Setting'.
     UI.UserInputNewParameters.currentSetting = new Setting();
 
     // bring up the GUI where all drawing, user-manipulation happens
@@ -85,6 +88,6 @@ public class Main {
     analysisUI.setVisible(true);
 
     // test
-      utilities.SystemData.testCleanUp();
+      // utilities.SystemData.testCleanUp();
   } // end `main()'
 } // end `Main'

@@ -1,15 +1,14 @@
-/*
- * AnimationStop.java
- *
- * Created on 24. Februar 2009, 19:11
+/*****************************************************************************
+ * Use   : This  class  keeps  the components and methods of form AnimationStop
+ *         which enables the user to decide whether or not he whishes to render
+ *         movingBody objects on the "main frame" a TrajectoryUI.
+ * Author: BE
+ * Date  : 2009-02 / 2009-03
+ * 
  */
 
 package UI;
 
-/**
- *
- * @author  skrtrth
- */
 public class AnimationStop extends javax.swing.JDialog {
 
     /** Creates new form AnimationStop */
@@ -101,9 +100,9 @@ private void jBtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             public void run() {
                 AnimationStop dialog = new AnimationStop(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-          @Override
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                      System.exit(0);
                     }
                 });
                 dialog.setVisible(true);

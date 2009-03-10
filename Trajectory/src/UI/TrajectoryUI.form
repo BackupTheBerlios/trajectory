@@ -78,7 +78,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemReset">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Clear screen"/>
+                <Property name="text" type="java.lang.String" value="Reset"/>
+                <Property name="toolTipText" type="java.lang.String" value="Stops the animation and clears the screen."/>
+                <Property name="actionCommand" type="java.lang.String" value="Reset"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemResetActionPerformed"/>
