@@ -569,25 +569,6 @@ private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
   ScreenUtilities.setCompareTrajectories(false);
   TrajectoryUI.isAnimationRunning = false;
   System.gc(); // free memory
-  
-  //    if (isAnimationRunning) {
-//      System.out.println("+++++ trying to stop thread...");
-//      th.interrupt();
-//      System.out.println("+++++ painting thread stopped.");
-//      isAnimationRunning = false;
-//      bi = (BufferedImage) jPnlDrawingPlane.createImage(jPnlDrawingPlane.getWidth(),jPnlDrawingPlane.getHeight());
-//      System.out.println("############################################ pic created.");
-//      big = (Graphics2D)bi.getGraphics();
-//      System.out.println("############################################ gc fetched.");
-//      TrajectoryUI.setCounterToZero();
-//      ScreenUtilities.setCompareTrajectories(true);
-//      System.out.println("############################################ comp: " + ScreenUtilities.getCompareTrajectories());
-//      System.out.println("############################################ i:=0. " + i);
-//      System.out.println("############################################ bi.width(): " + bi.getWidth() + " bi.height(): " + bi.getHeight());
-//      System.out.println("############################################ jPnl.width(): " + jPnlDrawingPlane.getWidth() + " jPnl.height(): " + jPnlDrawingPlane.getHeight());
-//    }
-
-
 }//GEN-LAST:event_jMenuItemResetActionPerformed
 
 
@@ -650,7 +631,7 @@ private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
 
       @Override
       public void run() {
-        while (!isInterrupted()) {
+        while (!isInterrupted()) { // donn´t clear the interrupt flag.
           try {
 
             myPaint(big, ScreenUtilities.xs, ScreenUtilities.ys);

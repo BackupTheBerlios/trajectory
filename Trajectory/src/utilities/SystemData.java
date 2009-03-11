@@ -13,8 +13,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.*;
 
+import physics.MovingBody;
+
+
 public class SystemData {
-    
+
+  private static LinkedList<MovingBody> mbList;
+
     public static void gatherIntelligence(){
         final long BYTES_PER_MB = 1024*1024;
         Runtime rt = Runtime.getRuntime();
@@ -26,6 +31,8 @@ public class SystemData {
         System.out.println("+++ Max   JVM mem ~ (MB): " + (rt.maxMemory()/BYTES_PER_MB));
         props = System.getProperties();
         System.out.println(props.toString());
+        System.out.println("... testing available mem ...");
+
     }
     public static void cleanUp(){
         System.runFinalization();
@@ -43,5 +50,4 @@ public class SystemData {
             }
         }
     }
-
 }

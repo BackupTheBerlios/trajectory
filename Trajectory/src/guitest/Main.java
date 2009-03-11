@@ -46,9 +46,12 @@ package guitest;
 
 import java.io.*;
 
+import utilities.EulerIntegration;
+import utilities.ObjectSize;
 import UI.TrajectoryUI;
-import UI.Analysis;
+import physics.MovingBody;
 import physics.Setting;
+import UI.Analysis;
 
 /**
  *
@@ -68,7 +71,7 @@ public class Main {
   //        here.
   public static void main(String[] args)
           throws FileNotFoundException, InterruptedException {
-
+   
     ////////////////////
     // INITIALIZATION //
     ////////////////////
@@ -87,7 +90,28 @@ public class Main {
     analysisUI = new Analysis();
     analysisUI.setVisible(true);
 
-    // test
-     utilities.SystemData.testCleanUp();
+    // automatically set the maximum number of movingBody objects for the data-
+    // structures
+    System.gc();
+    ObjectSize.gc();
+    System.out.println("free mem: " + Runtime.getRuntime().freeMemory());
+    long sizeOfAMovingBody = ObjectSize.sizeOfMovingBody(500);
+    System.out.println("Size of a mb: " + sizeOfAMovingBody);
+
+    // 2009-03-11--BE:
+    // underestimate the amount of movingBodies the RAM can hold.
+    // assumptions:
+    //   (1) JVM is started with a value close to the size of the RAM.
+    //   (2) the user doesn´t use more than 50% of its RAM while executing
+    //       project trajectory.
+    // post: the SIZE "constant" is set to this value. hope nobody plays with
+    //       the "constant" now :-(
+    // TODO: learn to design programs.
+    ObjectSize.gc();
+    double estimatedMaxOfMovingBodies =
+            0.4 * Runtime.getRuntime().maxMemory()/sizeOfAMovingBody ;
+    System.out.println("estMaxMB: " + Math.round(estimatedMaxOfMovingBodies));
+    EulerIntegration.setSIZE((int)Math.ceil(estimatedMaxOfMovingBodies));
+    
   } // end `main()'
 } // end `Main'

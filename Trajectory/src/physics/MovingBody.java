@@ -7,7 +7,7 @@
  * 
  * TODO:   C!among  the  dreams  of the future are e.g.: variable volume of a	
  *         body, variable density of the atmosphere, user-customed input of
- * 	   acting forces -> interpreter, (BeanShell or the like)
+ *         acting forces -> interpreter, (BeanShell or the like)
  * 	  
  * 
  * TODO: CT: eventuell kann bei getLocation() auf die Erzeugung eines neuen
@@ -45,14 +45,14 @@ public class MovingBody {
   // Constructors
   // Constructor fuer Start-MovingBody
   public MovingBody(Setting setting) {
-    this.v = setting.getV();
+    this.v    = setting.getV();
     this.beta = setting.getBeta();
     this.setVcomponentsVBeta(this.v, this.beta);
-    this.m = setting.getMass();
-    this.vol = setting.getVol();
-    this.cw = setting.getCw();
-    this.a = setting.getA();
-    this.r = setting.getRadius();
+    this.m    = setting.getMass();
+    this.vol  = setting.getVol();
+    this.cw   = setting.getCw();
+    this.a    = setting.getA();
+    this.r    = setting.getRadius();
     this.location = new Location(setting);
     this.angleVvectorToRvector = computeAngleVvectorToRvector(setting);
   }
@@ -62,11 +62,11 @@ public class MovingBody {
     this.vx = vx;
     this.vy = vy;
     this.setVcomponentsVxVy(this.vx, this.vy);
-    this.m = setting.getMass();
-    this.vol = setting.getVol();
-    this.cw = setting.getCw();
-    this.a = setting.getA();
-    this.r = setting.getRadius();
+    this.m    = setting.getMass();
+    this.vol  = setting.getVol();
+    this.cw   = setting.getCw();
+    this.a    = setting.getA();
+    this.r    = setting.getRadius();
     this.location = location;
     this.angleVvectorToRvector = computeAngleVvectorToRvector(setting);
   }

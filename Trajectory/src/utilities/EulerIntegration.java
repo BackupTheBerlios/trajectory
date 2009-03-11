@@ -27,7 +27,7 @@ public class EulerIntegration {
 
   // variables and constants
   final static int MSEC_PER_SEC = 1000;
-  final int SIZE = 30000000; // TODO: AA adjust that to hardware, via autoset.
+  protected static int SIZE = 3000000; // TODO: AA adjust that to hardware, via autoset.
   // BE: i am on it.
   public static Vector<MovingBody> positions = new Vector<MovingBody>();
   static Long currentMillis = new Long(0);
@@ -43,6 +43,11 @@ public class EulerIntegration {
   /////////////
   // Methods //
   /////////////
+
+  // !!!!!!!! only called once at initialization. NEVER touch this again.
+  public static void setSIZE(int value){
+    SIZE = value;
+  }
 
   // Use:   Proved valuable during debugging. Helped finding unneccessary thread.
   //        The bug that cost me 3 work days of my life.
