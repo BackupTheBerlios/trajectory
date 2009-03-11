@@ -84,12 +84,15 @@ public class AnimationStop extends javax.swing.JDialog {
 
 private void jBtnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnYesActionPerformed
   TrajectoryUI.th.interrupt();
+  TrajectoryUI.isAnimationRunning = false;
   modi.MeasureMode.setIsDisplayXYcoordsEnabled(true);
   this.dispose();
+  System.gc();
 }//GEN-LAST:event_jBtnYesActionPerformed
 
 private void jBtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNoActionPerformed
   this.dispose();
+  System.gc();
 }//GEN-LAST:event_jBtnNoActionPerformed
 
     /**

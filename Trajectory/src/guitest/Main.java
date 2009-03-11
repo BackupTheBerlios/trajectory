@@ -88,6 +88,6 @@ public class Main {
     analysisUI.setVisible(true);
 
     // test
-      // utilities.SystemData.testCleanUp();
+     utilities.SystemData.testCleanUp();
   } // end `main()'
 } // end `Main'

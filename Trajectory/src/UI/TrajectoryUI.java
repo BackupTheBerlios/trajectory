@@ -525,6 +525,8 @@ private void jMenuItemMeasureModeActionPerformed(java.awt.event.ActionEvent evt)
   if ((th != null) && (th.isInterrupted())) {
     modi.MeasureMode.setIsDisplayXYcoordsEnabled(true);
   } else {
+    // ask user if he wants to stop the animation and start taking
+    // measures
     animationStopDialog = new UI.AnimationStop(this, true);
     animationStopDialog.setVisible(true);
   }
@@ -556,22 +558,35 @@ private void jPnlDrawingPlaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-
 
 
 private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetActionPerformed
-    if (isAnimationRunning) {
-      System.out.println("+++++ trying to stop thread...");
-      th.interrupt();
-      System.out.println("+++++ painting thread stopped.");
-      isAnimationRunning = false;
-      bi = (BufferedImage) jPnlDrawingPlane.createImage(jPnlDrawingPlane.getWidth(),jPnlDrawingPlane.getHeight());
-      System.out.println("############################################ pic created.");
-      big = (Graphics2D)bi.getGraphics();
-      System.out.println("############################################ gc fetched.");
-      TrajectoryUI.setCounterToZero();
-      ScreenUtilities.setCompareTrajectories(true);
-      System.out.println("############################################ comp: " + ScreenUtilities.getCompareTrajectories());
-      System.out.println("############################################ i:=0. " + i);
-      System.out.println("############################################ bi.width(): " + bi.getWidth() + " bi.height(): " + bi.getHeight());
-      System.out.println("############################################ jPnl.width(): " + jPnlDrawingPlane.getWidth() + " jPnl.height(): " + jPnlDrawingPlane.getHeight());
-    }
+  th.interrupt();
+  System.out.println("+++++++++++++++++++++++++++ th ID:" + th);
+  guitest.Main.ui.dispose();
+  System.out.println("+++++++++++++++++++++++++++ th ID:" + th);
+  guitest.Main.ui = new TrajectoryUI();
+  guitest.Main.ui.setSize(1024, 768);  // hard-wired screen resolution...
+  guitest.Main.ui.setResizable(false); // maybe via config file, to keep it small and
+  guitest.Main.ui.setVisible(true);    // simple?
+  ScreenUtilities.setCompareTrajectories(false);
+  TrajectoryUI.isAnimationRunning = false;
+  System.gc(); // free memory
+  
+  //    if (isAnimationRunning) {
+//      System.out.println("+++++ trying to stop thread...");
+//      th.interrupt();
+//      System.out.println("+++++ painting thread stopped.");
+//      isAnimationRunning = false;
+//      bi = (BufferedImage) jPnlDrawingPlane.createImage(jPnlDrawingPlane.getWidth(),jPnlDrawingPlane.getHeight());
+//      System.out.println("############################################ pic created.");
+//      big = (Graphics2D)bi.getGraphics();
+//      System.out.println("############################################ gc fetched.");
+//      TrajectoryUI.setCounterToZero();
+//      ScreenUtilities.setCompareTrajectories(true);
+//      System.out.println("############################################ comp: " + ScreenUtilities.getCompareTrajectories());
+//      System.out.println("############################################ i:=0. " + i);
+//      System.out.println("############################################ bi.width(): " + bi.getWidth() + " bi.height(): " + bi.getHeight());
+//      System.out.println("############################################ jPnl.width(): " + jPnlDrawingPlane.getWidth() + " jPnl.height(): " + jPnlDrawingPlane.getHeight());
+//    }
+
 
 }//GEN-LAST:event_jMenuItemResetActionPerformed
 
@@ -625,6 +640,9 @@ private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
       public void incID(){
         runnerID++;
       }
+      public void decID(){
+        runnerID--;
+      }
       
       public int getID(){
         return this.runnerID;
@@ -633,16 +651,21 @@ private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
       @Override
       public void run() {
         while (!isInterrupted()) {
-          myPaint(big, ScreenUtilities.xs, ScreenUtilities.ys);
-
           try {
+
+            myPaint(big, ScreenUtilities.xs, ScreenUtilities.ys);
             Thread.sleep(TrajectoryUI.animationSpeed); // TODO: C BE: variable speeds possible.
+
           } catch (InterruptedException ex) {
-            System.out.println("################################ " + ex + " " + this.getID());
-            return; // good style?
+              System.out.println("################################ " + ex +
+                                 " " + this.getID());
+              break;
           }
 
         } // end while
+        System.out.println("############################### thread: " + getID() +" : " + "DONE");
+        decID();
+        System.out.println("############################### threads left: " + getID());
       } // end run()
     } // end `RunnerThread'
 } // end of class `TrajectoryUI'

@@ -27,7 +27,7 @@ public class EulerIntegration {
 
   // variables and constants
   final static int MSEC_PER_SEC = 1000;
-  final int SIZE = 3000000; // TODO: AA adjust that to hardware, via autoset.
+  final int SIZE = 30000000; // TODO: AA adjust that to hardware, via autoset.
   // BE: i am on it.
   public static Vector<MovingBody> positions = new Vector<MovingBody>();
   static Long currentMillis = new Long(0);

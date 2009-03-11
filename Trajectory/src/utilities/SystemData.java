@@ -11,17 +11,21 @@ package utilities;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.*;
 
 public class SystemData {
     
     public static void gatherIntelligence(){
         final long BYTES_PER_MB = 1024*1024;
         Runtime rt = Runtime.getRuntime();
-        
+        Properties props = new Properties();
+
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("+++ Free  JVM mem ~ (MB): " + (rt.freeMemory()/BYTES_PER_MB));
         System.out.println("+++ Total JVM mem ~ (MB): " + (rt.totalMemory()/BYTES_PER_MB));
-        System.out.println("+++ Max   JVM mem ~ (MB): " + (rt.totalMemory()/BYTES_PER_MB));
+        System.out.println("+++ Max   JVM mem ~ (MB): " + (rt.maxMemory()/BYTES_PER_MB));
+        props = System.getProperties();
+        System.out.println(props.toString());
     }
     public static void cleanUp(){
         System.runFinalization();
