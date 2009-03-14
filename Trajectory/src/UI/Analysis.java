@@ -588,7 +588,7 @@ public class Analysis extends javax.swing.JFrame {
             }
         });
 
-        jCckBxFlowResistanceStart.setText("Flow Resistance");
+        jCckBxFlowResistanceStart.setText("Flow resistance");
         jCckBxFlowResistanceStart.setToolTipText("Flow resistance caused force for all cases of turbulent flow");
         jCckBxFlowResistanceStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,7 +612,7 @@ public class Analysis extends javax.swing.JFrame {
             }
         });
 
-        jCckBxSimpleGravityStart.setText("Simple Gravity");
+        jCckBxSimpleGravityStart.setText("Simple gravity");
         jCckBxSimpleGravityStart.setToolTipText("Gravity caused by Earth acceleration location independent");
         jCckBxSimpleGravityStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -720,7 +720,7 @@ public class Analysis extends javax.swing.JFrame {
                     .addComponent(jCckBxViscosityStart)
                     .addComponent(jCckBxSimpleGravityStart)
                     .addComponent(jLabel39))
-                .addGap(274, 274, 274))
+                .addGap(278, 278, 278))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -841,7 +841,7 @@ public class Analysis extends javax.swing.JFrame {
                 .addGap(195, 195, 195))
         );
 
-        jTabbedPane1.addTab("Start Data", jPanel2);
+        jTabbedPane1.addTab("Start data", jPanel2);
 
         jLabel1.setText("v:");
 
@@ -1077,7 +1077,7 @@ public class Analysis extends javax.swing.JFrame {
                 .addGap(219, 219, 219))
         );
 
-        jTabbedPane1.addTab("Present Data ", jPanel1);
+        jTabbedPane1.addTab("Present data ", jPanel1);
 
         jTextFieldhMax.setEditable(false);
         jTextFieldhMax.setToolTipText("Maximum height of the body referring to the ground level");
@@ -1190,12 +1190,10 @@ public class Analysis extends javax.swing.JFrame {
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel16))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(jButtonSetFinalValuesToStartParameters)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonSetFinalValuesToStartParameters)))
                 .addGap(386, 386, 386))
         );
         jPanel4Layout.setVerticalGroup(
@@ -1253,7 +1251,7 @@ public class Analysis extends javax.swing.JFrame {
                 .addContainerGap(238, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Final Values", jPanel4);
+        jTabbedPane1.addTab("Final values", jPanel4);
 
         jTabbedPane1.setSelectedIndex(1);
 

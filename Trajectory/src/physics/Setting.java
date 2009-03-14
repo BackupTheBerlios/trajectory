@@ -227,10 +227,10 @@ public class Setting {
   public void zeroSetting() {
     this.setSetting(
             0.0, 0.0, 0.0,
+            0.0, 0.0, 0.1,
             0.0, 0.0, 0.0,
             0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0,
-            0.0, 0.0);
+            0.0, 1.0);
   }
 
 

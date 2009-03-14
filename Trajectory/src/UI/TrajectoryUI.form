@@ -18,9 +18,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemOpenFile">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Open file..."/>
                 <Property name="toolTipText" type="java.lang.String" value="Open a file to read data."/>
                 <Property name="actionCommand" type="java.lang.String" value="OpenFile"/>
-                <Property name="label" type="java.lang.String" value="Open File..."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemOpenFileActionPerformed"/>
@@ -43,7 +43,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSetNewParameters">
               <Properties>
-                <Property name="text" type="java.lang.String" value="New Parameters..."/>
+                <Property name="text" type="java.lang.String" value="New parameters ..."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemSetNewParametersActionPerformed"/>
@@ -51,7 +51,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemLoadPresetFile">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Load Preset File..."/>
+                <Property name="text" type="java.lang.String" value="Load preset file ..."/>
               </Properties>
               <Events>
                 <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="jMenuItemLoadPresetFileComponentHidden"/>
@@ -97,10 +97,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemStartAnimation">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Start Animation(File)"/>
+                <Property name="text" type="java.lang.String" value="Start animation"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemStartAnimationActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemStopAnimation">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Stop animation"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemStopAnimationActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -115,7 +123,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMeasureMode">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Measure Mode"/>
+                <Property name="text" type="java.lang.String" value="Measure mode"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemMeasureModeActionPerformed"/>
