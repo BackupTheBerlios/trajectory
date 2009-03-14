@@ -95,6 +95,7 @@ public class Main {
     System.gc();
     ObjectSize.gc();
     System.out.println("free mem: " + Runtime.getRuntime().freeMemory());
+    ObjectSize.gc();
     long sizeOfAMovingBody = ObjectSize.sizeOfMovingBody(500);
     System.out.println("Size of a mb: " + sizeOfAMovingBody);
 
@@ -106,11 +107,17 @@ public class Main {
     //       project trajectory.
     // post: the SIZE "constant" is set to this value. hope nobody plays with
     //       the "constant" now :-(
+    // rem : this cannot be done accurately, as stated in the sources of
+    //       `ObjectSize'.
     // TODO: learn to design programs.
     ObjectSize.gc();
     double estimatedMaxOfMovingBodies =
-            0.4 * Runtime.getRuntime().maxMemory()/sizeOfAMovingBody ;
-    System.out.println("estMaxMB: " + Math.round(estimatedMaxOfMovingBodies));
+            0.4 * Runtime.getRuntime().maxMemory() /
+            sizeOfAMovingBody;
+    System.out.println(
+            "estMaxMovingBodies: " +
+            Math.round(estimatedMaxOfMovingBodies)
+    );
     EulerIntegration.setSIZE((int)Math.ceil(estimatedMaxOfMovingBodies));
     
   } // end `main()'

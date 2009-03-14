@@ -71,6 +71,7 @@ public class ObjectSize {
     return (totalHeapMemory - freeHeapMemory);
   }
 
+  // Warning, but according to SUN ok.
   public static void gc()
   throws InterruptedException {
     System.gc();

@@ -62,6 +62,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
   private static int i = 0;
   private static int animationSpeed = 0;
 
+  private static int currentXscreenCoord = -1;
+  private static int currentYscreenCoord = -1;
+
 
   // setters
   public static void setAnimationSpeed(int speed){
@@ -113,18 +116,39 @@ public class TrajectoryUI extends javax.swing.JFrame {
               jPnlDrawingPlane.getHeight());
 
       // TODO: BE: C  improve transformation.
-      g.drawOval((int) (xs.get(i).floatValue() * ScreenUtilities.scalingFactor -
+      
+      // as we need the current coords twice:
+      currentXscreenCoord = (int) (xs.get(i).floatValue() *
+              ScreenUtilities.scalingFactor -
               guitest.Main.xMin * ScreenUtilities.scalingFactor +
-              ScreenUtilities.ORIGIN_OFFSET),
-              (int) (ScreenUtilities.SCREEN_HEIGHT -
+              ScreenUtilities.ORIGIN_OFFSET);
+      currentYscreenCoord=(int) (ScreenUtilities.SCREEN_HEIGHT -
               (ys.get(i).floatValue() - guitest.Main.yMin) *
-              ScreenUtilities.scalingFactor) + ScreenUtilities.ORIGIN_OFFSET,
-              5, 5);
+              ScreenUtilities.scalingFactor) + ScreenUtilities.ORIGIN_OFFSET;
+
+      // draw the trajectory
+      // size 2 is choosen because a  single pixel can make the novice
+      // see nothing. imho the chances that he can figure out that his
+      // dt/settings  in  general  are  flawed  do  vastly increase by
+      // drawing the trajectory bigger than 1, maybe even 3 is better.
+      g.drawOval(
+              currentXscreenCoord,
+              currentYscreenCoord,
+              2, 2
+      );
 
       // as drawing has been directed to the buffered image `bi' before,
       // now display the results on the screen (a.k.a. `jPnlDrawingPlane')
       Graphics2D tmpG2d = (Graphics2D) jPnlDrawingPlane.getGraphics();
       tmpG2d.drawImage(bi, 0, 0, this);
+
+      // draw the body
+      tmpG2d.setColor(Color.BLUE);
+      tmpG2d.drawOval( 
+              currentXscreenCoord,
+              currentYscreenCoord,
+              5, 5
+      );
 
       // TODO: B BE: data flow?
       if (positions.size() != 0) {   // if there is something to draw at all:
