@@ -33,7 +33,7 @@ public class ScreenUtilities {
     public final static int SCREEN_HEIGHT = 649 - 2 * ORIGIN_OFFSET;
 
     // automatically compare further trajectories to the first one
-    // (remember the clear-screen-function in the compute-menu)
+    // (remember the reset-function in the compute-menu)
     private static boolean compareTrajectories = false;
 
     public static void setCompareTrajectories(boolean compare){

@@ -522,8 +522,10 @@ private void jPnlDrawingPlaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FI
       System.out.println("X: " +
               MeasureMode.screenCoordsToReality(0, evt.getX()) +
               "Y: " + MeasureMode.screenCoordsToReality(1, evt.getY()));
-      g2d.drawString("X: " + evt.getX() + " Y: " + evt.getY(),
-              evt.getX(), evt.getY());
+        g2d.drawString(" X: " + String.valueOf(UI.Analysis.computeValueFormat(MeasureMode.screenCoordsToReality(0, evt.getX())).format(MeasureMode.screenCoordsToReality(0, evt.getX())).replace(',','.'))
+                       + " m", evt.getX()-75, evt.getY()+25);
+        g2d.drawString(" Y: " + String.valueOf(UI.Analysis.computeValueFormat(MeasureMode.screenCoordsToReality(1, evt.getY())).format(MeasureMode.screenCoordsToReality(1, evt.getY())).replace(',','.'))
+                       + " m", evt.getX()-75, evt.getY()+40);
     } // end if
   } // end if
 }//GEN-LAST:event_jPnlDrawingPlaneMouseMoved
@@ -548,6 +550,7 @@ private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
   guitest.Main.ui.setVisible(true);    // simple?
   ScreenUtilities.setCompareTrajectories(false);
   TrajectoryUI.isAnimationRunning = false;
+  modi.MeasureMode.setIsDisplayXYcoordsEnabled(false);
   System.gc(); // free memory
 }//GEN-LAST:event_jMenuItemResetActionPerformed
 
