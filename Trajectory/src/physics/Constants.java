@@ -138,7 +138,7 @@ public class Constants {
 
     public final static double MASS_PARACHUTE           = 0;    //with human
     public final static double VOLUME_PARACHUTE         = 0;
-    public final static double AREA_PARACHUTE           = 0;
+    public final static double AREA_PARACHUTE           = 40;
 
     public final static double MASS_AIRFOIL             = 0;
     public final static double VOLUME_AIRFOIL           = 0;

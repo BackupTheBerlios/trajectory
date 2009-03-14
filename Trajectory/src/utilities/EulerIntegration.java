@@ -175,7 +175,7 @@ public class EulerIntegration {
       }
 
       UI.Analysis.computeFinalValues(utilities.EulerIntegration.positions, UI.UserInputNewParameters.currentSetting);
-      UI.Analysis.displayFinalValues(UI.Analysis.getHMax(), UI.Analysis.getHMin(), UI.Analysis.getThrowingRange(), UI.Analysis.getVEnd(), UI.Analysis.getBetaEnd(), UI.Analysis.getHEnd(), UI.Analysis.getThrowingTime());
+      UI.Analysis.displayFinalValues(UI.Analysis.getHMax(), UI.Analysis.getHMin(), UI.Analysis.getThrowingRange(), UI.Analysis.getVEnd(), UI.Analysis.getBetaEnd(), UI.Analysis.getHEnd(), UI.Analysis.getThrowingTime(), UI.Analysis.getVMax());
       // as animation already works via the xs, ys stuff.
       ScreenUtilities.positionsToXsYsStructures(ScreenUtilities.xs, ScreenUtilities.ys);
       // utilities.SystemData.testCleanUp();
