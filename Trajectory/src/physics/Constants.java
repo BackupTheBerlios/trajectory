@@ -13,12 +13,17 @@
 package physics;
 
 public class Constants { 
-	
+
+    // global physical constants:
+
 	public final static double G = 6.67428e-11;	// Gravitationskonstante
     public final static double c = 299792458;	// Lichtgeschwindigkeit
+    public final static double g = 9.8013747;   // m/(sec^2) Erdbeschleunigung,
+    //Äquator, Höhe Null, von Hand mit den verwendeten Werten für G und R und M berechnet
 
 	
 	// for the time of development these values are constants... //
+
 	private final static double ONE_MILLION = 1000000;
 	public  final static double MAX_WIDTH_SIMUL = ONE_MILLION;
 	public  final static double MAX_HEIGHT_SIMUL = ONE_MILLION;
@@ -27,16 +32,8 @@ public class Constants {
 	public  final static int X_DIRECTION = 0;
 	public  final static int Y_DIRECTION = 1;
 	
-	// p l a n e t  e a r t h //
-	public final static double DENSITY_AT_SEALEVEL = 1.204; // kg/(m^3)
-	public final static double g = 9.8013747; // m/(sec^2) Erdbeschleunigung, Äquator, Höhe Null, von Hand mit den verwendeten Werten für G und R und M berechnet
-	public final static double ESCAPE_VELOCITY_EARTH = 11186; // m/sec
-	//public final static double RADIUS_EARTH = 6378100; // earth´s mean radius in m
-	public final static double Mass_Earth = 5.974e24; // Erdmasse
-	public final static double First_Cosmical_Velocity = 7907; // erste kosmische Geschwindigkeit in m/s
-
     
-    //Medien - Dichte, Viskosität (kg/m³, Ns/m²) (20°C, Normaldruck)
+    //Medien - Dichte, Viskosität (kg/m³, Ns/m²) (20°C, Normaldruck):
 	  
     public final static double DENSITY_AIR                  = 1.204;
 	public final static double VISCOSITY_AIR                = 17.1e-6;
@@ -76,7 +73,8 @@ public class Constants {
 	public final static double DENSITY_RADON                = 9.73;     //Radon
    
     
-    //Körper - Cw-Werte
+    //Körper - Cw-Werte:
+
     public final static double Cw_SPHERE                    = 0.45;//
 	public final static double Cw_HALBKUGELSCHALE_KONKAV    = 1.35;   
  	public final static double Cw_HALBKUGELSCHALE_KONVEX    = 0.34;
@@ -92,8 +90,10 @@ public class Constants {
     public final static double Cw_STRÖMUNGSPROFIL           = 0.056;
 	public final static double Cw_AIRFOIL                   = 0.08;//  //Tragflügel
     public final static double Cw_GLEITSCHIRM               = 0.6;
-    
-    //Planet - Masse, Radius, Dichte (kg, m, kg/m³)
+
+
+    //Planet - Masse, Radius, Dichte (kg, m, kg/m³):
+
     public final static double MASS_EARTH               = 5.974e24;
     public final static double RADIUS_EARTH             = 6378100;
     public final static double DENSITY_EARTH            = 1.204;
@@ -115,6 +115,7 @@ public class Constants {
 
 
     //preset Bodys, density:
+
     public final static double DENSITY_POLYSTYRENE      = 15;
     public final static double DENSITY_IRON             = 7800;
     public final static double DENSITY_WOOD             = 500;
@@ -126,6 +127,7 @@ public class Constants {
 
 
     //preset Bodys, mass, volume, radius, area:
+
     public final static double MASS_PENGUIN             = 0;
     public final static double VOLUME_PENGUIN           = 0;
     public final static double AREA_PENGUIN             = 0;

@@ -107,6 +107,8 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jComboBoxPresetBody = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jBtOK = new javax.swing.JButton();
         jBtReset = new javax.swing.JButton();
 
@@ -121,64 +123,70 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jLblHeight.setText("Height:");
 
-        jTfHeight.setText("0");
+        jTfHeight.setToolTipText("Start height of the body referring to the ground level");
+        jTfHeight.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfHeightFocusGained(evt);
+            }
+        });
 
         jLblSpeed.setText("Speed:");
 
-        jTfSpeed.setText("0");
+        jTfSpeed.setToolTipText("Start speed of the body");
 
         jLblBeta.setText("Angle:");
 
-        jTfBeta.setText("0");
+        jTfBeta.setToolTipText("Start angle of the body concerning the x-axis");
 
         jLlbMassBody.setText("Mass:");
 
-        jTfMassBody.setText("0");
+        jTfMassBody.setToolTipText("Mass of the body (buoyancy, flow resistance, viscosity)");
 
         jLblVolumeBody.setText("Volume:");
 
-        jTfVolumeBody.setText("0");
+        jTfVolumeBody.setToolTipText("Volume of the body (buoyancy)");
 
         jLblCwBody.setText("Cw:");
 
-        jTfCwBody.setText("0");
+        jTfCwBody.setToolTipText("Cw of the body (flow resistance)");
 
         jLblAreaFlowBody.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLblAreaFlowBody.setText("Area affected by flow:");
+        jLblAreaFlowBody.setText("Area:");
 
-        jTfAreaAffected.setText("0");
+        jTfAreaAffected.setToolTipText("Area affected by flow (flow resistance)");
 
         jLblRhoFluid.setText("Density:");
 
-        jTfRhoFluid.setText("0");
+        jTfRhoFluid.setToolTipText("Density of the medium at ground level (buoyancy, flow resistance)");
 
         jLblEtaFluid.setText("Viscosity");
 
-        jTfEtaFluid.setText("0");
+        jTfEtaFluid.setToolTipText("Viscosity of the medium (viscosity)");
 
-        jLblRadiusPlanet.setText("Radius, Planet:");
+        jLblRadiusPlanet.setText("Radius (planet):");
 
-        jTfRadiusPlanet.setText("0");
+        jTfRadiusPlanet.setToolTipText("Radius of the planet (gravity)");
 
-        jLblMassPlanet.setText("Mass, Planet:");
+        jLblMassPlanet.setText("Mass (planet):");
 
-        jTfMassPlanet.setText("0");
+        jTfMassPlanet.setToolTipText("Mass of the planet (gravity)");
 
         jLblDt.setText("Integration interval:");
 
-        jTfDt.setText("0");
+        jTfDt.setToolTipText("Intervall used to integrate during the computation (important)");
 
         jLblRadiusBody.setText("Radius:");
 
-        jTfRadiusBody.setText("0");
+        jTfRadiusBody.setToolTipText("Radius of the body if sphere (viscosity)");
 
-        jLblProposedComputiingTime.setText("Proposed computing time:");
+        jLblProposedComputiingTime.setText("Computing time:");
 
-        jTfProposedComputingTime.setText("0");
+        jTfProposedComputingTime.setToolTipText("Maximum time the computing process should last (important)");
 
         jLblSpeed1.setText("Speed:");
 
         jCckBxBuoyancy.setText("Buoyancy");
+        jCckBxBuoyancy.setToolTipText("Buoyancy caused force (insert Density, Volume, Mass)");
         jCckBxBuoyancy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxBuoyancyActionPerformed(evt);
@@ -186,6 +194,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         });
 
         jCckBxFlowResistance.setText("Flow Resistance");
+        jCckBxFlowResistance.setToolTipText("Flow resistance caused force for all cases of turbulent flow (insert Cw, Area, Density, Mass)");
         jCckBxFlowResistance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxFlowResistanceActionPerformed(evt);
@@ -193,6 +202,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         });
 
         jCckBxGravity.setText("Gravity");
+        jCckBxGravity.setToolTipText("Gravity caused by a central potential and drawing of the planets shape (insert Radius (planet), Mass (planet))");
         jCckBxGravity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxGravityActionPerformed(evt);
@@ -200,6 +210,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         });
 
         jCckBxViscosity.setText("Viscosity");
+        jCckBxViscosity.setToolTipText("Viscosity caused force for laminar flow in cases of a sphere shaped body (insert Radius, Viscosity, Mass)");
         jCckBxViscosity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxViscosityActionPerformed(evt);
@@ -207,6 +218,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         });
 
         jCckBxSimpleGravity.setText("Simple Gravity");
+        jCckBxSimpleGravity.setToolTipText("Gravity caused by Earth acceleration location independent");
         jCckBxSimpleGravity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxSimpleGravityActionPerformed(evt);
@@ -240,14 +252,16 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLabelDimensionTime.setText("s");
 
         jCckBxComputeBackwards.setText("Compute backwards");
+        jCckBxComputeBackwards.setToolTipText("Simulating the movement backwards to get the correlating start parameters (insert end parameters, choose simple gravity)");
 
         jCckBxComputeDensity.setText("Compute density");
+        jCckBxComputeDensity.setToolTipText("Computing the height depending density of the atmosphere (choose Earth's atmosphere / air)");
 
         jLabelThrowingRange.setText("Throwing range:");
 
         jLabelDimensionRange.setText("m");
 
-        jTfThrowingRange.setText("0");
+        jTfThrowingRange.setToolTipText("The throwing range the user wants to reach (choose compute backwards)");
 
         jComboBoxPlanet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined planet", "Earth", "Moon", "Mars", "Mercur", "Venus" }));
         jComboBoxPlanet.addItemListener(new java.awt.event.ItemListener() {
@@ -260,6 +274,11 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jComboBoxMedium.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxMediumItemStateChanged(evt);
+            }
+        });
+        jComboBoxMedium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMediumActionPerformed(evt);
             }
         });
 
@@ -285,6 +304,10 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jLabel4.setText("Choose preset body:");
 
+        jLabel5.setText("Choose acting forces:");
+
+        jLabel6.setText("Choose options:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -297,131 +320,113 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                     .addComponent(jLblBeta)
                     .addComponent(jLlbMassBody)
                     .addComponent(jLblVolumeBody)
-                    .addComponent(jLblRadiusBody)
                     .addComponent(jLblSpeed)
-                    .addComponent(jLblAreaFlowBody)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jCckBxComputeDensity)
-                        .addComponent(jCckBxComputeBackwards)))
+                    .addComponent(jLblRadiusBody)
+                    .addComponent(jLblAreaFlowBody))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTfCwBody, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblProposedComputiingTime, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTfHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTfMassBody, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTfVolumeBody, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelDimensionHeight)
+                                            .addComponent(jLabelDimensionMass)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabelDimensionRadius, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabelDimensionVolume))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTfSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelDimensionSpeed))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTfBeta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelDimensionBeta))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTfAreaAffected, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelDimensionArea))
+                                    .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLblEtaFluid)
+                                            .addComponent(jLblMassPlanet)
+                                            .addComponent(jLblDt)
+                                            .addComponent(jLblRadiusPlanet)
+                                            .addComponent(jLblRhoFluid)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCckBxGravity)
+                            .addComponent(jCckBxFlowResistance)
+                            .addComponent(jCckBxBuoyancy)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTfMassPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelDimensionMassPlanet))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTfRadiusPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelDimensionRadiusPlanet))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTfEtaFluid, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelDimensionViscosity))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTfRhoFluid, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelDimensionDensity))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTfProposedComputingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelDimensionTime, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTfDt, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelDimensionInterval))
+                            .addComponent(jCckBxViscosity)
+                            .addComponent(jCckBxSimpleGravity))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(758, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxPresetBody, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxBody, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxMedium, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTfCwBody, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabelThrowingRange))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCckBxComputeBackwards)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jTfHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jTfMassBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jTfVolumeBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jLabelDimensionVolume)
-                                                                .addComponent(jLabelDimensionHeight)
-                                                                .addComponent(jLabelDimensionMass)))
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                            .addComponent(jTfSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(jLabelDimensionSpeed))
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                            .addComponent(jTfBeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(jLabelDimensionBeta)))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jLblEtaFluid)
-                                                        .addComponent(jLblMassPlanet)
-                                                        .addComponent(jLblDt)
-                                                        .addComponent(jLblRadiusPlanet)
-                                                        .addComponent(jLblRhoFluid)))
-                                                .addComponent(jLblProposedComputiingTime))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jTfAreaAffected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabelDimensionArea)
-                                            .addGap(136, 136, 136)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(93, 93, 93)
-                                        .addComponent(jLabelDimensionRadius)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(41, 41, 41)
-                                        .addComponent(jLabelThrowingRange)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTfThrowingRange, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelDimensionRange)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTfMassPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelDimensionMassPlanet))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTfRadiusPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelDimensionRadiusPlanet))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTfEtaFluid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelDimensionViscosity))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTfRhoFluid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelDimensionDensity))
-                                    .addComponent(jCckBxGravity)
-                                    .addComponent(jCckBxFlowResistance)
-                                    .addComponent(jCckBxBuoyancy)
-                                    .addComponent(jCckBxViscosity)
-                                    .addComponent(jCckBxSimpleGravity)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTfProposedComputingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelDimensionTime, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTfDt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabelDimensionInterval)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel1)
+                                .addComponent(jTfThrowingRange, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel4)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(jComboBoxPresetBody, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(5, 5, 5))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBoxBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(163, 163, 163))))
+                                .addComponent(jLabelDimensionRange))
+                            .addComponent(jCckBxComputeDensity))))
+                .addGap(163, 163, 163))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTfAreaAffected, jTfBeta, jTfCwBody, jTfDt, jTfEtaFluid, jTfHeight, jTfMassBody, jTfMassPlanet, jTfProposedComputingTime, jTfRadiusBody, jTfRadiusPlanet, jTfRhoFluid, jTfSpeed, jTfVolumeBody});
@@ -432,118 +437,115 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblHeight)
                             .addComponent(jLabelDimensionHeight))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblSpeed)
                             .addComponent(jLabelDimensionSpeed))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfBeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfBeta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblBeta)
                             .addComponent(jLabelDimensionBeta))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfMassBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfMassBody, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLlbMassBody)
                             .addComponent(jLabelDimensionMass))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfVolumeBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfVolumeBody, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblVolumeBody)
                             .addComponent(jLabelDimensionVolume)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTfRhoFluid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblRhoFluid)
-                                .addComponent(jLabelDimensionDensity))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLblEtaFluid)
-                                    .addComponent(jTfEtaFluid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelDimensionViscosity))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfRadiusPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblRadiusPlanet)
-                            .addComponent(jLabelDimensionRadiusPlanet))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfMassPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblMassPlanet)
-                            .addComponent(jLabelDimensionMassPlanet))
+                                    .addComponent(jTfEtaFluid, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelDimensionViscosity))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTfRadiusPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblRadiusPlanet)
+                                    .addComponent(jLabelDimensionRadiusPlanet))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTfMassPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblMassPlanet)
+                                    .addComponent(jLabelDimensionMassPlanet)
+                                    .addComponent(jComboBoxBody, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTfRhoFluid, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblRhoFluid)
+                                    .addComponent(jLabelDimensionDensity)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jComboBoxPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(17, 17, 17)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jComboBoxMedium, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLblDt)
-                            .addComponent(jTfDt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelDimensionInterval)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBoxBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jComboBoxPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBoxMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTfDt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDimensionInterval))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblCwBody)
+                    .addComponent(jTfCwBody, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfProposedComputingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblProposedComputiingTime)
+                    .addComponent(jLabelDimensionTime))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblCwBody)
-                            .addComponent(jTfCwBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfProposedComputingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblProposedComputiingTime)
-                            .addComponent(jLabelDimensionTime)
-                            .addComponent(jLabel4))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTfAreaAffected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCckBxBuoyancy)
-                                    .addComponent(jLabelDimensionArea)
-                                    .addComponent(jLblAreaFlowBody, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLblRadiusBody)
-                                    .addComponent(jCckBxFlowResistance)
-                                    .addComponent(jLabelDimensionRadius))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(jCckBxGravity)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCckBxViscosity)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jCckBxSimpleGravity)
-                                        .addContainerGap(24, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jCckBxComputeDensity)
-                                        .addGap(48, 48, 48))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(124, 124, 124)
-                                .addComponent(jLabelDimensionRange)
-                                .addContainerGap())))
+                            .addComponent(jCckBxBuoyancy)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCckBxFlowResistance)
+                        .addGap(1, 1, 1)
+                        .addComponent(jCckBxGravity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jCckBxComputeDensity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCckBxComputeBackwards)
+                        .addGap(12, 12, 12)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTfThrowingRange, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelDimensionRange)
+                        .addComponent(jLabelThrowingRange))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBoxPresetBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
+                        .addComponent(jCckBxViscosity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCckBxSimpleGravity)))
+                .addGap(34, 34, 34))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCckBxComputeBackwards)
-                    .addComponent(jLabelThrowingRange)
-                    .addComponent(jTfThrowingRange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jComboBoxPresetBody, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTfAreaAffected, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblAreaFlowBody, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDimensionArea))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblRadiusBody)
+                    .addComponent(jLabelDimensionRadius))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLblProposedComputiingTime, jTfAreaAffected, jTfBeta, jTfCwBody, jTfDt, jTfEtaFluid, jTfHeight, jTfMassBody, jTfMassPlanet, jTfProposedComputingTime, jTfRadiusBody, jTfRadiusPlanet, jTfRhoFluid, jTfSpeed, jTfVolumeBody});
@@ -569,12 +571,12 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtReset)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtOK)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jBtOK))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtOK, jBtReset});
@@ -645,9 +647,6 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
    }
 
 
-   if (Double.valueOf(jTfHeight.getText()) > 10*currentSetting.getR()){
-      jTfHeight.setText(String.valueOf(10*currentSetting.getR()));
-   }
    if (Double.valueOf(jTfHeight.getText()) < 0){
       jTfHeight.setText("0.0");
    }
@@ -694,11 +693,6 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
     if (Double.valueOf(jTfMassBody.getText()) < 0){
       jTfMassBody.setText("0.0");
    }
-   //if (Double.valueOf(jTfMassBody.getText()) > 0.1*currentSetting.getM()){
-   //   jTfMassBody.setText(String.valueOf(0.1*currentSetting.getM()));
-   //}
-// Achtung: sollte M = 0 sein, wird die Masse des Körpers automatisch auf Null gesetzt!!!
-// eventuell diese Grenze weglassen
 
 
    if (Double.valueOf(jTfVolumeBody.getText()) < 0){
@@ -1055,6 +1049,14 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
 
 }//GEN-LAST:event_jComboBoxPresetBodyItemStateChanged
 
+private void jTfHeightFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfHeightFocusGained
+
+}//GEN-LAST:event_jTfHeightFocusGained
+
+private void jComboBoxMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMediumActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_jComboBoxMediumActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1084,6 +1086,8 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelDimensionArea;
     private javax.swing.JLabel jLabelDimensionBeta;
     private javax.swing.JLabel jLabelDimensionDensity;

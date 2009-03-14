@@ -100,31 +100,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
         i = 0; // i >= number of movingBodies to draw, start from the beginning.
       } // end if
 
-      // TODO : @CT in every call to `myPaint()' this will be evaluated...
-      // moving the code to Analysis in the eventhandler of your combobox
-      // is best. then work with get and set to retrieve the value here.
-      // i was tempted to do it for you, but remembered, that you were working
-      // on stuff there. in order to make life easier for you i stopped.
-      switch(Analysis.getSelectedIndexJComboBoxAnimationSpeed()){
-        case 0: animationSpeed = 100;
-          break;
-        case 1: animationSpeed = 25;
-          break;
-        case 2: animationSpeed = 0; // if  trouble occurrs set to 5.
-          break;
-        default:
-          System.out.println("You should never be able to read this.");
-      } // end `switch'
 
-      // doesn´t work here: a thread a sleeps within thread b and catches the
-      // message for thread b. by the way it is clumsy -> see run method
-      // instead; otherwise fine.
-      // TODO: @CT feel free to delete this comment.
-//      try {
-//        Thread.sleep(animationSpeed);
-//      } catch (InterruptedException ex) {
-//        System.out.println("myPaint(): " + ex);
-//      }
+      // use currently chosen slider value as waiting time for the animation
+      animationSpeed = Analysis.getAnimationSpeedValue();
 
       // TODO: BE: B  draw a nice coordinate system.
       ScreenUtilities.drawCoordinateSystem(
@@ -135,7 +113,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
               jPnlDrawingPlane.getHeight());
 
       // TODO: BE: C  improve transformation.
-      g.drawOval((int) (xs.get(i).floatValue() * ScreenUtilities.scalingFactor - 
+      g.drawOval((int) (xs.get(i).floatValue() * ScreenUtilities.scalingFactor -
               guitest.Main.xMin * ScreenUtilities.scalingFactor +
               ScreenUtilities.ORIGIN_OFFSET),
               (int) (ScreenUtilities.SCREEN_HEIGHT -
@@ -211,6 +189,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
     physics.Setting tempSetting = UserInputNewParameters.currentSetting;
     double hTemp = 0.0;
     double angleTemp = 0.0;
+    double dt = tempSetting.getDt();
 
     // compute the potentially different height and angle
     if (!physics.Forces.isActingGravity()) {
@@ -223,7 +202,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
     guitest.Main.analysisUI.displayValues(
        tmp.getV(), tmp.getVx(), tmp.getVy(),
        tmp.getLocation(tempSetting).getX(), tmp.getLocation(tempSetting).getY(),
-       hTemp, tmp.getLocation(tempSetting).getRho(), tmp.getBeta(), angleTemp);
+       hTemp, tmp.getLocation(tempSetting).getRho(), tmp.getBeta(), angleTemp,
+       UI.Analysis.computeThrowingTime(i, dt));
 
   } // end `displayValuesOnAnalysisUI()'
 
