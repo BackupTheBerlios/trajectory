@@ -751,19 +751,25 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 }//GEN-LAST:event_jBtOKActionPerformed
 
 private void jCckBxBuoyancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxBuoyancyActionPerformed
-  // reading the values via the OK-button event handler is less error-prone.
+
 }//GEN-LAST:event_jCckBxBuoyancyActionPerformed
 
 private void jCckBxFlowResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxFlowResistanceActionPerformed
-  // reading the values via the OK-button event handler is less error-prone.
+      if (jCckBxViscosity.isSelected()){
+      jCckBxViscosity.setSelected(false);
+    }
 }//GEN-LAST:event_jCckBxFlowResistanceActionPerformed
 
 private void jCckBxGravityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxGravityActionPerformed
-  // reading the values via the OK-button event handler is less error-prone.
+    if (jCckBxSimpleGravity.isSelected()){
+      jCckBxSimpleGravity.setSelected(false);
+    }
 }//GEN-LAST:event_jCckBxGravityActionPerformed
 
 private void jCckBxViscosityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxViscosityActionPerformed
-  // reading the values via the OK-button event handler is less error-prone.
+    if (jCckBxFlowResistance.isSelected()){
+      jCckBxFlowResistance.setSelected(false);
+    }
 }//GEN-LAST:event_jCckBxViscosityActionPerformed
 
 private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -815,7 +821,9 @@ private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event
 }//GEN-LAST:event_formWindowOpened
 
 private void jCckBxSimpleGravityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxSimpleGravityActionPerformed
-  // reading the values via the OK-button event handler is less error-prone.
+    if (jCckBxGravity.isSelected()){
+      jCckBxGravity.setSelected(false);
+    }
 }//GEN-LAST:event_jCckBxSimpleGravityActionPerformed
 
 private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPlanetItemStateChanged
