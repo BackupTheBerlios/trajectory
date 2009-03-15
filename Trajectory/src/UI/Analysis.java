@@ -92,46 +92,46 @@ public class Analysis extends javax.swing.JFrame {
              }
            }
            if (dimension == 1){
-              format = new DecimalFormat("0.000000000000000");
+              format = new DecimalFormat("0.0##############");
            }
            if (dimension == 2){
-              format = new DecimalFormat("0.00000000000000");
+              format = new DecimalFormat("0.0#############");
            }
            if (dimension == 3){
-              format = new DecimalFormat("0.0000000000000");
+              format = new DecimalFormat("0.0############");
            }
            if (dimension == 4){
-              format = new DecimalFormat("0.000000000000");
+              format = new DecimalFormat("0.0###########");
            }
            if (dimension == 5){
-              format = new DecimalFormat("0.00000000000");
+              format = new DecimalFormat("0.0##########");
            }
            if (dimension == 6){
-              format = new DecimalFormat("0.0000000000");
+              format = new DecimalFormat("0.0#########");
            }
            if (dimension == 7){
-              format = new DecimalFormat("0.000000000");
+              format = new DecimalFormat("0.0########");
            }
            if (dimension == 8){
-              format = new DecimalFormat("0.00000000");
+              format = new DecimalFormat("0.0#######");
            }
            if (dimension == 9){
-              format = new DecimalFormat("0.0000000");
+              format = new DecimalFormat("0.0######");
            }
            if (dimension == 10){
-              format = new DecimalFormat("0.000000");
+              format = new DecimalFormat("0.0#####");
            }
            if (dimension == 11){
-              format = new DecimalFormat("0.00000");
+              format = new DecimalFormat("0.0####");
            }
            if (dimension == 12){
-              format = new DecimalFormat("0.0000");
+              format = new DecimalFormat("0.0###");
            }
            if (dimension == 13){
-              format = new DecimalFormat("0.000");
+              format = new DecimalFormat("0.0##");
            }
            if (dimension == 14){
-              format = new DecimalFormat("0.00");
+              format = new DecimalFormat("0.0#");
            }
            if (dimension == 15){
               format = new DecimalFormat("0.0");
@@ -145,7 +145,7 @@ public class Analysis extends javax.swing.JFrame {
             format = new DecimalFormat("0.0");
            }
            else{
-            format = new DecimalFormat("0.000000000000000");
+            format = new DecimalFormat("0.0##############");
            }
          }
          return format;
@@ -492,114 +492,176 @@ public class Analysis extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analysis");
+        setResizable(false);
 
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 11));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1024, 150));
         jTabbedPane1.setRequestFocusEnabled(false);
 
         jTfHeightStart.setEditable(false);
+        jTfHeightStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfHeightStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfHeightStart.setToolTipText("Start height of the body referring to the ground level");
 
         jTfSpeedStart.setEditable(false);
+        jTfSpeedStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfSpeedStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfSpeedStart.setToolTipText("Start speed of the body");
 
         jTfAngleStart.setEditable(false);
+        jTfAngleStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfAngleStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfAngleStart.setToolTipText("Start angle of the body concerning the x-axis");
 
+        jLabelSpeed.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelSpeed.setText("Speed:");
 
+        jLabelAngle.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelAngle.setText("Angle:");
 
+        jLabelHeight.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelHeight.setText("Height:");
 
+        jLabelMass.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelMass.setText("Mass:");
 
+        jLabelVolume.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelVolume.setText("Volume:");
 
         jTfVolumeStart.setEditable(false);
+        jTfVolumeStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfVolumeStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfVolumeStart.setToolTipText("Volume of the body");
 
+        jLabelCw.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelCw.setText("Cw:");
 
         jTfCwStart.setEditable(false);
+        jTfCwStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfCwStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfCwStart.setToolTipText("Cw of the body");
 
+        jLblAreaFlowBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblAreaFlowBody.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLblAreaFlowBody.setText("Area:");
 
         jTfAreaAffectedStart.setEditable(false);
+        jTfAreaAffectedStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfAreaAffectedStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfAreaAffectedStart.setToolTipText("Area affected by flow");
 
+        jLblRadiusBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRadiusBody.setText("Radius:");
 
         jTfRadiusBodyStart.setEditable(false);
+        jTfRadiusBodyStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfRadiusBodyStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRadiusBodyStart.setToolTipText("Radius of the body if sphere");
 
+        jLabelDimensionArea.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionArea.setText("m²");
 
+        jLabelDimensionRadius.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionRadius.setText("m");
 
         jTfMassBodyStart.setEditable(false);
+        jTfMassBodyStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfMassBodyStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfMassBodyStart.setToolTipText("Mass of the body");
 
+        jLabelDimensionHeight.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionHeight.setText("m");
 
+        jLabelDimensionSpeed.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionSpeed.setText("m/s");
 
+        jLabelDimensionBeta.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionBeta.setText("°");
 
+        jLabelDimensionMass.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionMass.setText("kg");
 
+        jLabelDimensionVolume.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionVolume.setText("m³");
 
+        jLblRhoFluid.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRhoFluid.setText("Density:");
 
+        jLblEtaFluid.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblEtaFluid.setText("Viscosity");
 
         jTfRhoFluidStart.setEditable(false);
+        jTfRhoFluidStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfRhoFluidStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRhoFluidStart.setToolTipText("Density of the medium at ground level");
 
         jTfEtaFluidStart.setEditable(false);
+        jTfEtaFluidStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfEtaFluidStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfEtaFluidStart.setToolTipText("Viscosity of the medium");
 
+        jLabelDimensionDensity.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionDensity.setText("kg/m³");
 
+        jLabelDimensionViscosity.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionViscosity.setText("Ns/m²");
 
+        jLblRadiusPlanet.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRadiusPlanet.setText("Radius (planet):");
 
+        jLblMassPlanet.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblMassPlanet.setText("Mass (planet):");
 
+        jLblDt.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblDt.setText("Integration interval:");
 
+        jLblProposedComputiingTime.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblProposedComputiingTime.setText("Computing time:");
 
         jTfProposedComputingTimeStart.setEditable(false);
+        jTfProposedComputingTimeStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfProposedComputingTimeStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfProposedComputingTimeStart.setToolTipText("Maximum time the computing process should last");
 
         jTfDtStart.setEditable(false);
+        jTfDtStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfDtStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfDtStart.setToolTipText("Intervall used to integrate during the computation");
 
         jTfMassPlanetStart.setEditable(false);
+        jTfMassPlanetStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfMassPlanetStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfMassPlanetStart.setToolTipText("Mass of the planet");
 
         jTfRadiusPlanetStart.setEditable(false);
+        jTfRadiusPlanetStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfRadiusPlanetStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRadiusPlanetStart.setToolTipText("Radius of the planet");
 
+        jLabelDimensionRadiusPlanet.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionRadiusPlanet.setText("m");
 
+        jLabelDimensionMassPlanet.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionMassPlanet.setText("kg");
 
+        jLabelDimensionInterval.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionInterval.setText("s");
 
+        jLabelDimensionTime.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionTime.setText("s");
 
+        jLabelThrowingRange.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelThrowingRange.setText("Throwing range:");
 
+        jLabelDimensionRange.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionRange.setText("m");
 
         jTfThrowingRangeStart.setEditable(false);
+        jTfThrowingRangeStart.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfThrowingRangeStart.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfThrowingRangeStart.setToolTipText("The throwing range the user wants to reach");
 
+        jCckBxBuoyancyStart.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxBuoyancyStart.setText("Buoyancy");
         jCckBxBuoyancyStart.setToolTipText("Buoyancy caused force");
         jCckBxBuoyancyStart.addActionListener(new java.awt.event.ActionListener() {
@@ -608,6 +670,7 @@ public class Analysis extends javax.swing.JFrame {
             }
         });
 
+        jCckBxFlowResistanceStart.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxFlowResistanceStart.setText("Flow resistance");
         jCckBxFlowResistanceStart.setToolTipText("Flow resistance caused force for all cases of turbulent flow");
         jCckBxFlowResistanceStart.addActionListener(new java.awt.event.ActionListener() {
@@ -616,6 +679,7 @@ public class Analysis extends javax.swing.JFrame {
             }
         });
 
+        jCckBxGravityStart.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxGravityStart.setText("Gravity");
         jCckBxGravityStart.setToolTipText("Gravity caused by a central potential and drawing of the planets shape");
         jCckBxGravityStart.addActionListener(new java.awt.event.ActionListener() {
@@ -624,6 +688,7 @@ public class Analysis extends javax.swing.JFrame {
             }
         });
 
+        jCckBxViscosityStart.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxViscosityStart.setText("Viscosity");
         jCckBxViscosityStart.setToolTipText("Viscosity caused force for laminar flow in cases of a sphere shaped body");
         jCckBxViscosityStart.addActionListener(new java.awt.event.ActionListener() {
@@ -632,6 +697,7 @@ public class Analysis extends javax.swing.JFrame {
             }
         });
 
+        jCckBxSimpleGravityStart.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxSimpleGravityStart.setText("Simple gravity");
         jCckBxSimpleGravityStart.setToolTipText("Gravity caused by Earth acceleration location independent");
         jCckBxSimpleGravityStart.addActionListener(new java.awt.event.ActionListener() {
@@ -640,14 +706,18 @@ public class Analysis extends javax.swing.JFrame {
             }
         });
 
+        jCckBxComputeDensityStart.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxComputeDensityStart.setText("Compute density");
         jCckBxComputeDensityStart.setToolTipText("Computing the height depending density of the atmosphere");
 
+        jCckBxComputeBackwardsStart.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxComputeBackwardsStart.setText("Compute backwards");
         jCckBxComputeBackwardsStart.setToolTipText("Simulating the movement backwards to get the correlating start parameters");
 
+        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel39.setText("Acting forces:");
 
+        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel40.setText("Chosen options:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -700,7 +770,7 @@ public class Analysis extends javax.swing.JFrame {
                     .addComponent(jLabelDimensionRadiusPlanet)
                     .addComponent(jLabelDimensionViscosity)
                     .addComponent(jLabelDimensionDensity)
-                    .addComponent(jLabelDimensionRadius, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(jLabelDimensionRadius, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(jLabelDimensionArea))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -724,11 +794,11 @@ public class Analysis extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabelDimensionRange)
-                                        .addComponent(jLabelDimensionTime, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                        .addComponent(jLabelDimensionTime, javax.swing.GroupLayout.DEFAULT_SIZE, 11, Short.MAX_VALUE)
                                         .addComponent(jLabelDimensionInterval)))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jTfThrowingRangeStart, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(33, 33, 33))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel40)
@@ -863,83 +933,126 @@ public class Analysis extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Start data", jPanel2);
 
-        jLabel1.setText("v:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel1.setText("V:");
 
         jTfV.setEditable(false);
+        jTfV.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfV.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfV.setToolTipText("Current velocity");
 
-        jLabel2.setText("vx:");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel2.setText("Vx:");
 
         jTfVx.setEditable(false);
+        jTfVx.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfVx.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfVx.setToolTipText("Current velocity's X-component");
 
-        jLabel3.setText("vy:");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel3.setText("Vy:");
 
         jTfVy.setEditable(false);
+        jTfVy.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfVy.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfVy.setToolTipText("Current velocity's Y-component");
 
-        jLabel4.setText("x:");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel4.setText("X:");
 
         jTfX.setEditable(false);
+        jTfX.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfX.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfX.setToolTipText("Current X-coordinate of the body");
 
-        jLabel5.setText("y:");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel5.setText("Y:");
 
         jTfY.setEditable(false);
+        jTfY.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfY.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfY.setToolTipText("Current Y-coordinate of the body");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel6.setText("Height:");
 
         jTfHeight.setEditable(false);
+        jTfHeight.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfHeight.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfHeight.setToolTipText("Current height of the body referring to the ground");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel8.setText("Density:");
 
         jTfDensity.setEditable(false);
+        jTfDensity.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfDensity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfDensity.setToolTipText("Density of the medium at the current location");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel9.setText("Angle(ground):");
 
         jTfAngleGround.setEditable(false);
+        jTfAngleGround.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfAngleGround.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfAngleGround.setToolTipText("Angle of the moving direction referring to the ground");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel10.setText("Angle(x-axis):");
 
         jTfAngleXAxis.setEditable(false);
+        jTfAngleXAxis.setFont(new java.awt.Font("Arial", 0, 11));
+        jTfAngleXAxis.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfAngleXAxis.setToolTipText("Angle of the moving direction referring to the X-axis");
 
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel25.setText("Animation speed:");
 
         jSliderAnimationSpeed.setMaximum(200);
         jSliderAnimationSpeed.setValue(100);
 
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel26.setText("slow");
 
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel27.setText("fast");
 
         jTfThrowingTime.setEditable(false);
+        jTfThrowingTime.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfThrowingTime.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfThrowingTime.setToolTipText("Current time the drawn movement lasts");
 
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel28.setText("Throwing time:");
 
+        jLabel29.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel29.setText("s");
 
+        jLabel30.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel30.setText("m/s");
 
+        jLabel31.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel31.setText("m/s");
 
+        jLabel32.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel32.setText("m/s");
 
+        jLabel33.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel33.setText("m");
 
+        jLabel34.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel34.setText("m");
 
+        jLabel35.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel35.setText("m");
 
+        jLabel36.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel36.setText("kg/m³");
 
+        jLabel37.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel37.setText("°");
 
+        jLabel38.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel38.setText("°");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -994,13 +1107,13 @@ public class Analysis extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel34)
                                             .addComponent(jLabel35))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel10)
                                             .addComponent(jLabel9)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel33)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                                         .addComponent(jLabel8)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1100,42 +1213,64 @@ public class Analysis extends javax.swing.JFrame {
         jTabbedPane1.addTab("Present data ", jPanel1);
 
         jTextFieldhMax.setEditable(false);
+        jTextFieldhMax.setFont(new java.awt.Font("Arial", 0, 11));
+        jTextFieldhMax.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldhMax.setToolTipText("Maximum height of the body referring to the ground level");
 
         jTextFieldhMin.setEditable(false);
+        jTextFieldhMin.setFont(new java.awt.Font("Arial", 0, 11));
+        jTextFieldhMin.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldhMin.setToolTipText("Minimum height of the body referring to the ground level");
 
         jTextFieldthrowingRange.setEditable(false);
+        jTextFieldthrowingRange.setFont(new java.awt.Font("Arial", 0, 11));
+        jTextFieldthrowingRange.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldthrowingRange.setToolTipText("Reached throwing range");
 
         jTextFieldhEnd.setEditable(false);
+        jTextFieldhEnd.setFont(new java.awt.Font("Arial", 0, 11));
+        jTextFieldhEnd.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldhEnd.setToolTipText("Final height of the body referring to the ground level");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel7.setText("Height maximum:");
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel11.setText("Height minimum:");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel12.setText("Throwing range:");
 
         jTextFieldvEnd.setEditable(false);
+        jTextFieldvEnd.setFont(new java.awt.Font("Arial", 0, 11));
+        jTextFieldvEnd.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldvEnd.setToolTipText("Final speed of the body");
 
         jTextFieldbetaEnd.setEditable(false);
+        jTextFieldbetaEnd.setFont(new java.awt.Font("Arial", 0, 11));
+        jTextFieldbetaEnd.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldbetaEnd.setToolTipText("Final angle of the moving direction referring to the ground");
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel13.setText("Height end:");
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel14.setText("Speed end:");
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel15.setText("Angle end:");
 
         jTextFieldthrowingTime.setEditable(false);
+        jTextFieldthrowingTime.setFont(new java.awt.Font("Arial", 0, 11));
+        jTextFieldthrowingTime.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldthrowingTime.setToolTipText("Overall time the computed movement lasts");
         jTextFieldthrowingTime.setMinimumSize(new java.awt.Dimension(110, 20));
         jTextFieldthrowingTime.setPreferredSize(new java.awt.Dimension(110, 20));
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel16.setText("Throwing time:");
 
+        jButtonSetFinalValuesToStartParameters.setFont(new java.awt.Font("Tahoma", 1, 11));
         jButtonSetFinalValuesToStartParameters.setText("Set");
         jButtonSetFinalValuesToStartParameters.setToolTipText("Gives the opportunity to check the computed start parameters in cases of backwards computation");
         jButtonSetFinalValuesToStartParameters.addActionListener(new java.awt.event.ActionListener() {
@@ -1144,27 +1279,39 @@ public class Analysis extends javax.swing.JFrame {
             }
         });
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel17.setText("Set final values as new start parameters:");
 
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel18.setText("s");
 
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel19.setText("m");
 
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel20.setText("m/s");
 
+        jLabel21.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel21.setText("°");
 
+        jLabel22.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel22.setText("m");
 
+        jLabel23.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel23.setText("m");
 
+        jLabel24.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel24.setText("m");
 
         jTextFieldSpeedMaximum.setEditable(false);
+        jTextFieldSpeedMaximum.setFont(new java.awt.Font("Arial", 0, 11));
+        jTextFieldSpeedMaximum.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldSpeedMaximum.setToolTipText("Maximum speed the body reached");
 
+        jLabel41.setFont(new java.awt.Font("Arial", 1, 11));
         jLabel41.setText("m/s");
 
+        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel42.setText("Speed maximum:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1206,7 +1353,7 @@ public class Analysis extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20)
                     .addComponent(jLabel21)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE))
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
@@ -1283,7 +1430,7 @@ public class Analysis extends javax.swing.JFrame {
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSetFinalValuesToStartParameters)))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Final values", jPanel4);
@@ -1294,11 +1441,11 @@ public class Analysis extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1127, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

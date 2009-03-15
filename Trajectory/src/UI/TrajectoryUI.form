@@ -3,6 +3,11 @@
 <Form version="1.5" maxVersion="1.6" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="jMenuBarComponentHidden"/>
       </Events>
@@ -11,6 +16,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
             <Property name="delay" type="int" value="100"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuFile.getPopupMenu().setLightWeightPopupEnabled(false);"/>
@@ -18,7 +26,10 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemOpenFile">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Open file..."/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Open file ..."/>
                 <Property name="toolTipText" type="java.lang.String" value="Open a file to read data."/>
                 <Property name="actionCommand" type="java.lang.String" value="OpenFile"/>
               </Properties>
@@ -28,6 +39,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemClose">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
                 <Property name="label" type="java.lang.String" value="Exit"/>
               </Properties>
             </MenuItem>
@@ -36,6 +50,9 @@
         <Menu class="javax.swing.JMenu" name="jMenuSet">
           <Properties>
             <Property name="text" type="java.lang.String" value="Set"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuSet.getPopupMenu().setLightWeightPopupEnabled(false);"/>
@@ -43,6 +60,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSetNewParameters">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="New parameters ..."/>
               </Properties>
               <Events>
@@ -51,6 +71,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemLoadPresetFile">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Load preset file ..."/>
               </Properties>
               <Events>
@@ -63,6 +86,9 @@
         <Menu class="javax.swing.JMenu" name="jMenuComputation">
           <Properties>
             <Property name="text" type="java.lang.String" value="Computation"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuComputation.getPopupMenu().setLightWeightPopupEnabled(false);"/>
@@ -70,6 +96,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCompute">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Compute"/>
               </Properties>
               <Events>
@@ -78,6 +107,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemReset">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Reset"/>
                 <Property name="toolTipText" type="java.lang.String" value="Stops the animation and clears the screen."/>
               </Properties>
@@ -90,6 +122,9 @@
         <Menu class="javax.swing.JMenu" name="jMenuAnimation">
           <Properties>
             <Property name="text" type="java.lang.String" value="Animation"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuAnimation.getPopupMenu().setLightWeightPopupEnabled(false);"/>
@@ -97,6 +132,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemStartAnimation">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Start animation"/>
               </Properties>
               <Events>
@@ -105,6 +143,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemStopAnimation">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Stop animation"/>
               </Properties>
               <Events>
@@ -116,6 +157,9 @@
         <Menu class="javax.swing.JMenu" name="jMenuEdit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jMenuEdit.getPopupMenu().setLightWeightPopupEnabled(false);"/>
@@ -123,6 +167,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMeasureMode">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Measure mode"/>
               </Properties>
               <Events>

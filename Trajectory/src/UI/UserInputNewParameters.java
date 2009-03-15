@@ -113,6 +113,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jBtReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -120,9 +121,13 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parameters:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(948, 334));
 
+        jLblHeight.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblHeight.setText("Height:");
 
+        jTfHeight.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfHeight.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfHeight.setToolTipText("Start height of the body referring to the ground level");
         jTfHeight.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -130,61 +135,101 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jLblSpeed.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblSpeed.setText("Speed:");
 
+        jTfSpeed.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfSpeed.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfSpeed.setToolTipText("Start speed of the body");
 
+        jLblBeta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblBeta.setText("Angle:");
 
+        jTfBeta.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfBeta.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfBeta.setToolTipText("Start angle of the body concerning the x-axis");
 
+        jLlbMassBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLlbMassBody.setText("Mass:");
 
+        jTfMassBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfMassBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfMassBody.setToolTipText("Mass of the body (buoyancy, flow resistance, viscosity)");
 
+        jLblVolumeBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblVolumeBody.setText("Volume:");
 
+        jTfVolumeBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfVolumeBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfVolumeBody.setToolTipText("Volume of the body (buoyancy)");
 
+        jLblCwBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblCwBody.setText("Cw:");
 
+        jTfCwBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfCwBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfCwBody.setToolTipText("Cw of the body (flow resistance)");
 
+        jLblAreaFlowBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblAreaFlowBody.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLblAreaFlowBody.setText("Area:");
 
+        jTfAreaAffected.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfAreaAffected.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfAreaAffected.setToolTipText("Area affected by flow (flow resistance)");
 
+        jLblRhoFluid.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblRhoFluid.setText("Density:");
 
+        jTfRhoFluid.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfRhoFluid.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRhoFluid.setToolTipText("Density of the medium at ground level (buoyancy, flow resistance)");
 
+        jLblEtaFluid.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblEtaFluid.setText("Viscosity");
 
+        jTfEtaFluid.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfEtaFluid.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfEtaFluid.setToolTipText("Viscosity of the medium (viscosity)");
 
+        jLblRadiusPlanet.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblRadiusPlanet.setText("Radius (planet):");
 
+        jTfRadiusPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfRadiusPlanet.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRadiusPlanet.setToolTipText("Radius of the planet (gravity)");
 
+        jLblMassPlanet.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblMassPlanet.setText("Mass (planet):");
 
+        jTfMassPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfMassPlanet.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfMassPlanet.setToolTipText("Mass of the planet (gravity)");
 
+        jLblDt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblDt.setText("Integration interval:");
 
+        jTfDt.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfDt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfDt.setToolTipText("Intervall used to integrate during the computation (important)");
 
+        jLblRadiusBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblRadiusBody.setText("Radius:");
 
+        jTfRadiusBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfRadiusBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRadiusBody.setToolTipText("Radius of the body if sphere (viscosity)");
 
+        jLblProposedComputiingTime.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblProposedComputiingTime.setText("Computing time:");
 
+        jTfProposedComputingTime.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfProposedComputingTime.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfProposedComputingTime.setToolTipText("Maximum time the computing process should last (important)");
 
         jLblSpeed1.setText("Speed:");
 
+        jCckBxBuoyancy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxBuoyancy.setText("Buoyancy");
         jCckBxBuoyancy.setToolTipText("Buoyancy caused force (insert Density, Volume, Mass)");
         jCckBxBuoyancy.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +238,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jCckBxFlowResistance.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxFlowResistance.setText("Flow resistance");
         jCckBxFlowResistance.setToolTipText("Flow resistance caused force for all cases of turbulent flow (insert Cw, Area, Density, Mass)");
         jCckBxFlowResistance.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +247,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jCckBxGravity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxGravity.setText("Gravity");
         jCckBxGravity.setToolTipText("Gravity caused by a central potential and drawing of the planets shape (insert Radius (planet), Mass (planet))");
         jCckBxGravity.addActionListener(new java.awt.event.ActionListener() {
@@ -209,6 +256,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jCckBxViscosity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxViscosity.setText("Viscosity");
         jCckBxViscosity.setToolTipText("Viscosity caused force for laminar flow in cases of a sphere shaped body (insert Radius, Viscosity, Mass)");
         jCckBxViscosity.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +265,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jCckBxSimpleGravity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxSimpleGravity.setText("Simple gravity");
         jCckBxSimpleGravity.setToolTipText("Gravity caused by Earth acceleration location independent");
         jCckBxSimpleGravity.addActionListener(new java.awt.event.ActionListener() {
@@ -225,44 +274,65 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jLabelDimensionHeight.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionHeight.setText("m");
 
+        jLabelDimensionSpeed.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionSpeed.setText("m/s");
 
+        jLabelDimensionBeta.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionBeta.setText("°");
 
+        jLabelDimensionMass.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionMass.setText("kg");
 
+        jLabelDimensionVolume.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionVolume.setText("m³");
 
+        jLabelDimensionArea.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionArea.setText("m²");
 
+        jLabelDimensionRadius.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionRadius.setText("m");
 
+        jLabelDimensionDensity.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionDensity.setText("kg/m³");
 
+        jLabelDimensionViscosity.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionViscosity.setText("Ns/m²");
 
+        jLabelDimensionRadiusPlanet.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionRadiusPlanet.setText("m");
 
+        jLabelDimensionMassPlanet.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionMassPlanet.setText("kg");
 
+        jLabelDimensionInterval.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionInterval.setText("s");
 
+        jLabelDimensionTime.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionTime.setText("s");
 
+        jCckBxComputeBackwards.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxComputeBackwards.setText("Compute backwards");
         jCckBxComputeBackwards.setToolTipText("Simulating the movement backwards to get the correlating start parameters (insert end parameters, choose simple gravity)");
 
+        jCckBxComputeDensity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxComputeDensity.setText("Compute density");
         jCckBxComputeDensity.setToolTipText("Computing the height depending density of the atmosphere (choose Earth's atmosphere / air)");
 
+        jLabelThrowingRange.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelThrowingRange.setText("Throwing range:");
 
+        jLabelDimensionRange.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabelDimensionRange.setText("m");
 
+        jTfThrowingRange.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfThrowingRange.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfThrowingRange.setToolTipText("The throwing range the user wants to reach (choose compute backwards)");
 
+        jComboBoxPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jComboBoxPlanet.setMaximumRowCount(10);
         jComboBoxPlanet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined planet", "Earth", "Moon", "Mars", "Mercur", "Venus" }));
         jComboBoxPlanet.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -270,6 +340,8 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jComboBoxMedium.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jComboBoxMedium.setMaximumRowCount(10);
         jComboBoxMedium.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined medium", "Air", "Helium", "Hydrogen", "Water", "Glycerin", "Paraffin", "Mercury", "Honey" }));
         jComboBoxMedium.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -282,6 +354,8 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jComboBoxBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jComboBoxBody.setMaximumRowCount(10);
         jComboBoxBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere", "Cube", "Airfoil", "Parachute", "Human", "Penguin" }));
         jComboBoxBody.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -289,12 +363,17 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Choose planet:");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Choose medium:");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Choose body:");
 
+        jComboBoxPresetBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jComboBoxPresetBody.setMaximumRowCount(10);
         jComboBoxPresetBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere of polystyrene", "Sphere of wood", "Sphere of iron", "Helium balloon", "Human with parachute", "Small penguin", "Average human" }));
         jComboBoxPresetBody.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -302,10 +381,13 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Choose preset body:");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Choose acting forces:");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Choose options:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -388,7 +470,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTfProposedComputingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelDimensionTime, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                                .addComponent(jLabelDimensionTime, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTfDt, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -405,10 +487,10 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxPresetBody, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxBody, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxMedium, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBoxPresetBody, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxBody, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxMedium, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -422,7 +504,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelDimensionRange))
                             .addComponent(jCckBxComputeDensity))))
-                .addGap(163, 163, 163))
+                .addGap(186, 186, 186))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTfAreaAffected, jTfBeta, jTfCwBody, jTfDt, jTfEtaFluid, jTfHeight, jTfMassBody, jTfMassPlanet, jTfProposedComputingTime, jTfRadiusBody, jTfRadiusPlanet, jTfRhoFluid, jTfSpeed, jTfVolumeBody});
@@ -542,7 +624,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                             .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblRadiusBody)
                             .addComponent(jLabelDimensionRadius))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLblProposedComputiingTime, jTfAreaAffected, jTfBeta, jTfCwBody, jTfDt, jTfEtaFluid, jTfHeight, jTfMassBody, jTfMassPlanet, jTfProposedComputingTime, jTfRadiusBody, jTfRadiusPlanet, jTfRhoFluid, jTfSpeed, jTfVolumeBody});
@@ -566,28 +648,30 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(jBtReset)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtOK))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 995, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtOK, jBtReset});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtReset)
-                    .addComponent(jBtOK))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBtOK)
+                    .addComponent(jBtReset))
+                .addContainerGap())
         );
 
         pack();

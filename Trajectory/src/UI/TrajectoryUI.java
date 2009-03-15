@@ -299,6 +299,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
             .addGap(0, 273, Short.MAX_VALUE)
         );
 
+        jMenuBar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuBar.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
                 jMenuBarComponentHidden(evt);
@@ -308,8 +309,10 @@ public class TrajectoryUI extends javax.swing.JFrame {
         jMenuFile.getPopupMenu().setLightWeightPopupEnabled(false);
         jMenuFile.setText("File");
         jMenuFile.setDelay(100);
+        jMenuFile.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
-        jMenuItemOpenFile.setText("Open file...");
+        jMenuItemOpenFile.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jMenuItemOpenFile.setText("Open file ...");
         jMenuItemOpenFile.setToolTipText("Open a file to read data.");
         jMenuItemOpenFile.setActionCommand("OpenFile");
         jMenuItemOpenFile.addActionListener(new java.awt.event.ActionListener() {
@@ -319,6 +322,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
         });
         jMenuFile.add(jMenuItemOpenFile);
 
+        jMenuItemClose.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuItemClose.setLabel("Exit");
         jMenuFile.add(jMenuItemClose);
 
@@ -326,7 +330,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
         jMenuSet.getPopupMenu().setLightWeightPopupEnabled(false);
         jMenuSet.setText("Set");
+        jMenuSet.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
+        jMenuItemSetNewParameters.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuItemSetNewParameters.setText("New parameters ...");
         jMenuItemSetNewParameters.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,6 +341,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
         });
         jMenuSet.add(jMenuItemSetNewParameters);
 
+        jMenuItemLoadPresetFile.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuItemLoadPresetFile.setText("Load preset file ...");
         jMenuItemLoadPresetFile.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
@@ -352,7 +359,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
         jMenuComputation.getPopupMenu().setLightWeightPopupEnabled(false);
         jMenuComputation.setText("Computation");
+        jMenuComputation.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
+        jMenuItemCompute.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuItemCompute.setText("Compute");
         jMenuItemCompute.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,6 +370,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
         });
         jMenuComputation.add(jMenuItemCompute);
 
+        jMenuItemReset.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuItemReset.setText("Reset");
         jMenuItemReset.setToolTipText("Stops the animation and clears the screen.");
         jMenuItemReset.addActionListener(new java.awt.event.ActionListener() {
@@ -374,7 +384,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
         jMenuAnimation.getPopupMenu().setLightWeightPopupEnabled(false);
         jMenuAnimation.setText("Animation");
+        jMenuAnimation.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
+        jMenuItemStartAnimation.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuItemStartAnimation.setText("Start animation");
         jMenuItemStartAnimation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,6 +395,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
         });
         jMenuAnimation.add(jMenuItemStartAnimation);
 
+        jMenuItemStopAnimation.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuItemStopAnimation.setText("Stop animation");
         jMenuItemStopAnimation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,7 +408,9 @@ public class TrajectoryUI extends javax.swing.JFrame {
 
         jMenuEdit.getPopupMenu().setLightWeightPopupEnabled(false);
         jMenuEdit.setText("Edit");
+        jMenuEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
+        jMenuItemMeasureMode.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenuItemMeasureMode.setText("Measure mode");
         jMenuItemMeasureMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -208,11 +208,11 @@ public class EulerIntegration {
 
         if (Forces.isActingGravity() == false) {
           TrajectoryUI.dialog.jTextAreaComputationReport.append(
-                  tmpMB.getLocation(setting).getY() + " m" +
+                  String.valueOf(UI.Analysis.computeValueFormat(tmpMB.getLocation(setting).getY()).format(tmpMB.getLocation(setting).getY())).replace(',','.') + " m" +
                   System.getProperty("line.separator"));
         } else {
           TrajectoryUI.dialog.jTextAreaComputationReport.append(
-                  tmpMB.getLocation(setting).getH() + " m" +
+                  String.valueOf(UI.Analysis.computeValueFormat(tmpMB.getLocation(setting).getH()).format(tmpMB.getLocation(setting).getH())).replace(',','.') + " m" +
                   System.getProperty("line.separator"));
         }
       } // end if
