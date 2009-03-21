@@ -14,6 +14,7 @@ package UI;
 
 import physics.Setting;
 import physics.Forces;
+import java.awt.Color;
 
 /**
  *
@@ -111,6 +112,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jBtOK = new javax.swing.JButton();
         jBtReset = new javax.swing.JButton();
+        jBtCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -123,7 +125,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parameters:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(948, 334));
 
-        jLblHeight.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblHeight.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblHeight.setText("Height:");
 
         jTfHeight.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -135,103 +137,160 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
-        jLblSpeed.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblSpeed.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblSpeed.setText("Speed:");
 
-        jTfSpeed.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfSpeed.setFont(new java.awt.Font("Arial", 0, 11));
         jTfSpeed.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfSpeed.setToolTipText("Start speed of the body");
 
-        jLblBeta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblBeta.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblBeta.setText("Angle:");
 
-        jTfBeta.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfBeta.setFont(new java.awt.Font("Arial", 0, 11));
         jTfBeta.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfBeta.setToolTipText("Start angle of the body concerning the x-axis");
 
-        jLlbMassBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLlbMassBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLlbMassBody.setText("Mass:");
 
         jTfMassBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfMassBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfMassBody.setToolTipText("Mass of the body (buoyancy, flow resistance, viscosity)");
+        jTfMassBody.setToolTipText("Mass of the body");
+        jTfMassBody.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfMassBodyFocusGained(evt);
+            }
+        });
 
-        jLblVolumeBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblVolumeBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblVolumeBody.setText("Volume:");
 
         jTfVolumeBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfVolumeBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfVolumeBody.setToolTipText("Volume of the body (buoyancy)");
+        jTfVolumeBody.setToolTipText("Volume of the body");
+        jTfVolumeBody.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfVolumeBodyFocusGained(evt);
+            }
+        });
 
-        jLblCwBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblCwBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblCwBody.setText("Cw:");
 
         jTfCwBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfCwBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfCwBody.setToolTipText("Cw of the body (flow resistance)");
+        jTfCwBody.setToolTipText("Cw of the body");
+        jTfCwBody.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfCwBodyFocusGained(evt);
+            }
+        });
 
-        jLblAreaFlowBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblAreaFlowBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblAreaFlowBody.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLblAreaFlowBody.setText("Area:");
 
         jTfAreaAffected.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfAreaAffected.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfAreaAffected.setToolTipText("Area affected by flow (flow resistance)");
+        jTfAreaAffected.setToolTipText("Area affected by flow");
+        jTfAreaAffected.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfAreaAffectedFocusGained(evt);
+            }
+        });
 
-        jLblRhoFluid.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblRhoFluid.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRhoFluid.setText("Density:");
 
         jTfRhoFluid.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfRhoFluid.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfRhoFluid.setToolTipText("Density of the medium at ground level (buoyancy, flow resistance)");
+        jTfRhoFluid.setToolTipText("Density of the medium at ground level");
+        jTfRhoFluid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfRhoFluidFocusGained(evt);
+            }
+        });
 
-        jLblEtaFluid.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblEtaFluid.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblEtaFluid.setText("Viscosity");
 
         jTfEtaFluid.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfEtaFluid.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfEtaFluid.setToolTipText("Viscosity of the medium (viscosity)");
+        jTfEtaFluid.setToolTipText("Viscosity of the medium");
+        jTfEtaFluid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfEtaFluidFocusGained(evt);
+            }
+        });
 
-        jLblRadiusPlanet.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblRadiusPlanet.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRadiusPlanet.setText("Radius (planet):");
 
         jTfRadiusPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfRadiusPlanet.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfRadiusPlanet.setToolTipText("Radius of the planet (gravity)");
+        jTfRadiusPlanet.setToolTipText("Radius of the planet");
+        jTfRadiusPlanet.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfRadiusPlanetFocusGained(evt);
+            }
+        });
 
-        jLblMassPlanet.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblMassPlanet.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblMassPlanet.setText("Mass (planet):");
 
         jTfMassPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfMassPlanet.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfMassPlanet.setToolTipText("Mass of the planet (gravity)");
+        jTfMassPlanet.setToolTipText("Mass of the planet");
+        jTfMassPlanet.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfMassPlanetFocusGained(evt);
+            }
+        });
 
-        jLblDt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblDt.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblDt.setText("Integration interval:");
 
+        jTfDt.setBackground(new java.awt.Color(0, 255, 255));
         jTfDt.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfDt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfDt.setToolTipText("Intervall used to integrate during the computation (important)");
+        jTfDt.setToolTipText("Intervall used to integrate during the computation");
+        jTfDt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfDtFocusGained(evt);
+            }
+        });
 
-        jLblRadiusBody.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblRadiusBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRadiusBody.setText("Radius:");
 
         jTfRadiusBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfRadiusBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfRadiusBody.setToolTipText("Radius of the body if sphere (viscosity)");
+        jTfRadiusBody.setToolTipText("Radius of the body if sphere");
+        jTfRadiusBody.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfRadiusBodyFocusGained(evt);
+            }
+        });
 
-        jLblProposedComputiingTime.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblProposedComputiingTime.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblProposedComputiingTime.setText("Computing time:");
 
+        jTfProposedComputingTime.setBackground(java.awt.Color.cyan);
         jTfProposedComputingTime.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfProposedComputingTime.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfProposedComputingTime.setToolTipText("Maximum time the computing process should last (important)");
+        jTfProposedComputingTime.setToolTipText("Maximum time the computing process should last");
+        jTfProposedComputingTime.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfProposedComputingTimeFocusGained(evt);
+            }
+        });
 
         jLblSpeed1.setText("Speed:");
 
         jCckBxBuoyancy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxBuoyancy.setText("Buoyancy");
-        jCckBxBuoyancy.setToolTipText("Buoyancy caused force (insert Density, Volume, Mass)");
+        jCckBxBuoyancy.setToolTipText("Buoyancy caused force");
         jCckBxBuoyancy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxBuoyancyActionPerformed(evt);
@@ -240,7 +299,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jCckBxFlowResistance.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxFlowResistance.setText("Flow resistance");
-        jCckBxFlowResistance.setToolTipText("Flow resistance caused force for all cases of turbulent flow (insert Cw, Area, Density, Mass)");
+        jCckBxFlowResistance.setToolTipText("Flow resistance caused force for all cases of turbulent flow");
         jCckBxFlowResistance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxFlowResistanceActionPerformed(evt);
@@ -249,16 +308,40 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jCckBxGravity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxGravity.setText("Gravity");
-        jCckBxGravity.setToolTipText("Gravity caused by a central potential and drawing of the planets shape (insert Radius (planet), Mass (planet))");
+        jCckBxGravity.setToolTipText("Gravity caused by a central potential and drawing of the planets shape");
+        jCckBxGravity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jCckBxGravityMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jCckBxGravityMouseReleased(evt);
+            }
+        });
+        jCckBxGravity.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jCckBxGravityMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jCckBxGravityMouseMoved(evt);
+            }
+        });
         jCckBxGravity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxGravityActionPerformed(evt);
             }
         });
+        jCckBxGravity.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jCckBxGravityFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jCckBxGravityFocusLost(evt);
+            }
+        });
 
         jCckBxViscosity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxViscosity.setText("Viscosity");
-        jCckBxViscosity.setToolTipText("Viscosity caused force for laminar flow in cases of a sphere shaped body (insert Radius, Viscosity, Mass)");
+        jCckBxViscosity.setToolTipText("Viscosity caused force for laminar flow in cases of a sphere shaped body");
         jCckBxViscosity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxViscosityActionPerformed(evt);
@@ -274,66 +357,77 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
-        jLabelDimensionHeight.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionHeight.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionHeight.setText("m");
 
-        jLabelDimensionSpeed.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionSpeed.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionSpeed.setText("m/s");
 
-        jLabelDimensionBeta.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionBeta.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionBeta.setText("°");
 
-        jLabelDimensionMass.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionMass.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionMass.setText("kg");
 
-        jLabelDimensionVolume.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionVolume.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionVolume.setText("m³");
 
-        jLabelDimensionArea.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionArea.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionArea.setText("m²");
 
-        jLabelDimensionRadius.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionRadius.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionRadius.setText("m");
 
-        jLabelDimensionDensity.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionDensity.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionDensity.setText("kg/m³");
 
-        jLabelDimensionViscosity.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionViscosity.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionViscosity.setText("Ns/m²");
 
-        jLabelDimensionRadiusPlanet.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionRadiusPlanet.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionRadiusPlanet.setText("m");
 
-        jLabelDimensionMassPlanet.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionMassPlanet.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionMassPlanet.setText("kg");
 
-        jLabelDimensionInterval.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionInterval.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionInterval.setText("s");
 
-        jLabelDimensionTime.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionTime.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionTime.setText("s");
 
         jCckBxComputeBackwards.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxComputeBackwards.setText("Compute backwards");
         jCckBxComputeBackwards.setToolTipText("Simulating the movement backwards to get the correlating start parameters (insert end parameters, choose simple gravity)");
+        jCckBxComputeBackwards.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCckBxComputeBackwardsActionPerformed(evt);
+            }
+        });
 
         jCckBxComputeDensity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxComputeDensity.setText("Compute density");
-        jCckBxComputeDensity.setToolTipText("Computing the height depending density of the atmosphere (choose Earth's atmosphere / air)");
+        jCckBxComputeDensity.setToolTipText("Computing the height depending density of the atmosphere (choose Earth's atmosphere or air)");
 
-        jLabelThrowingRange.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelThrowingRange.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelThrowingRange.setText("Throwing range:");
 
-        jLabelDimensionRange.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelDimensionRange.setFont(new java.awt.Font("Arial", 1, 11));
         jLabelDimensionRange.setText("m");
 
         jTfThrowingRange.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfThrowingRange.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfThrowingRange.setToolTipText("The throwing range the user wants to reach (choose compute backwards)");
+        jTfThrowingRange.setToolTipText("The throwing range the user wants to reach (compute backwards)");
+        jTfThrowingRange.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTfThrowingRangeFocusGained(evt);
+            }
+        });
 
         jComboBoxPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jComboBoxPlanet.setMaximumRowCount(10);
         jComboBoxPlanet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined planet", "Earth", "Moon", "Mars", "Mercur", "Venus" }));
+        jComboBoxPlanet.setToolTipText("Set Radius(planet) and Mass(planet)");
         jComboBoxPlanet.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxPlanetItemStateChanged(evt);
@@ -343,6 +437,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jComboBoxMedium.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jComboBoxMedium.setMaximumRowCount(10);
         jComboBoxMedium.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined medium", "Air", "Helium", "Hydrogen", "Water", "Glycerin", "Paraffin", "Mercury", "Honey" }));
+        jComboBoxMedium.setToolTipText("Set Density and Viscosity");
         jComboBoxMedium.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxMediumItemStateChanged(evt);
@@ -357,37 +452,39 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jComboBoxBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jComboBoxBody.setMaximumRowCount(10);
         jComboBoxBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere", "Cube", "Airfoil", "Parachute", "Human", "Penguin" }));
+        jComboBoxBody.setToolTipText("Set Cw");
         jComboBoxBody.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxBodyItemStateChanged(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel1.setText("Choose planet:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel2.setText("Choose medium:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel3.setText("Choose body:");
 
         jComboBoxPresetBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jComboBoxPresetBody.setMaximumRowCount(10);
         jComboBoxPresetBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere of polystyrene", "Sphere of wood", "Sphere of iron", "Helium balloon", "Human with parachute", "Small penguin", "Average human" }));
+        jComboBoxPresetBody.setToolTipText("Set Mass, Volume, Cw, Area, Radius");
         jComboBoxPresetBody.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxPresetBodyItemStateChanged(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel4.setText("Choose preset body:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel5.setText("Choose acting forces:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel6.setText("Choose options:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -438,7 +535,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabelDimensionArea))
                                     .addComponent(jTfRadiusBody, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLblEtaFluid)
                                     .addComponent(jLblMassPlanet)
@@ -643,6 +740,13 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
+        jBtCancel.setText("Cancel");
+        jBtCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCancelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -650,14 +754,16 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 995, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jBtCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtReset)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtOK))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 995, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jBtOK)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtOK, jBtReset});
@@ -670,7 +776,8 @@ public class UserInputNewParameters extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtOK)
-                    .addComponent(jBtReset))
+                    .addComponent(jBtReset)
+                    .addComponent(jBtCancel))
                 .addContainerGap())
         );
 
@@ -715,6 +822,20 @@ private void jBtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
   jComboBoxMedium.setSelectedIndex(selectedItemMedium);
   jComboBoxBody.setSelectedIndex(selectedItemBody);
   jComboBoxPresetBody.setSelectedIndex(selectedItemPresetBody);
+
+  jTfMassBody.setBackground(Color.white);
+  jTfVolumeBody.setBackground(Color.white);
+  jTfCwBody.setBackground(Color.white);
+  jTfRadiusBody.setBackground(Color.white);
+  jTfAreaAffected.setBackground(Color.white);
+  jTfRhoFluid.setBackground(Color.white);
+  jTfEtaFluid.setBackground(Color.white);
+  jTfRadiusPlanet.setBackground(Color.white);
+  jTfMassPlanet.setBackground(Color.white);
+  jTfThrowingRange.setBackground(Color.white);
+
+  jTfDt.setBackground(Color.cyan);
+  jTfProposedComputingTime.setBackground(Color.cyan);
 
 }//GEN-LAST:event_jBtResetActionPerformed
 
@@ -766,10 +887,10 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
     if (Double.valueOf(jTfSpeed.getText()) < 0){
       jTfSpeed.setText("0.0");
    }
-   if (Double.valueOf(jTfSpeed.getText()) > 0.1*physics.Constants.c){
+/*   if (Double.valueOf(jTfSpeed.getText()) > 0.1*physics.Constants.c){
       jTfSpeed.setText(String.valueOf(0.1*physics.Constants.c));
    }
-
+*/
 
     if (Double.valueOf(jTfMassBody.getText()) < 0){
       jTfMassBody.setText("0.0");
@@ -835,12 +956,46 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 }//GEN-LAST:event_jBtOKActionPerformed
 
 private void jCckBxBuoyancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxBuoyancyActionPerformed
+    if (jCckBxBuoyancy.isSelected()){
+      jTfMassBody.setBackground(Color.cyan);
+      jTfRhoFluid.setBackground(Color.cyan);
+      jTfVolumeBody.setBackground(Color.cyan);
+    }
 
+    if (!jCckBxBuoyancy.isSelected()){
+      if (!jCckBxFlowResistance.isSelected()){
+        jTfRhoFluid.setBackground(Color.white);
+      }
+      if (!jCckBxFlowResistance.isSelected() && !jCckBxViscosity.isSelected()){
+        jTfMassBody.setBackground(Color.white);
+      }
+      jTfVolumeBody.setBackground(Color.white);
+    }
 }//GEN-LAST:event_jCckBxBuoyancyActionPerformed
 
 private void jCckBxFlowResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxFlowResistanceActionPerformed
-      if (jCckBxViscosity.isSelected()){
+    if (jCckBxViscosity.isSelected()){
       jCckBxViscosity.setSelected(false);
+      jTfRadiusBody.setBackground(Color.white);
+      jTfEtaFluid.setBackground(Color.white);
+    }
+
+    if (jCckBxFlowResistance.isSelected()){
+      jTfAreaAffected.setBackground(Color.cyan);
+      jTfCwBody.setBackground(Color.cyan);
+      jTfRhoFluid.setBackground(Color.cyan);
+      jTfMassBody.setBackground(Color.cyan);
+    }
+
+    if (!jCckBxFlowResistance.isSelected()){
+      jTfAreaAffected.setBackground(Color.white);
+      jTfCwBody.setBackground(Color.white);
+      if (!jCckBxBuoyancy.isSelected()){
+        jTfRhoFluid.setBackground(Color.white);
+      }
+      if (!jCckBxBuoyancy.isSelected() && !jCckBxViscosity.isSelected()){
+        jTfMassBody.setBackground(Color.white);
+      }
     }
 }//GEN-LAST:event_jCckBxFlowResistanceActionPerformed
 
@@ -848,11 +1003,40 @@ private void jCckBxGravityActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     if (jCckBxSimpleGravity.isSelected()){
       jCckBxSimpleGravity.setSelected(false);
     }
+
+    if (jCckBxGravity.isSelected()){
+      jTfRadiusPlanet.setBackground(Color.cyan);
+      jTfMassPlanet.setBackground(Color.cyan);
+    }
+
+    if (!jCckBxGravity.isSelected()){
+      jTfRadiusPlanet.setBackground(Color.white);
+      jTfMassPlanet.setBackground(Color.white);
+    }
 }//GEN-LAST:event_jCckBxGravityActionPerformed
 
 private void jCckBxViscosityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxViscosityActionPerformed
     if (jCckBxFlowResistance.isSelected()){
       jCckBxFlowResistance.setSelected(false);
+      jTfAreaAffected.setBackground(Color.white);
+      jTfCwBody.setBackground(Color.white);
+      if (!jCckBxBuoyancy.isSelected() && !jCckBxFlowResistance.isSelected()){
+        jTfRhoFluid.setBackground(Color.white);
+      }
+    }
+
+    if (jCckBxViscosity.isSelected()){
+      jTfRadiusBody.setBackground(Color.cyan);
+      jTfMassBody.setBackground(Color.cyan);
+      jTfEtaFluid.setBackground(Color.cyan);
+    }
+
+    if (!jCckBxViscosity.isSelected()){
+      jTfRadiusBody.setBackground(Color.white);
+      if (!jCckBxBuoyancy.isSelected() && !jCckBxFlowResistance.isSelected()){
+        jTfMassBody.setBackground(Color.white);
+      }
+      jTfEtaFluid.setBackground(Color.white);
     }
 }//GEN-LAST:event_jCckBxViscosityActionPerformed
 
@@ -907,6 +1091,8 @@ private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event
 private void jCckBxSimpleGravityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxSimpleGravityActionPerformed
     if (jCckBxGravity.isSelected()){
       jCckBxGravity.setSelected(false);
+      jTfRadiusPlanet.setBackground(Color.white);
+      jTfMassPlanet.setBackground(Color.white);
     }
 }//GEN-LAST:event_jCckBxSimpleGravityActionPerformed
 
@@ -1141,8 +1327,94 @@ private void jTfHeightFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_jTfHeightFocusGained
 
 private void jComboBoxMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMediumActionPerformed
-    // TODO add your handling code here:
+
 }//GEN-LAST:event_jComboBoxMediumActionPerformed
+
+private void jCckBxGravityMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCckBxGravityMouseMoved
+
+}//GEN-LAST:event_jCckBxGravityMouseMoved
+
+private void jCckBxGravityMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCckBxGravityMouseDragged
+
+}//GEN-LAST:event_jCckBxGravityMouseDragged
+
+private void jCckBxGravityFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jCckBxGravityFocusGained
+
+}//GEN-LAST:event_jCckBxGravityFocusGained
+
+private void jCckBxGravityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jCckBxGravityFocusLost
+
+}//GEN-LAST:event_jCckBxGravityFocusLost
+
+private void jCckBxGravityMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCckBxGravityMousePressed
+
+}//GEN-LAST:event_jCckBxGravityMousePressed
+
+private void jCckBxGravityMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCckBxGravityMouseReleased
+
+}//GEN-LAST:event_jCckBxGravityMouseReleased
+
+private void jTfDtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfDtFocusGained
+    jTfDt.setBackground(Color.white);
+}//GEN-LAST:event_jTfDtFocusGained
+
+private void jTfProposedComputingTimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfProposedComputingTimeFocusGained
+    jTfProposedComputingTime.setBackground(Color.white);
+}//GEN-LAST:event_jTfProposedComputingTimeFocusGained
+
+private void jTfMassBodyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfMassBodyFocusGained
+    jTfMassBody.setBackground(Color.white);
+}//GEN-LAST:event_jTfMassBodyFocusGained
+
+private void jTfVolumeBodyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfVolumeBodyFocusGained
+    jTfVolumeBody.setBackground(Color.white);
+}//GEN-LAST:event_jTfVolumeBodyFocusGained
+
+private void jTfRhoFluidFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfRhoFluidFocusGained
+    jTfRhoFluid.setBackground(Color.white);
+}//GEN-LAST:event_jTfRhoFluidFocusGained
+
+private void jTfCwBodyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfCwBodyFocusGained
+    jTfCwBody.setBackground(Color.white);
+}//GEN-LAST:event_jTfCwBodyFocusGained
+
+private void jTfAreaAffectedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfAreaAffectedFocusGained
+    jTfAreaAffected.setBackground(Color.white);
+}//GEN-LAST:event_jTfAreaAffectedFocusGained
+
+private void jTfRadiusBodyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfRadiusBodyFocusGained
+    jTfRadiusBody.setBackground(Color.white);
+}//GEN-LAST:event_jTfRadiusBodyFocusGained
+
+private void jTfEtaFluidFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfEtaFluidFocusGained
+    jTfEtaFluid.setBackground(Color.white);
+}//GEN-LAST:event_jTfEtaFluidFocusGained
+
+private void jTfRadiusPlanetFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfRadiusPlanetFocusGained
+    jTfRadiusPlanet.setBackground(Color.white);
+}//GEN-LAST:event_jTfRadiusPlanetFocusGained
+
+private void jTfMassPlanetFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfMassPlanetFocusGained
+    jTfMassPlanet.setBackground(Color.white);
+}//GEN-LAST:event_jTfMassPlanetFocusGained
+
+private void jCckBxComputeBackwardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCckBxComputeBackwardsActionPerformed
+    if (jCckBxComputeBackwards.isSelected()){
+      jTfThrowingRange.setBackground(Color.cyan);
+    }
+
+    if (!jCckBxComputeBackwards.isSelected()){
+      jTfThrowingRange.setBackground(Color.white);
+    }
+}//GEN-LAST:event_jCckBxComputeBackwardsActionPerformed
+
+private void jTfThrowingRangeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfThrowingRangeFocusGained
+    jTfThrowingRange.setBackground(Color.white);
+}//GEN-LAST:event_jTfThrowingRangeFocusGained
+
+private void jBtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelActionPerformed
+    this.setVisible(false);
+}//GEN-LAST:event_jBtCancelActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1156,6 +1428,7 @@ private void jComboBoxMediumActionPerformed(java.awt.event.ActionEvent evt) {//G
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtCancel;
     private javax.swing.JButton jBtOK;
     private javax.swing.JButton jBtReset;
     private javax.swing.JCheckBox jCckBxBuoyancy;

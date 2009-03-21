@@ -937,7 +937,7 @@ public class Analysis extends javax.swing.JFrame {
         jLabel1.setText("V:");
 
         jTfV.setEditable(false);
-        jTfV.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfV.setFont(new java.awt.Font("Arial", 0, 11));
         jTfV.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfV.setToolTipText("Current velocity");
 
@@ -1009,7 +1009,8 @@ public class Analysis extends javax.swing.JFrame {
         jLabel25.setText("Animation speed:");
 
         jSliderAnimationSpeed.setMaximum(200);
-        jSliderAnimationSpeed.setValue(100);
+        jSliderAnimationSpeed.setToolTipText("Choose the speed of the animation");
+        jSliderAnimationSpeed.setValue(200);
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel26.setText("slow");
@@ -1018,7 +1019,7 @@ public class Analysis extends javax.swing.JFrame {
         jLabel27.setText("fast");
 
         jTfThrowingTime.setEditable(false);
-        jTfThrowingTime.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfThrowingTime.setFont(new java.awt.Font("Arial", 0, 11));
         jTfThrowingTime.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTfThrowingTime.setToolTipText("Current time the drawn movement lasts");
 

@@ -65,6 +65,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
   private static int currentXscreenCoord = -1;
   private static int currentYscreenCoord = -1;
 
+  private static boolean chooseMeasureMode = false;
+
 
   // setters
   public static void setAnimationSpeed(int speed){
@@ -143,7 +145,7 @@ public class TrajectoryUI extends javax.swing.JFrame {
       tmpG2d.drawImage(bi, 0, 0, this);
 
       // draw the body
-      tmpG2d.setColor(Color.BLUE);
+      tmpG2d.setColor(Color.cyan);
       tmpG2d.drawOval( 
               currentXscreenCoord,
               currentYscreenCoord,
@@ -548,7 +550,7 @@ private void jMenuItemLoadPresetFileComponentHidden(java.awt.event.ComponentEven
 
 
 private void jMenuItemMeasureModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMeasureModeActionPerformed
-  AnimationStop animationStopDialog;// = new UI.AnimationStop(this,true);
+/*  AnimationStop animationStopDialog;// = new UI.AnimationStop(this,true);
   if ((th != null) && (th.isInterrupted())) {
     modi.MeasureMode.setIsDisplayXYcoordsEnabled(true);
   } else {
@@ -557,6 +559,17 @@ private void jMenuItemMeasureModeActionPerformed(java.awt.event.ActionEvent evt)
     animationStopDialog = new UI.AnimationStop(this, true);
     animationStopDialog.setVisible(true);
   }
+*/
+
+  if (chooseMeasureMode == false){
+    modi.MeasureMode.setIsDisplayXYcoordsEnabled(true);
+    chooseMeasureMode = true;
+  }
+  else{
+    modi.MeasureMode.setIsDisplayXYcoordsEnabled(false);
+    chooseMeasureMode = false;
+  }
+
 }//GEN-LAST:event_jMenuItemMeasureModeActionPerformed
 
 

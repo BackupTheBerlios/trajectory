@@ -25,6 +25,7 @@ import java.io.*;
 import java.awt.Graphics2D;
 
 import physics.Setting;
+import java.awt.Color;
 
 public class ScreenUtilities {
     // constants
@@ -307,6 +308,7 @@ public class ScreenUtilities {
         // drawing coordinate-system and planet for the first trajectory
         if (compareTrajectories == false){
 
+            g.setColor(Color.black);
 
             // CT:  x-axis through ground - level in order to obtain a
             //      graphical representation the user will understand without
@@ -340,6 +342,8 @@ public class ScreenUtilities {
        
     // drawing the planet in cases of gravitation (and an existing planet of course)
     if (physics.Forces.isActingGravity()){
+      g.setColor(Color.gray);
+
       circleXCoordinate = (-1) * (int) (radiusPlanet * ScreenUtilities.scalingFactor) + (int)((-xMin * ScreenUtilities.scalingFactor) + ScreenUtilities.ORIGIN_OFFSET);
       circleYCoordinate = (int)(ScreenUtilities.SCREEN_HEIGHT - (-(yMin) /*+ ys.get(0)*/) * ScreenUtilities.scalingFactor + ScreenUtilities.ORIGIN_OFFSET);
       circleWidth = 2 * (int)(radiusPlanet * ScreenUtilities.scalingFactor);

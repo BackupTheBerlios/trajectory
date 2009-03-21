@@ -29,17 +29,19 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" pref="995" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="jBtCancel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBtReset" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBtOK" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" pref="995" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,6 +54,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBtOK" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBtReset" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtCancel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -129,7 +132,7 @@
                                       </Group>
                                       <Component id="jTfRadiusBody" linkSize="11" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                                  <EmptySpace pref="67" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jLblEtaFluid" alignment="1" min="-2" max="-2" attributes="1"/>
                                       <Component id="jLblMassPlanet" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -439,8 +442,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Mass of the body (buoyancy, flow resistance, viscosity)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Mass of the body"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfMassBodyFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblVolumeBody">
           <Properties>
@@ -456,8 +462,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Volume of the body (buoyancy)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Volume of the body"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfVolumeBodyFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblCwBody">
           <Properties>
@@ -473,8 +482,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Cw of the body (flow resistance)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cw of the body"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfCwBodyFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblAreaFlowBody">
           <Properties>
@@ -491,8 +503,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Area affected by flow (flow resistance)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Area affected by flow"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfAreaAffectedFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblRhoFluid">
           <Properties>
@@ -508,8 +523,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Density of the medium at ground level (buoyancy, flow resistance)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Density of the medium at ground level"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfRhoFluidFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblEtaFluid">
           <Properties>
@@ -525,8 +543,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Viscosity of the medium (viscosity)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Viscosity of the medium"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfEtaFluidFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblRadiusPlanet">
           <Properties>
@@ -542,8 +563,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Radius of the planet (gravity)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Radius of the planet"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfRadiusPlanetFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblMassPlanet">
           <Properties>
@@ -559,8 +583,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Mass of the planet (gravity)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Mass of the planet"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfMassPlanetFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblDt">
           <Properties>
@@ -572,12 +599,18 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTfDt">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="0" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Intervall used to integrate during the computation (important)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Intervall used to integrate during the computation"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfDtFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblRadiusBody">
           <Properties>
@@ -593,8 +626,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Radius of the body if sphere (viscosity)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Radius of the body if sphere"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfRadiusBodyFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblProposedComputiingTime">
           <Properties>
@@ -606,12 +642,18 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTfProposedComputingTime">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" id="cyan" palette="1" red="0" type="palette"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="Maximum time the computing process should last (important)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Maximum time the computing process should last"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfProposedComputingTimeFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLblSpeed1">
           <Properties>
@@ -624,7 +666,7 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buoyancy"/>
-            <Property name="toolTipText" type="java.lang.String" value="Buoyancy caused force (insert Density, Volume, Mass)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Buoyancy caused force"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxBuoyancyActionPerformed"/>
@@ -636,7 +678,7 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Flow resistance"/>
-            <Property name="toolTipText" type="java.lang.String" value="Flow resistance caused force for all cases of turbulent flow (insert Cw, Area, Density, Mass)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Flow resistance caused force for all cases of turbulent flow"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxFlowResistanceActionPerformed"/>
@@ -648,10 +690,16 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Gravity"/>
-            <Property name="toolTipText" type="java.lang.String" value="Gravity caused by a central potential and drawing of the planets shape (insert Radius (planet), Mass (planet))"/>
+            <Property name="toolTipText" type="java.lang.String" value="Gravity caused by a central potential and drawing of the planets shape"/>
           </Properties>
           <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCckBxGravityMousePressed"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCckBxGravityMouseReleased"/>
+            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jCckBxGravityMouseDragged"/>
+            <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jCckBxGravityMouseMoved"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxGravityActionPerformed"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jCckBxGravityFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jCckBxGravityFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCckBxViscosity">
@@ -660,7 +708,7 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Viscosity"/>
-            <Property name="toolTipText" type="java.lang.String" value="Viscosity caused force for laminar flow in cases of a sphere shaped body (insert Radius, Viscosity, Mass)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Viscosity caused force for laminar flow in cases of a sphere shaped body"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxViscosityActionPerformed"/>
@@ -790,6 +838,9 @@
             <Property name="text" type="java.lang.String" value="Compute backwards"/>
             <Property name="toolTipText" type="java.lang.String" value="Simulating the movement backwards to get the correlating start parameters (insert end parameters, choose simple gravity)"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxComputeBackwardsActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCckBxComputeDensity">
           <Properties>
@@ -797,7 +848,7 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Compute density"/>
-            <Property name="toolTipText" type="java.lang.String" value="Computing the height depending density of the atmosphere (choose Earth&apos;s atmosphere / air)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Computing the height depending density of the atmosphere (choose Earth&apos;s atmosphere or air)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelThrowingRange">
@@ -822,8 +873,11 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="The throwing range the user wants to reach (choose compute backwards)"/>
+            <Property name="toolTipText" type="java.lang.String" value="The throwing range the user wants to reach (compute backwards)"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfThrowingRangeFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxPlanet">
           <Properties>
@@ -841,6 +895,7 @@
                 <StringItem index="5" value="Venus"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Set Radius(planet) and Mass(planet)"/>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxPlanetItemStateChanged"/>
@@ -865,6 +920,7 @@
                 <StringItem index="8" value="Honey"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Set Density and Viscosity"/>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxMediumItemStateChanged"/>
@@ -888,6 +944,7 @@
                 <StringItem index="6" value="Penguin"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Set Cw"/>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxBodyItemStateChanged"/>
@@ -935,6 +992,7 @@
                 <StringItem index="7" value="Average human"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Set Mass, Volume, Cw, Area, Radius"/>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxPresetBodyItemStateChanged"/>
@@ -980,6 +1038,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtResetActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtCancel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancel"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtCancelActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
