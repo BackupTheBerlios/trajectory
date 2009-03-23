@@ -836,7 +836,7 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Compute backwards"/>
-            <Property name="toolTipText" type="java.lang.String" value="Simulating the movement backwards to get the correlating start parameters (insert end parameters, choose simple gravity)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Simulating the movement backwards to get the correlating start parameters (insert end parameters, simple gravity recommended)"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCckBxComputeBackwardsActionPerformed"/>
@@ -848,7 +848,7 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Compute density"/>
-            <Property name="toolTipText" type="java.lang.String" value="Computing the height depending density of the atmosphere (choose Earth&apos;s atmosphere or air)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Computing the height depending density of the atmosphere"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelThrowingRange">
@@ -873,7 +873,7 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="toolTipText" type="java.lang.String" value="The throwing range the user wants to reach (compute backwards)"/>
+            <Property name="toolTipText" type="java.lang.String" value="The throwing range the user wants to reach (in cases of computing backwards)"/>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTfThrowingRangeFocusGained"/>

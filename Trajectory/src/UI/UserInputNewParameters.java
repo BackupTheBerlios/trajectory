@@ -128,7 +128,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblHeight.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblHeight.setText("Height:");
 
-        jTfHeight.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfHeight.setFont(new java.awt.Font("Arial", 0, 11));
         jTfHeight.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfHeight.setToolTipText("Start height of the body referring to the ground level");
         jTfHeight.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -154,7 +154,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLlbMassBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLlbMassBody.setText("Mass:");
 
-        jTfMassBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfMassBody.setFont(new java.awt.Font("Arial", 0, 11));
         jTfMassBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfMassBody.setToolTipText("Mass of the body");
         jTfMassBody.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -166,7 +166,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblVolumeBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblVolumeBody.setText("Volume:");
 
-        jTfVolumeBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfVolumeBody.setFont(new java.awt.Font("Arial", 0, 11));
         jTfVolumeBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfVolumeBody.setToolTipText("Volume of the body");
         jTfVolumeBody.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -178,7 +178,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblCwBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblCwBody.setText("Cw:");
 
-        jTfCwBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfCwBody.setFont(new java.awt.Font("Arial", 0, 11));
         jTfCwBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfCwBody.setToolTipText("Cw of the body");
         jTfCwBody.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -191,7 +191,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblAreaFlowBody.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLblAreaFlowBody.setText("Area:");
 
-        jTfAreaAffected.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfAreaAffected.setFont(new java.awt.Font("Arial", 0, 11));
         jTfAreaAffected.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfAreaAffected.setToolTipText("Area affected by flow");
         jTfAreaAffected.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -203,7 +203,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblRhoFluid.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRhoFluid.setText("Density:");
 
-        jTfRhoFluid.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfRhoFluid.setFont(new java.awt.Font("Arial", 0, 11));
         jTfRhoFluid.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRhoFluid.setToolTipText("Density of the medium at ground level");
         jTfRhoFluid.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -215,7 +215,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblEtaFluid.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblEtaFluid.setText("Viscosity");
 
-        jTfEtaFluid.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfEtaFluid.setFont(new java.awt.Font("Arial", 0, 11));
         jTfEtaFluid.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfEtaFluid.setToolTipText("Viscosity of the medium");
         jTfEtaFluid.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -227,7 +227,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblRadiusPlanet.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRadiusPlanet.setText("Radius (planet):");
 
-        jTfRadiusPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfRadiusPlanet.setFont(new java.awt.Font("Arial", 0, 11));
         jTfRadiusPlanet.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRadiusPlanet.setToolTipText("Radius of the planet");
         jTfRadiusPlanet.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -239,7 +239,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblMassPlanet.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblMassPlanet.setText("Mass (planet):");
 
-        jTfMassPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfMassPlanet.setFont(new java.awt.Font("Arial", 0, 11));
         jTfMassPlanet.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfMassPlanet.setToolTipText("Mass of the planet");
         jTfMassPlanet.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -252,7 +252,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblDt.setText("Integration interval:");
 
         jTfDt.setBackground(new java.awt.Color(0, 255, 255));
-        jTfDt.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfDt.setFont(new java.awt.Font("Arial", 0, 11));
         jTfDt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfDt.setToolTipText("Intervall used to integrate during the computation");
         jTfDt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -264,7 +264,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblRadiusBody.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLblRadiusBody.setText("Radius:");
 
-        jTfRadiusBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfRadiusBody.setFont(new java.awt.Font("Arial", 0, 11));
         jTfRadiusBody.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfRadiusBody.setToolTipText("Radius of the body if sphere");
         jTfRadiusBody.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -277,7 +277,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLblProposedComputiingTime.setText("Computing time:");
 
         jTfProposedComputingTime.setBackground(java.awt.Color.cyan);
-        jTfProposedComputingTime.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTfProposedComputingTime.setFont(new java.awt.Font("Arial", 0, 11));
         jTfProposedComputingTime.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTfProposedComputingTime.setToolTipText("Maximum time the computing process should last");
         jTfProposedComputingTime.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -288,7 +288,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jLblSpeed1.setText("Speed:");
 
-        jCckBxBuoyancy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCckBxBuoyancy.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxBuoyancy.setText("Buoyancy");
         jCckBxBuoyancy.setToolTipText("Buoyancy caused force");
         jCckBxBuoyancy.addActionListener(new java.awt.event.ActionListener() {
@@ -297,7 +297,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
-        jCckBxFlowResistance.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCckBxFlowResistance.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxFlowResistance.setText("Flow resistance");
         jCckBxFlowResistance.setToolTipText("Flow resistance caused force for all cases of turbulent flow");
         jCckBxFlowResistance.addActionListener(new java.awt.event.ActionListener() {
@@ -306,7 +306,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
-        jCckBxGravity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCckBxGravity.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxGravity.setText("Gravity");
         jCckBxGravity.setToolTipText("Gravity caused by a central potential and drawing of the planets shape");
         jCckBxGravity.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -339,7 +339,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
-        jCckBxViscosity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCckBxViscosity.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxViscosity.setText("Viscosity");
         jCckBxViscosity.setToolTipText("Viscosity caused force for laminar flow in cases of a sphere shaped body");
         jCckBxViscosity.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +348,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
-        jCckBxSimpleGravity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCckBxSimpleGravity.setFont(new java.awt.Font("Tahoma", 1, 11));
         jCckBxSimpleGravity.setText("Simple gravity");
         jCckBxSimpleGravity.setToolTipText("Gravity caused by Earth acceleration location independent");
         jCckBxSimpleGravity.addActionListener(new java.awt.event.ActionListener() {
@@ -398,7 +398,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jCckBxComputeBackwards.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxComputeBackwards.setText("Compute backwards");
-        jCckBxComputeBackwards.setToolTipText("Simulating the movement backwards to get the correlating start parameters (insert end parameters, choose simple gravity)");
+        jCckBxComputeBackwards.setToolTipText("Simulating the movement backwards to get the correlating start parameters (insert end parameters, simple gravity recommended)");
         jCckBxComputeBackwards.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCckBxComputeBackwardsActionPerformed(evt);
@@ -407,7 +407,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jCckBxComputeDensity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCckBxComputeDensity.setText("Compute density");
-        jCckBxComputeDensity.setToolTipText("Computing the height depending density of the atmosphere (choose Earth's atmosphere or air)");
+        jCckBxComputeDensity.setToolTipText("Computing the height depending density of the atmosphere");
 
         jLabelThrowingRange.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelThrowingRange.setText("Throwing range:");
@@ -417,14 +417,14 @@ public class UserInputNewParameters extends javax.swing.JDialog {
 
         jTfThrowingRange.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTfThrowingRange.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTfThrowingRange.setToolTipText("The throwing range the user wants to reach (compute backwards)");
+        jTfThrowingRange.setToolTipText("The throwing range the user wants to reach (in cases of computing backwards)");
         jTfThrowingRange.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTfThrowingRangeFocusGained(evt);
             }
         });
 
-        jComboBoxPlanet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jComboBoxPlanet.setFont(new java.awt.Font("Arial", 0, 11));
         jComboBoxPlanet.setMaximumRowCount(10);
         jComboBoxPlanet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined planet", "Earth", "Moon", "Mars", "Mercur", "Venus" }));
         jComboBoxPlanet.setToolTipText("Set Radius(planet) and Mass(planet)");
@@ -434,7 +434,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxMedium.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jComboBoxMedium.setFont(new java.awt.Font("Arial", 0, 11));
         jComboBoxMedium.setMaximumRowCount(10);
         jComboBoxMedium.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined medium", "Air", "Helium", "Hydrogen", "Water", "Glycerin", "Paraffin", "Mercury", "Honey" }));
         jComboBoxMedium.setToolTipText("Set Density and Viscosity");
@@ -449,7 +449,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jComboBoxBody.setFont(new java.awt.Font("Arial", 0, 11));
         jComboBoxBody.setMaximumRowCount(10);
         jComboBoxBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere", "Cube", "Airfoil", "Parachute", "Human", "Penguin" }));
         jComboBoxBody.setToolTipText("Set Cw");
@@ -468,7 +468,7 @@ public class UserInputNewParameters extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel3.setText("Choose body:");
 
-        jComboBoxPresetBody.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jComboBoxPresetBody.setFont(new java.awt.Font("Arial", 0, 11));
         jComboBoxPresetBody.setMaximumRowCount(10);
         jComboBoxPresetBody.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User defined body", "Sphere of polystyrene", "Sphere of wood", "Sphere of iron", "Helium balloon", "Human with parachute", "Small penguin", "Average human" }));
         jComboBoxPresetBody.setToolTipText("Set Mass, Volume, Cw, Area, Radius");
