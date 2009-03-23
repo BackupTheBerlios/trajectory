@@ -103,9 +103,17 @@ public class Location {
 	// im Rahmen der Programmstruktur ist dies aber (noch) nicht n�tig
 	private void setRcomponents(double x, double y, Setting setting){
 		this.r = Math.sqrt(Math.pow(((-1)*x),2)+Math.pow(((-1)*setting.getR()-y),2)); 	// Betrag des Verbindungsvektors location zu Mittelpunkt
-		this.rvectorx = ((-1)*x)/this.r; 												// normierte x-Komponente von Vektor r
-		this.rvectory = ((-1)*setting.getR()-y)/this.r; 								// normierte y-Komponente von Vektor r
-		this.h = this.r-setting.getR();}												// H�he �ber Nullniveau						
+		if (this.r != 0){
+         this.rvectorx = ((-1)*x)/this.r; 												// normierte x-Komponente von Vektor r
+		 this.rvectory = ((-1)*setting.getR()-y)/this.r; 								// normierte y-Komponente von Vektor r
+		 this.h = this.r-setting.getR();
+        }
+        else{
+         this.rvectorx = 0;
+         this.rvectory = 0;
+         this.h = this.r-setting.getR();
+        }
+    }												// H�he �ber Nullniveau
 																
 /*	private void setAlpha(){
 		this.alpha = (Math.acos(

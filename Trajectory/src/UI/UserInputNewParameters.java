@@ -867,6 +867,10 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
    if (Double.valueOf(jTfRadiusPlanet.getText()) < 0){
       jTfRadiusPlanet.setText("0.0");
    }
+   if (Double.valueOf(jTfRadiusPlanet.getText()) <= 0 &&
+       (jCckBxGravity.isSelected() || jCckBxBuoyancy.isSelected())){
+      jTfRadiusPlanet.setText("1.0");
+   }
    
    
    if (Double.valueOf(jTfMassPlanet.getText()) < 0){
@@ -887,13 +891,14 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
     if (Double.valueOf(jTfSpeed.getText()) < 0){
       jTfSpeed.setText("0.0");
    }
-/*   if (Double.valueOf(jTfSpeed.getText()) > 0.1*physics.Constants.c){
-      jTfSpeed.setText(String.valueOf(0.1*physics.Constants.c));
-   }
-*/
+
 
     if (Double.valueOf(jTfMassBody.getText()) < 0){
       jTfMassBody.setText("0.0");
+   }
+    if (Double.valueOf(jTfMassBody.getText()) <= 0 &&
+        (jCckBxViscosity.isSelected() || jCckBxFlowResistance.isSelected() || jCckBxBuoyancy.isSelected())){
+      jTfMassBody.setText("1.0");
    }
 
 
@@ -960,6 +965,8 @@ private void jCckBxBuoyancyActionPerformed(java.awt.event.ActionEvent evt) {//GE
       jTfMassBody.setBackground(Color.cyan);
       jTfRhoFluid.setBackground(Color.cyan);
       jTfVolumeBody.setBackground(Color.cyan);
+      jTfMassPlanet.setBackground(Color.cyan);
+      jTfRadiusPlanet.setBackground(Color.cyan);
     }
 
     if (!jCckBxBuoyancy.isSelected()){
@@ -968,6 +975,10 @@ private void jCckBxBuoyancyActionPerformed(java.awt.event.ActionEvent evt) {//GE
       }
       if (!jCckBxFlowResistance.isSelected() && !jCckBxViscosity.isSelected()){
         jTfMassBody.setBackground(Color.white);
+      }
+      if (!jCckBxGravity.isSelected()){
+        jTfMassPlanet.setBackground(Color.white);
+        jTfRadiusPlanet.setBackground(Color.white);
       }
       jTfVolumeBody.setBackground(Color.white);
     }
@@ -1009,7 +1020,7 @@ private void jCckBxGravityActionPerformed(java.awt.event.ActionEvent evt) {//GEN
       jTfMassPlanet.setBackground(Color.cyan);
     }
 
-    if (!jCckBxGravity.isSelected()){
+    if (!jCckBxGravity.isSelected() && !jCckBxBuoyancy.isSelected()){
       jTfRadiusPlanet.setBackground(Color.white);
       jTfMassPlanet.setBackground(Color.white);
     }

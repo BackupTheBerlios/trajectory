@@ -212,6 +212,8 @@ public class MovingBody {
       this.vvectory = vy / this.v;
     } else {
       System.out.println("|v|=0, division through zero caught.");
+      this.vvectorx = 0;
+      this.vvectory = 0;
     }
   }
 

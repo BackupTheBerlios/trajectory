@@ -53,7 +53,12 @@ public static void setComputeDensity(boolean computeDensity){
 
 public static double computeDensity(physics.MovingBody tempMovingBody, physics.Setting setting){
     double rho;
-    rho = setting.getRho()*Math.exp((-setting.getRho()/101300) * physics.Constants.g * tempMovingBody.getLocation(setting).getH());
+    if (physics.Forces.isActingGravity()){
+        rho = setting.getRho()*Math.exp((-setting.getRho()/101300) * physics.Constants.g * tempMovingBody.getLocation(setting).getH());
+    }
+    else{
+        rho = setting.getRho()*Math.exp((-setting.getRho()/101300) * physics.Constants.g * tempMovingBody.getLocation(setting).getY());
+    }
                     //Anmerkung: gilt in der Form nur für Erdatmosphäre, Druck auf Höhe Null muss passend gewählt werden
                     //durch den Benutzer muss der Dichtewert auf Höhe Null eingegeben werden
    return rho;
