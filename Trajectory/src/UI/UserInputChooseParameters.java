@@ -1,13 +1,8 @@
 /*****************************************************************************
- * Filename:    UserInputNewParameters.java
- * Author:      BE
- * Date:        Created on 4. Oktober 2008, 14:30
- * History:     
- *              2009-01-01 BE: completely overwritten
- *              2009-01-02 BE: ``      ``
- * 
- *  TODO: A clear code
- *  TODO: A Examine data flow, as there could be flaws. 
+ * Filename:
+ * Author:     
+ * Date: 
+ * History:   
  */
 
 package UI;
@@ -15,10 +10,7 @@ package UI;
 import physics.Setting;
 import physics.Forces;
 
-/**
- *
- * @author  BE
- */
+
 public class UserInputChooseParameters extends javax.swing.JDialog {
 
     // TODO: A create a common place for all data in order to avoid scattering.

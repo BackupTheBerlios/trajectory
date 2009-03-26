@@ -1,7 +1,7 @@
 /*****************************************************************************
  * File:    Analysis.java
- * Author:  BE
- * Date:    5. Januar 2009, 13:32
+ * Author:  BE/CT
+ * Date:    2009-01-05 Start
  * Use:     Displaying all the relevant data to the user.
  * 
  * TODO:    BE: Again hard-wired width/height.
@@ -12,10 +12,8 @@ package UI;
 import java.util.Vector;
 import physics.*;
 import java.text.DecimalFormat;
-/**
- *
- * @author  BE
- */
+
+
 public class Analysis extends javax.swing.JFrame {
     //final static int WIDTH = 1024;
 
@@ -218,7 +216,7 @@ public class Analysis extends javax.swing.JFrame {
         return throwingTimeTemp;
     }
 
-
+    // TODO: BE C simplify method.
     public static double computeHMin(Vector<MovingBody> positions, Setting setting){
       double hMinTemp = 0.0;
       if (Forces.isActingGravity()){
@@ -247,7 +245,7 @@ public class Analysis extends javax.swing.JFrame {
         return hMinTemp;
     }
    
-    
+    // TODO: BE C simplify method.
     public static double computeHMax(Vector<MovingBody> positions, Setting setting){
       double hMaxTemp = 0.0;
       if (Forces.isActingGravity()){
@@ -273,7 +271,7 @@ public class Analysis extends javax.swing.JFrame {
       return hMaxTemp;
     }
 
-
+    // TODO: BE C simplify method.
     public static double computeVMax(Vector<MovingBody> positions){
         double vMaxTemp = positions.get(0).getV();
         vMaxGlobal = positions.get(0).getV();
