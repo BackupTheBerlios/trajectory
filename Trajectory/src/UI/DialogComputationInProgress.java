@@ -6,16 +6,27 @@
 
 package UI;
 
-/**
- *
- * @author  skrtrth
- */
+import java.io.*;
+import java.applet.*;
+
+
 public class DialogComputationInProgress extends javax.swing.JDialog {
 
     /** Creates new form DialogComputationInProgress */
     public DialogComputationInProgress(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        System.out.println("playing sound...");
+        // for peyam :-)
+//        File f = new File( "src/audio/computationInProgress.wav" );
+//        try {
+//        AudioClip sound = Applet.newAudioClip( f.toURL() );
+//        sound.play();
+//        Thread.sleep( 3000 );
+//        } catch (Exception ignore){
+//        System.out.println("Exception: " + ignore);
+//        }
+        
     }
 
     /** This method is called from within the constructor to
