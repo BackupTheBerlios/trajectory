@@ -1123,6 +1123,10 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_EARTH));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_EARTH));
     selectedItemPlanet = 1;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
+    jTfRadiusPlanet.setBackground(Color.white);
+    jTfMassPlanet.setBackground(Color.white);
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 2){
@@ -1131,6 +1135,8 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfRhoFluid.setText("0.0");
     jTfEtaFluid.setText("0.0");
     selectedItemPlanet = 2;
+    jTfRadiusPlanet.setBackground(Color.white);
+    jTfMassPlanet.setBackground(Color.white);
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 3){
@@ -1139,6 +1145,8 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfRhoFluid.setText("0.0");
     jTfEtaFluid.setText("0.0");
     selectedItemPlanet = 3;
+    jTfRadiusPlanet.setBackground(Color.white);
+    jTfMassPlanet.setBackground(Color.white);
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 4){
@@ -1147,6 +1155,8 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfRhoFluid.setText("0.0");
     jTfEtaFluid.setText("0.0");
     selectedItemPlanet = 4;
+    jTfRadiusPlanet.setBackground(Color.white);
+    jTfMassPlanet.setBackground(Color.white);
     }
 
     if (jComboBoxPlanet.getSelectedIndex() == 5){
@@ -1155,6 +1165,10 @@ private void jComboBoxPlanetItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_VENUS));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_VENUS));
     selectedItemPlanet = 5;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
+    jTfRadiusPlanet.setBackground(Color.white);
+    jTfMassPlanet.setBackground(Color.white);
     }
 }//GEN-LAST:event_jComboBoxPlanetItemStateChanged
 
@@ -1170,48 +1184,64 @@ private void jComboBoxMediumItemStateChanged(java.awt.event.ItemEvent evt) {//GE
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_AIR));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_AIR));
     selectedItemMedium = 1;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 2){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HELIUM));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HELIUM));
     selectedItemMedium = 2;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 3){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HYDROGEN));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HYDROGEN));
     selectedItemMedium = 3;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
     }
     
     if (jComboBoxMedium.getSelectedIndex() == 4){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_WATER));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_WATER));
     selectedItemMedium = 4;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 5){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_GLYCERIN));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_GLYCERIN));
     selectedItemMedium = 5;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 6){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_PARAFFIN));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_PARAFFIN));
     selectedItemMedium = 6;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 7){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_MERCURY));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_MERCURY));
     selectedItemMedium = 7;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
     }
 
     if (jComboBoxMedium.getSelectedIndex() == 8){
     jTfRhoFluid.setText(String.valueOf(physics.Constants.DENSITY_HONEY));
     jTfEtaFluid.setText(String.valueOf(physics.Constants.VISCOSITY_HONEY));
     selectedItemMedium = 8;
+    jTfEtaFluid.setBackground(Color.white);
+    jTfRhoFluid.setBackground(Color.white);
     }
     
 }//GEN-LAST:event_jComboBoxMediumItemStateChanged
@@ -1230,31 +1260,37 @@ private void jComboBoxBodyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     if (jComboBoxBody.getSelectedIndex() == 1){
     jTfCwBody.setText(String.valueOf(physics.Constants.Cw_SPHERE));
     selectedItemBody = 1;
+    jTfCwBody.setBackground(Color.white); 
     }
 
     if (jComboBoxBody.getSelectedIndex() == 2){
     jTfCwBody.setText(String.valueOf(physics.Constants.Cw_CUBE));
     selectedItemBody = 2;
+    jTfCwBody.setBackground(Color.white); 
     }
 
     if (jComboBoxBody.getSelectedIndex() == 3){
     jTfCwBody.setText(String.valueOf(physics.Constants.Cw_AIRFOIL));
     selectedItemBody = 3;
+    jTfCwBody.setBackground(Color.white); 
     }
 
     if (jComboBoxBody.getSelectedIndex() == 4){
     jTfCwBody.setText(String.valueOf(physics.Constants.Cw_PARACHUTE));
     selectedItemBody = 4;
+    jTfCwBody.setBackground(Color.white); 
     }
 
     if (jComboBoxBody.getSelectedIndex() == 5){
     jTfCwBody.setText(String.valueOf(physics.Constants.Cw_HUMAN));
     selectedItemBody = 5;
+    jTfCwBody.setBackground(Color.white); 
     }
 
     if (jComboBoxBody.getSelectedIndex() == 6){
     jTfCwBody.setText(String.valueOf(physics.Constants.Cw_PENGUIN));
     selectedItemBody = 6;
+    jTfCwBody.setBackground(Color.white); 
     }
 
 }//GEN-LAST:event_jComboBoxBodyItemStateChanged
@@ -1276,7 +1312,12 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     jTfVolumeBody.setText(String.valueOf(physics.Constants.VOLUME_SPHERE));
     jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_POLYSTYRENE));
     jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
-    selectedItemPresetBody = 1;
+    selectedItemPresetBody = 1;                                                                                                                                                                  
+    jTfMassBody.setBackground(Color.white);                                       
+    jTfVolumeBody.setBackground(Color.white);                                                                                                                                                    
+    jTfCwBody.setBackground(Color.white);                                                                                
+    jTfAreaAffected.setBackground(Color.white);                                                                                   
+    jTfRadiusBody.setBackground(Color.white);                                                                                                                                                                                                                                                      
     }
 
     if (jComboBoxPresetBody.getSelectedIndex() == 2){
@@ -1286,6 +1327,11 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_WOOD));
     jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
     selectedItemPresetBody = 2;
+    jTfMassBody.setBackground(Color.white);                                       
+    jTfVolumeBody.setBackground(Color.white);                                                                                                                                                    
+    jTfCwBody.setBackground(Color.white);                                                                                
+    jTfAreaAffected.setBackground(Color.white);                                                                                   
+    jTfRadiusBody.setBackground(Color.white);
     }
 
     if (jComboBoxPresetBody.getSelectedIndex() == 3){
@@ -1295,6 +1341,11 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_IRON));
     jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
     selectedItemPresetBody = 3;
+    jTfMassBody.setBackground(Color.white);                                       
+    jTfVolumeBody.setBackground(Color.white);                                                                                                                                                    
+    jTfCwBody.setBackground(Color.white);                                                                                
+    jTfAreaAffected.setBackground(Color.white);                                                                                   
+    jTfRadiusBody.setBackground(Color.white);
     }
 
     if (jComboBoxPresetBody.getSelectedIndex() == 4){
@@ -1304,6 +1355,11 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     jTfMassBody.setText(String.valueOf(physics.Constants.MASS_SPHERE_HELIUM));
     jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_SPHERE));
     selectedItemPresetBody = 4;
+    jTfMassBody.setBackground(Color.white);                                       
+    jTfVolumeBody.setBackground(Color.white);                                                                                                                                                    
+    jTfCwBody.setBackground(Color.white);                                                                                
+    jTfAreaAffected.setBackground(Color.white);                                                                                   
+    jTfRadiusBody.setBackground(Color.white);
     }
 
     if (jComboBoxPresetBody.getSelectedIndex() == 5){
@@ -1312,6 +1368,10 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     jTfMassBody.setText(String.valueOf(physics.Constants.MASS_PARACHUTE));
     jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_PARACHUTE));
     selectedItemPresetBody = 5;
+    jTfMassBody.setBackground(Color.white);                                       
+    jTfVolumeBody.setBackground(Color.white);                                                                                                                                                    
+    jTfCwBody.setBackground(Color.white);                                                                                
+    jTfAreaAffected.setBackground(Color.white);                                                                                   
     }
 
     if (jComboBoxPresetBody.getSelectedIndex() == 6){
@@ -1320,6 +1380,10 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     jTfMassBody.setText(String.valueOf(physics.Constants.MASS_PENGUIN));
     jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_PENGUIN));
     selectedItemPresetBody = 6;
+    jTfMassBody.setBackground(Color.white);                                       
+    jTfVolumeBody.setBackground(Color.white);                                                                                                                                                    
+    jTfCwBody.setBackground(Color.white);                                                                                
+    jTfAreaAffected.setBackground(Color.white); 
     }
 
     if (jComboBoxPresetBody.getSelectedIndex() == 7){
@@ -1328,13 +1392,17 @@ private void jComboBoxPresetBodyItemStateChanged(java.awt.event.ItemEvent evt) {
     jTfMassBody.setText(String.valueOf(physics.Constants.MASS_HUMAN));
     jTfAreaAffected.setText(String.valueOf(physics.Constants.AREA_HUMAN));
     selectedItemPresetBody = 7;
+    jTfMassBody.setBackground(Color.white);                                       
+    jTfVolumeBody.setBackground(Color.white);                                                                                                                                                    
+    jTfCwBody.setBackground(Color.white);                                                                                
+    jTfAreaAffected.setBackground(Color.white); 
     }
 
 
 }//GEN-LAST:event_jComboBoxPresetBodyItemStateChanged
 
 private void jTfHeightFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTfHeightFocusGained
-
+ 
 }//GEN-LAST:event_jTfHeightFocusGained
 
 private void jComboBoxMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMediumActionPerformed
