@@ -98,6 +98,7 @@ public class Main {
     ObjectSize.gc();
     long sizeOfAMovingBody = ObjectSize.sizeOfMovingBody(500);
     System.out.println("Size of a mb: " + sizeOfAMovingBody);
+    System.out.println("MAX MEMORY: " + Runtime.getRuntime().maxMemory());
 
     // 2009-03-11--BE:
     // underestimate the amount of movingBodies the RAM can hold.
@@ -112,7 +113,7 @@ public class Main {
     // TODO: learn to design programs.
     ObjectSize.gc();
     double estimatedMaxOfMovingBodies =
-            0.4 * Runtime.getRuntime().maxMemory() /
+            0.32 * Runtime.getRuntime().maxMemory() /
             sizeOfAMovingBody;
     System.out.println(
             "estMaxMovingBodies: " +

@@ -682,7 +682,19 @@ private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
   ScreenUtilities.setCompareTrajectories(false);
   TrajectoryUI.isAnimationRunning = false;
   modi.MeasureMode.setIsDisplayXYcoordsEnabled(false);
-  System.gc(); // free memory
+  EulerIntegration.positions.clear();
+  ScreenUtilities.xs.clear();
+  ScreenUtilities.ys.clear();
+  TrajectoryUI.setCounterToZero();
+  try {
+    for(int j=0; j<3; j++){
+        System.gc(); // free memory
+        Thread.sleep(200);
+    }
+  } catch (Exception ignore){
+    System.out.println("jMenuItemResetActionPerformed: " + ignore);
+  }
+    System.gc();
 }//GEN-LAST:event_jMenuItemResetActionPerformed
 
 private void jMenuItemStopAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopAnimationActionPerformed
