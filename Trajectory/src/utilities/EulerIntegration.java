@@ -27,9 +27,15 @@ public class EulerIntegration {
 
   // variables and constants
   final static int MSEC_PER_SEC = 1000;
+  final static int INITIAL_SIZE_POSITIONS = 300000;
+  final static int INCREMENT_POSITIONS    = 300000;
   protected static int SIZE = 3000000; // TODO: AA adjust that to hardware, via autoset.
   // BE: i am on it.
-  public static Vector<MovingBody> positions = new Vector<MovingBody>();
+
+  // start with a capacity 300000 moving body instances, increment the same
+  // amount when the need arises.
+  public static Vector<MovingBody> positions = 
+          new Vector<MovingBody>(INITIAL_SIZE_POSITIONS, INCREMENT_POSITIONS);
   static Long currentMillis = new Long(0);
   private static double rho = 0.0;
   private static double dt = 0.0;
@@ -55,6 +61,20 @@ public class EulerIntegration {
   public int getTaskID() {
     return taskID;
   }
+
+  public static int getSIZE(){
+    return SIZE;
+  }
+
+  public static int getINCREMENT_POSITIONS() {
+    return INCREMENT_POSITIONS;
+  }
+
+  public static int getINITIAL_SIZE_POSITIONS() {
+    return INITIAL_SIZE_POSITIONS;
+  }
+
+
 
   public int incTaskID() {
     taskID++;

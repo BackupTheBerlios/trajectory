@@ -120,6 +120,6 @@ public class Main {
             Math.round(estimatedMaxOfMovingBodies)
     );
     EulerIntegration.setSIZE((int)Math.ceil(estimatedMaxOfMovingBodies));
-    
+    System.out.println("SIZE: " + EulerIntegration.getSIZE());
   } // end `main()'
 } // end `Main'

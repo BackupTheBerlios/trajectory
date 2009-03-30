@@ -42,6 +42,7 @@
  * TODO:    BE: A Use the `infinity alert' cases in order to provide better
  *              user-experience for novices.
  * TODO:    BE: C,R (Auto-) Feedback facility; logging.
+ * TODO:    BE: Speed up using Iterators.
  * 
  */
 package UI;
@@ -685,6 +686,19 @@ private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
   EulerIntegration.positions.clear();
   ScreenUtilities.xs.clear();
   ScreenUtilities.ys.clear();
+  System.out.println("positions-cap : "   + EulerIntegration.positions.capacity());
+    System.out.println("positions: " + EulerIntegration.positions.size());
+        System.out.println("positions: " + EulerIntegration.positions.size());
+        System.gc();
+        //try {Thread.sleep(3000); } catch (Exception ex){}
+        System.gc();
+        EulerIntegration.positions.setSize(0);
+        EulerIntegration.positions.trimToSize();
+        System.out.println("pos-cap : " + EulerIntegration.positions.capacity());
+        System.out.println("pos-size: " + EulerIntegration.positions.size());
+        System.out.println("pos-size: " + EulerIntegration.positions.size());
+        System.gc();
+
   TrajectoryUI.setCounterToZero();
   try {
     for(int j=0; j<3; j++){
