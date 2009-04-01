@@ -66,6 +66,8 @@ import modi.*;
 // Use  : This class provides the users "main frame".
 public class TrajectoryUI extends javax.swing.JFrame {
 
+  protected final int LEADING_BODY_SIZE = 5;
+
   // member variables
   public static DialogComputationInProgress dialog;
   
@@ -77,8 +79,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
   private static int i = 0;
   private static int animationSpeed = 0;
 
-  private static int currentXscreenCoord = -10;
-  private static int currentYscreenCoord = -10;
+  protected static int currentXscreenCoord = -10;
+  protected static int currentYscreenCoord = -10;
 
   private static int xScreen = -10; // used for keeping the coords the mouse
   private static int yScreen = -10; // is pointing at.
@@ -168,7 +170,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
       tmpG2d.drawOval( 
               currentXscreenCoord,
               currentYscreenCoord,
-              5, 5
+              LEADING_BODY_SIZE,
+              LEADING_BODY_SIZE
       );
 
       // TODO: B BE: data flow?
@@ -222,6 +225,12 @@ public class TrajectoryUI extends javax.swing.JFrame {
     public void paint(Graphics g) {
       Graphics2D g2d = (Graphics2D) g;
       g2d.drawImage(bi, null, 0, 0);
+      g2d.drawOval(
+              TrajectoryUI.currentXscreenCoord,
+              TrajectoryUI.currentYscreenCoord,
+              LEADING_BODY_SIZE,
+              LEADING_BODY_SIZE
+      );
     }
   } // end `DrawingPanel'
 
@@ -229,6 +238,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
   // Use:  Computing height and angle according to the user´s choice,
   //       isActingGravity == {true, false}; Print computed values to AnalysisUI
   // Pre:  Just useful where it stands right now ;-(
+  // TODO: Profile for performance of this function, as various calls are made
+  //       from within.
   private void displayValuesOnAnalysisUI(){
     MovingBody tmp = positions.get(i);
     physics.Setting tempSetting = UserInputNewParameters.currentSetting;
@@ -248,7 +259,8 @@ public class TrajectoryUI extends javax.swing.JFrame {
        tmp.getV(), tmp.getVx(), tmp.getVy(),
        tmp.getLocation(tempSetting).getX(), tmp.getLocation(tempSetting).getY(),
        hTemp, tmp.getLocation(tempSetting).getRho(), tmp.getBeta(), angleTemp,
-       UI.Analysis.computeThrowingTime(i, dt));
+       UI.Analysis.computeThrowingTime(i, dt)); // clumsy, why multiply if one
+                                                // could simply increment?
 
   } // end `displayValuesOnAnalysisUI()'
 
@@ -524,7 +536,7 @@ private void jMenuItemOpenFileActionPerformed(java.awt.event.ActionEvent evt) {/
 }//GEN-LAST:event_jMenuItemOpenFileActionPerformed
 
 // use:  start the computation of a trajectory.
-// pre:  everything is propery set via menu `Set' ...
+// pre:  everything is properly set via menu `Set' ...
 // post: the datastructures `xs', `ys' in class ScreenUtilities are filled
 //       with the results of the computation.
 private void jMenuItemComputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemComputeActionPerformed

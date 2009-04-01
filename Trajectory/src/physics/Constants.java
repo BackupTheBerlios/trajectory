@@ -24,13 +24,13 @@ public class Constants {
 	
 	// for the time of development these values are constants... //
 
-	private final static double ONE_MILLION = 1000000;
-	public  final static double MAX_WIDTH_SIMUL = ONE_MILLION;
-	public  final static double MAX_HEIGHT_SIMUL = ONE_MILLION;
-	public  final static int SCREEN_WIDTH = 1024;
-	public  final static int SCREEN_HEIGHT = 768;
-	public  final static int X_DIRECTION = 0;
-	public  final static int Y_DIRECTION = 1;
+	private final static double ONE_MILLION       = 1000000;
+	public  final static double MAX_WIDTH_SIMUL   = ONE_MILLION;
+	public  final static double MAX_HEIGHT_SIMUL  = ONE_MILLION;
+	public  final static int SCREEN_WIDTH         = 1024;
+	public  final static int SCREEN_HEIGHT        = 768;
+	public  final static int X_DIRECTION          = 0;
+	public  final static int Y_DIRECTION          = 1;
 	
     
     //Medien - Dichte, Viskosität (kg/m³, Ns/m²) (20°C, Normaldruck):
@@ -99,9 +99,6 @@ public class Constants {
     public final static double DENSITY_EARTH            = 1.204;
     public final static double VISCOSITY_EARTH          = 17.1e-6;
 
-    public final static double MASS_MOON                = 7.349e22;
-    public final static double RADIUS_MOON              = 1738000;
-
     public final static double MASS_MARS                = 6.419e23;
     public final static double RADIUS_MARS              = 3397000;
 
@@ -113,6 +110,12 @@ public class Constants {
     public final static double DENSITY_VENUS            = 60.2;
     public final static double VISCOSITY_VENUS          = 855e-6;
 
+  
+    // other celestial bodies
+    
+    // Earth´s moon
+    public final static double MASS_MOON                = 7.349e22;
+    public final static double RADIUS_MOON              = 1738000;
 
     //preset Bodys, density:
 
