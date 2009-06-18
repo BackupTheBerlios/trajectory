@@ -922,6 +922,11 @@ private void jBtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
    }
 
 
+   if (Double.valueOf(jTfThrowingRange.getText()) < 0){
+      jTfThrowingRange.setText("0.0");
+   }
+
+
     currentSetting = new physics.Setting(
             jTfHeight.getText(), 
             jTfRhoFluid.getText(),
